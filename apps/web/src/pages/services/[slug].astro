@@ -1,0 +1,187 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PageHero from '../../components/PageHero.astro'
+import Section from '../../components/Section.astro'
+import CTASection from '../../components/CTASection.astro'
+import {sanity} from '../../lib/sanity'
+
+export async function getStaticPaths() {
+  const services = await sanity.fetch(`
+    *[_type == "service" && defined(slug.current)]{
+      "slug": slug.current
+    }
+  `)
+
+  return services.map((service) => ({
+    params: {
+      slug: service.slug,
+    },
+  }))
+}
+
+const {slug} = Astro.params
+
+const service = await sanity.fetch(
+  `
+    *[_type == "service" && slug.current == $slug][0]{
+      title,
+      summary,
+      overview,
+      capabilities,
+      outcomes,
+      technologies,
+      relatedCaseStudies[]->{
+        title,
+        slug,
+        summary
+      }
+    }
+  `,
+  {slug}
+)
+
+const hero = {
+  eyebrow: 'Service',
+  headingPrimary: service?.title ?? 'Service',
+  headingAccent: '',
+  subHeading: service?.summary ?? '',
+}
+---
+
+<Layout
+  title={`${service?.title ?? 'Service'} | FrontierHQ`}
+  description={service?.summary ?? 'A FrontierHQ platform engineering service.'}
+>
+  <main>
+    <PageHero {...hero} />
+
+    <!-- OVERVIEW -->
+
+    <Section
+      eyebrow="Overview"
+      heading={`What ${service?.title ?? 'this service'} helps organisations achieve.`}
+      body={service?.overview}
+      theme="light"
+    />
+
+    <!-- CAPABILITIES -->
+
+    {service?.capabilities?.length > 0 && (
+      <Section
+        eyebrow="Capabilities"
+        heading="Deep technical capability across the platform stack."
+        theme="dark"
+      >
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {service.capabilities.map((capability, index) => (
+            <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <div
+                class:list={[
+                  'mb-6 h-1 w-16 rounded-full',
+                  index % 3 === 0 && 'frontier-gradient-green-cyan',
+                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                ]}
+              ></div>
+
+              <p class="text-lg font-semibold text-frontier-white">
+                {capability}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+    )}
+
+    <!-- OUTCOMES -->
+
+    {service?.outcomes?.length > 0 && (
+      <Section
+        eyebrow="Outcomes"
+        heading="Built to improve operational confidence and delivery."
+        theme="light"
+      >
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {service.outcomes.map((outcome, index) => (
+            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <div
+                class:list={[
+                  'mb-6 h-1 w-16 rounded-full',
+                  index % 3 === 0 && 'frontier-gradient-green-cyan',
+                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                ]}
+              ></div>
+
+              <p class="text-lg font-semibold text-frontier-dark">
+                {outcome}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+    )}
+
+    <!-- TECHNOLOGIES -->
+
+    {service?.technologies?.length > 0 && (
+      <Section
+        eyebrow="Technologies"
+        heading="Platforms and ecosystem technologies we work with."
+        body="We integrate technologies into coherent operational platforms rather than treating tooling as the end goal."
+        theme="dark"
+      >
+        <div class="flex flex-wrap gap-3">
+          {service.technologies.map((technology) => (
+            <span class="rounded-full border border-frontier-cyan/20 bg-white/5 px-4 py-2 text-sm font-semibold text-frontier-light-grey">
+              {technology}
+            </span>
+          ))}
+        </div>
+      </Section>
+    )}
+
+    <!-- RELATED CASE STUDIES -->
+
+    {service?.relatedCaseStudies?.length > 0 && (
+      <Section
+        eyebrow="Related Case Studies"
+        heading="Examples of this work in practice."
+        theme="light"
+      >
+        <div class="grid gap-6 lg:grid-cols-2">
+          {service.relatedCaseStudies.map((study) => (
+            <a
+              href={`/case-studies/${study.slug.current}`}
+              class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+            >
+              <h3 class="text-2xl font-bold text-frontier-dark">
+                {study.title}
+              </h3>
+
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {study.summary}
+              </p>
+
+              <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+                Read the case study →
+              </p>
+            </a>
+          ))}
+        </div>
+      </Section>
+    )}
+
+    <!-- CTA -->
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading={`Need help with ${service?.title ?? 'your platform'}?`}
+      body="We help organisations design, integrate and build secure, reliable platform foundations across real-world environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See Case Studies"
+      secondaryCtaUrl="/case-studies"
+    />
+  </main>
+</Layout>

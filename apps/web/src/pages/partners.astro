@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import {sanity} from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "partners"][0]{
+    title, seoTitle, seoDescription, hero
+  }
+`)
+
+const partners = await sanity.fetch(`
+  *[_type == "partner"] | order(featured desc, name asc){
+    name,
+    slug,
+    category,
+    summary,
+    featured
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'Partners',
+  headingPrimary: 'Independent thinking.',
+  headingAccent: 'Strong product partnerships.',
+  subHeading:
+    'We work with leading product companies and ecosystem partners to design, integrate and build platforms that fit your environment — not a single vendor’s ideal architecture.',
+}
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'Partners | FrontierHQ'}
+  description={page?.seoDescription ?? 'FrontierHQ partner ecosystem and product vendor relationships.'}
+  activeNav="/partners"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Ecosystem"
+      heading="We integrate the right technologies into coherent platforms."
+      body="Modern platforms are built from product ecosystems, not a single tool. Frontier helps organisations select, integrate and operate technologies across infrastructure, cloud, Kubernetes, security, observability and delivery workflows."
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {partners.map((partner, index) => (
+          <a
+            href={`/partners/${partner.slug.current}`}
+            class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+          >
+            <div
+              class:list={[
+                'mb-6 h-1 w-16 rounded-full',
+                index % 3 === 0 && 'frontier-gradient-green-cyan',
+                index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                index % 3 === 2 && 'frontier-gradient-cyan-purple',
+              ]}
+            />
+
+            {partner.category && (
+              <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                {partner.category}
+              </p>
+            )}
+
+            <h2 class="mt-4 text-3xl font-bold text-frontier-dark">
+              {partner.name}
+            </h2>
+
+            {partner.summary && (
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {partner.summary}
+              </p>
+            )}
+
+            <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+              View partner →
+            </p>
+          </a>
+        ))}
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Our Position"
+      heading="Partnered, but not vendor-led."
+      body="We value strong product relationships, but our work starts with your operating environment, constraints and goals. That means we choose and integrate technologies based on what your platform needs to run reliably — not what one vendor wants to sell."
+      theme="dark"
+    />
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Need help integrating product technologies into your platform?"
+      body="We help organisations design, integrate and operate platforms across vendor ecosystems and real-world environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See What We Do"
+      secondaryCtaUrl="/what-we-do"
+    />
+  </main>
+</Layout>

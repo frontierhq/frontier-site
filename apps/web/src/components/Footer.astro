@@ -1,0 +1,166 @@
+---
+import Logo from './Logo.astro'
+---
+
+<footer class="border-t border-frontier-cyan/10 bg-frontier-dark">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <div class="grid gap-14 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+      <!-- BRAND -->
+
+      <div>
+        <a href="/" class="inline-flex">
+          <Logo variant="light" />
+        </a>
+
+        <p class="mt-6 max-w-sm text-sm leading-7 text-frontier-light-grey">
+          Platform engineering consultancy and systems integration across bare
+          metal, cloud, hybrid and Kubernetes environments.
+        </p>
+
+        <p class="mt-6 text-sm text-frontier-mid-grey">
+          Built around operational reality.
+        </p>
+      </div>
+
+      <!-- NAVIGATION -->
+
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          Navigation
+        </p>
+
+        <ul class="mt-6 space-y-4 text-sm text-frontier-light-grey">
+          <li>
+            <a href="/what-we-do" class="transition hover:text-frontier-green">
+              What We Do
+            </a>
+          </li>
+
+          <li>
+            <a href="/case-studies" class="transition hover:text-frontier-green">
+              Case Studies
+            </a>
+          </li>
+
+          <li>
+            <a href="/partners" class="transition hover:text-frontier-green">
+              Partners
+            </a>
+          </li>
+
+          <li>
+            <a href="/about" class="transition hover:text-frontier-green">
+              About
+            </a>
+          </li>
+
+          <li>
+            <a href="/contact" class="transition hover:text-frontier-green">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SERVICES -->
+
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          Services
+        </p>
+
+        <ul class="mt-6 space-y-4 text-sm text-frontier-light-grey">
+          <li>
+            <a
+              href="/services/bare-metal-platforms"
+              class="transition hover:text-frontier-green"
+            >
+              Bare Metal Platforms
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/services/cloud-platforms"
+              class="transition hover:text-frontier-green"
+            >
+              Cloud Platforms
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/services/hybrid-platforms"
+              class="transition hover:text-frontier-green"
+            >
+              Hybrid Platforms
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/services/kubernetes-platforms"
+              class="transition hover:text-frontier-green"
+            >
+              Kubernetes Platforms
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/services/platform-engineering-ci-cd"
+              class="transition hover:text-frontier-green"
+            >
+              Platform Engineering & CI/CD
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          Contact
+        </p>
+
+        <div class="mt-6 space-y-4 text-sm text-frontier-light-grey">
+          <p>
+            <a
+              href="mailto:hello@frontierhq.com"
+              class="transition hover:text-frontier-green"
+            >
+              hello@frontierhq.com
+            </a>
+          </p>
+
+          <p>
+            United Kingdom
+          </p>
+
+          <p class="leading-7 text-frontier-mid-grey">
+            Consultancy and systems integration for modern platform environments.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM -->
+
+    <div class="mt-16 flex flex-col gap-4 border-t border-frontier-cyan/10 pt-8 text-sm text-frontier-mid-grey md:flex-row md:items-center md:justify-between">
+      <p>
+        © {new Date().getFullYear()} FrontierHQ. All rights reserved.
+      </p>
+
+      <div class="flex gap-6">
+        <a href="/legal/privacy" class="transition hover:text-frontier-green">
+          Privacy
+        </a>
+
+        <a href="/legal/terms" class="transition hover:text-frontier-green">
+          Terms
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

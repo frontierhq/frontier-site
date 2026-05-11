@@ -1,0 +1,37 @@
+---
+const {
+  title = '',
+  summary = '',
+  href = '#',
+  accent = 'green',
+} = Astro.props
+
+const accentClass =
+  accent === 'cyan'
+    ? 'frontier-gradient-cyan-blue'
+    : accent === 'purple'
+      ? 'frontier-gradient-cyan-purple'
+      : 'frontier-gradient-green-cyan'
+---
+
+<a
+  href={href}
+  class="group block rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 text-frontier-dark transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+>
+  <div class:list={[accentClass, 'mb-6 h-1 w-16 rounded-full']}></div>
+
+  <h3 class="text-2xl font-bold tracking-tight">
+    {title}
+  </h3>
+
+  {summary && (
+    <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+      {summary}
+    </p>
+  )}
+
+  <div class="mt-8 flex items-center gap-2 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+    <span>Learn more</span>
+    <span>→</span>
+  </div>
+</a>

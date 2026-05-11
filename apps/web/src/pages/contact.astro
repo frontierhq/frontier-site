@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import ContactForm from '../components/ContactForm.astro'
+import {sanity} from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "contact"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'Contact',
+  headingPrimary: 'Let’s talk about the platform challenges',
+  headingAccent: 'in front of you.',
+  subHeading:
+    'Whether you are modernising infrastructure, adopting Kubernetes, improving delivery workflows or simplifying hybrid operations — we are happy to start with a conversation.',
+}
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'Contact | FrontierHQ'}
+  description={page?.seoDescription ?? 'Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges.'}
+  activeNav="/contact"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Start the Conversation"
+      heading="Tell us what you are trying to achieve."
+      body="We work with organisations across infrastructure, cloud, Kubernetes and platform engineering environments. Most engagements begin with understanding the operational reality, technical constraints and goals in front of you."
+      theme="dark"
+    >
+      <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <!-- FORM -->
+
+        <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 lg:p-10">
+          <ContactForm />
+        </div>
+
+        <!-- SIDE PANEL -->
+
+        <div class="space-y-6">
+          <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+            <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+              Typical Conversations
+            </p>
+
+            <div class="mt-8 space-y-5">
+              {[
+                'Platform modernisation',
+                'Hybrid and Kubernetes strategy',
+                'Cloud and infrastructure integration',
+                'Migration planning and delivery',
+                'CI/CD and platform engineering',
+                'Operational reliability and security',
+              ].map((item) => (
+                <div class="flex items-start gap-4">
+                  <div class="mt-2 h-2 w-2 rounded-full bg-frontier-green"></div>
+
+                  <p class="text-sm leading-7 text-frontier-light-grey">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+            <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+              Engagement Model
+            </p>
+
+            <div class="mt-8 space-y-5">
+              {[
+                'Technical consultancy and architecture',
+                'Platform integration and delivery',
+                'Migration and modernisation programmes',
+                'Embedded engineering support',
+                'Platform engineering enablement',
+              ].map((item) => (
+                <div class="flex items-start gap-4">
+                  <div class="mt-2 h-2 w-2 rounded-full bg-frontier-cyan"></div>
+
+                  <p class="text-sm leading-7 text-frontier-light-grey">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Trusted Environments"
+      heading="Built for organisations operating critical platforms."
+      body="Our work spans bare metal, cloud, hybrid and Kubernetes environments across sectors where operational reliability, governance and delivery confidence matter."
+      theme="light"
+    >
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          'Financial Services',
+          'Retail & Commerce',
+          'Public Sector',
+          'Healthcare',
+          'Energy',
+          'Technology',
+          'Logistics',
+          'Enterprise Platforms',
+        ].map((industry, index) => (
+          <div class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+            <div
+              class:list={[
+                'mb-6 h-1 w-16 rounded-full',
+                index % 3 === 0 && 'frontier-gradient-green-cyan',
+                index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                index % 3 === 2 && 'frontier-gradient-cyan-purple',
+              ]}
+            ></div>
+
+            <h3 class="text-xl font-bold text-frontier-dark">
+              {industry}
+            </h3>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Prefer to start with a discussion?"
+      heading="We are happy to begin with a technical conversation."
+      body="No hard sell. No generic discovery workshop. Just a practical discussion about your environment, constraints and platform goals."
+      primaryCtaLabel="Email Frontier"
+      primaryCtaUrl="mailto:hello@frontierhq.com"
+      secondaryCtaLabel="See Case Studies"
+      secondaryCtaUrl="/case-studies"
+    />
+  </main>
+</Layout>

@@ -1,0 +1,115 @@
+---
+const formName = 'contact'
+---
+
+<form
+  name={formName}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/thanks"
+  class="space-y-6"
+>
+  <!-- Required for Netlify Forms -->
+
+  <input type="hidden" name="form-name" value={formName} />
+
+  <!-- Honeypot spam protection -->
+
+  <p class="hidden">
+    <label>
+      Don’t fill this out:
+      <input name="bot-field" />
+    </label>
+  </p>
+
+  <!-- Name -->
+
+  <div>
+    <label
+      for="name"
+      class="mb-2 block text-sm font-semibold text-frontier-white"
+    >
+      Name
+    </label>
+
+    <input
+      id="name"
+      type="text"
+      name="name"
+      required
+      class="w-full rounded-2xl border border-frontier-cyan/20 bg-white/5 px-4 py-3 text-frontier-white outline-none transition placeholder:text-frontier-light-grey/40 focus:border-frontier-cyan"
+      placeholder="Your name"
+    />
+  </div>
+
+  <!-- Email -->
+
+  <div>
+    <label
+      for="email"
+      class="mb-2 block text-sm font-semibold text-frontier-white"
+    >
+      Email
+    </label>
+
+    <input
+      id="email"
+      type="email"
+      name="email"
+      required
+      class="w-full rounded-2xl border border-frontier-cyan/20 bg-white/5 px-4 py-3 text-frontier-white outline-none transition placeholder:text-frontier-light-grey/40 focus:border-frontier-cyan"
+      placeholder="you@company.com"
+    />
+  </div>
+
+  <!-- Company -->
+
+  <div>
+    <label
+      for="company"
+      class="mb-2 block text-sm font-semibold text-frontier-white"
+    >
+      Company
+    </label>
+
+    <input
+      id="company"
+      type="text"
+      name="company"
+      class="w-full rounded-2xl border border-frontier-cyan/20 bg-white/5 px-4 py-3 text-frontier-white outline-none transition placeholder:text-frontier-light-grey/40 focus:border-frontier-cyan"
+      placeholder="Company name"
+    />
+  </div>
+
+  <!-- Message -->
+
+  <div>
+    <label
+      for="message"
+      class="mb-2 block text-sm font-semibold text-frontier-white"
+    >
+      What are you trying to achieve?
+    </label>
+
+    <textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      class="w-full rounded-2xl border border-frontier-cyan/20 bg-white/5 px-4 py-3 text-frontier-white outline-none transition placeholder:text-frontier-light-grey/40 focus:border-frontier-cyan"
+      placeholder="Tell us a little about your environment, goals or challenges."
+    ></textarea>
+  </div>
+
+  <!-- Submit -->
+
+  <div class="pt-2">
+    <button
+      type="submit"
+      class="rounded-md bg-frontier-green px-6 py-3 text-sm font-semibold text-frontier-dark transition hover:bg-frontier-cyan"
+    >
+      Send message
+    </button>
+  </div>
+</form>

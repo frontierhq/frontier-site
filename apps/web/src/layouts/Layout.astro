@@ -1,0 +1,64 @@
+---
+import '../styles/global.css'
+
+import Footer from '../components/Footer.astro'
+import Logo from '../components/Logo.astro'
+import Nav from '../components/Nav.astro'
+
+const {
+  title = 'FrontierHQ',
+  description = 'Platform engineering for real-world environments.',
+  activeNav = '',
+  navVariant = 'dark',
+} = Astro.props
+
+const navItems = [
+  ['What We Do', '/what-we-do'],
+  ['How We Work', '/how-we-work'],
+  ['Partners', '/partners'],
+  ['Case Studies', '/case-studies'],
+  ['About Us', '/about'],
+  ['Insights', '/insights'],
+]
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body class="bg-frontier-dark font-sans text-frontier-white antialiased">
+    <header class="absolute inset-x-0 top-0 z-50">
+        <Nav variant={navVariant} activeNav={activeNav} />
+    </header>
+
+    <slot />
+      <Footer />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+</style>

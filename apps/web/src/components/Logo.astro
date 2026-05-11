@@ -1,0 +1,14 @@
+---
+const {variant = 'light'} = Astro.props
+
+const src =
+  variant === 'dark'
+    ? '/images/logo-dark.svg'
+    : '/images/logo-light.svg'
+---
+
+<img
+  src={src}
+  alt="FrontierHQ"
+  class="h-8 w-auto"
+/>

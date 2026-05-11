@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import {sanity} from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "how-we-work"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'How We Work',
+  headingPrimary: 'Consultancy where it matters.',
+  headingAccent: 'Delivery where it counts.',
+  subHeading:
+    'We help organisations move from platform complexity to operational clarity — combining technical strategy, product integration and hands-on delivery.',
+}
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'How We Work | FrontierHQ'}
+  description={page?.seoDescription ?? 'How FrontierHQ designs, integrates and builds platform foundations.'}
+  activeNav="/how-we-work"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Our Role"
+      heading="We do not just advise on platforms. We build them."
+      body="Frontier works across strategy, architecture, integration and implementation. That means the platforms we design are grounded in delivery reality — and the platforms we build are aligned to long-term operational goals."
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          [
+            'Technical consultancy',
+            'We help you understand the right platform direction, architecture and operating model for your environment.',
+          ],
+          [
+            'Product integration',
+            'We bring together cloud, infrastructure, Kubernetes, security and delivery tooling into coherent platforms.',
+          ],
+          [
+            'Hands-on delivery',
+            'We work alongside your teams to build, migrate, modernise and enable platforms in production.',
+          ],
+        ].map(([title, body]) => (
+          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+            <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full"></div>
+            <h3 class="text-2xl font-bold">{title}</h3>
+            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Method"
+      heading="A practical path from complexity to control."
+      body="Every engagement is different, but our work usually follows a simple pattern: understand the reality, design the platform, integrate the right technologies, build the foundation, and enable teams to operate it."
+      theme="dark"
+    >
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        {[
+          ['Discover', 'Understand constraints, risks, systems, teams and operating reality.'],
+          ['Design', 'Define the platform architecture, principles and delivery roadmap.'],
+          ['Integrate', 'Connect infrastructure, cloud, Kubernetes, security and delivery tooling.'],
+          ['Build', 'Implement reliable, secure and production-ready platform foundations.'],
+          ['Enable', 'Help teams adopt, operate and evolve the platform with confidence.'],
+        ].map(([title, body]) => (
+          <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+            <div class="frontier-gradient-cyan-blue mb-6 h-1 w-16 rounded-full"></div>
+            <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
+            <p class="mt-4 text-sm leading-7 text-frontier-light-grey">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="What Makes Us Different"
+      heading="Built for the environments businesses actually run in."
+      theme="light"
+    >
+      <div class="grid gap-8 md:grid-cols-2">
+        {[
+          [
+            'From metal to Kubernetes',
+            'We work across the full platform stack — from bare metal, Linux, provisioning and virtualisation through to cloud, Kubernetes and developer platforms.',
+          ],
+          [
+            'Not vendor-led',
+            'We work with product companies and ecosystem partners, but our advice is shaped by your environment rather than a single vendor architecture.',
+          ],
+          [
+            'Designed for control',
+            'Security, resilience, governance and operational control are designed into the platform rather than added as afterthoughts.',
+          ],
+          [
+            'Trust through delivery',
+            'We build credibility by doing the work: making pragmatic technical decisions, delivering production systems and enabling teams to own them.',
+          ],
+        ].map(([title, body]) => (
+          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+            <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
+            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Need a platform partner that can advise and deliver?"
+      body="We help organisations design, integrate and build platform foundations across bare metal, cloud, hybrid and Kubernetes environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See What We Do"
+      secondaryCtaUrl="/what-we-do"
+    />
+  </main>
+</Layout>

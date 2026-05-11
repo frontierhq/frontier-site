@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Red Hat Display', system-ui, sans-serif;
+
+  --color-frontier-green: #00e6b0;
+  --color-frontier-cyan: #0ec2e3;
+  --color-frontier-dark: #222321;
+  --color-frontier-white: #ffffff;
+
+  --color-frontier-light-grey: #dedede;
+  --color-frontier-mid-grey: #80807f;
+  --color-frontier-blue: #1c64ff;
+  --color-frontier-purple: #8f3bff;
+
+  --color-frontier-mid-green: #00a67b;
+  --color-frontier-mid-cyan: #008fa9;
+  --color-frontier-mid-blue: #003ec7;
+  --color-frontier-mid-purple: #5e00dc;
+
+  --color-frontier-dark-green: #00644a;
+  --color-frontier-dark-cyan: #076272;
+  --color-frontier-dark-blue: #0d2f78;
+  --color-frontier-dark-purple: #3e196e;
+}
+
+.frontier-gradient-green-cyan {
+  background: linear-gradient(90deg, #00e6b0 0%, #0ec2e3 100%);
+}
+
+.frontier-gradient-cyan-blue {
+  background: linear-gradient(90deg, #0ec2e3 0%, #1c64ff 100%);
+}
+
+.frontier-gradient-cyan-purple {
+  background: linear-gradient(90deg, #0ec2e3 0%, #8f3bff 100%);
+}

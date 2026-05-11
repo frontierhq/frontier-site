@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import {sanity} from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "about"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'About Frontier',
+  headingPrimary: 'Built around engineering reality.',
+  headingAccent: 'Focused on platforms that work.',
+  subHeading:
+    'Frontier combines deep technical consultancy with hands-on delivery across infrastructure, cloud, Kubernetes and platform engineering environments.',
+}
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'About | FrontierHQ'}
+  description={page?.seoDescription ?? 'About FrontierHQ and our approach to real-world platform engineering.'}
+  activeNav="/about"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Who We Are"
+      heading="A platform engineering partner for complex environments."
+      body="We help organisations design, integrate and build the foundations their engineering teams depend on. Our work spans bare metal, cloud, hybrid, Kubernetes, CI/CD and developer platform environments — stopping short of application feature development so product teams can focus on what they do best."
+      theme="light"
+    />
+
+    <Section
+      eyebrow="What We Believe"
+      heading="Good platforms are shaped by operational reality."
+      theme="dark"
+    >
+      <div class="grid gap-6 md:grid-cols-2">
+        {[
+          [
+            'Platforms should fit the business',
+            'The right platform is not a vendor reference architecture. It reflects your constraints, teams, risks and operating model.',
+          ],
+          [
+            'Trust is built through delivery',
+            'Services are bought on confidence. We build trust by making pragmatic decisions, doing the work and standing behind the outcome.',
+          ],
+          [
+            'Security starts in the foundations',
+            'Control, resilience and compliance work best when they are designed into the platform from the start — not added later.',
+          ],
+          [
+            'Platform engineering is an enablement function',
+            'The goal is not to own everything. The goal is to give teams reliable foundations, clearer paths and less operational friction.',
+          ],
+        ].map(([title, body]) => (
+          <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+            <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full"></div>
+            <h3 class="text-2xl font-bold text-frontier-white">{title}</h3>
+            <p class="mt-5 text-sm leading-7 text-frontier-light-grey">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="How We Engage"
+      heading="Senior technical guidance, practical integration and hands-on delivery."
+      body="Frontier works as both advisor and builder. We help clients make confident platform decisions, integrate the right technologies and deliver systems that can be operated in production."
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          [
+            'Advise',
+            'We help define platform direction, architecture, operating models and delivery priorities.',
+          ],
+          [
+            'Integrate',
+            'We bring together infrastructure, cloud, Kubernetes, security, observability and delivery tooling.',
+          ],
+          [
+            'Enable',
+            'We work alongside teams so platforms can be adopted, operated and evolved with confidence.',
+          ],
+        ].map(([title, body]) => (
+          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+            <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
+            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Ecosystem"
+      heading="Independent thinking. Strong product partnerships."
+      body="We work with leading product companies and ecosystem partners, but our advice is shaped by the environment you run — not by a single vendor’s ideal architecture."
+      theme="dark"
+    >
+      <div class="grid grid-cols-2 gap-6 text-xl font-bold text-frontier-light-grey md:grid-cols-4">
+        <span>Red Hat</span>
+        <span>VMware</span>
+        <span>Broadcom</span>
+        <span>AWS</span>
+        <span>Microsoft</span>
+        <span>Google Cloud</span>
+        <span>SUSE</span>
+        <span>HashiCorp</span>
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Need a platform partner that can advise and deliver?"
+      body="We help organisations design, integrate and build platform foundations across bare metal, cloud, hybrid and Kubernetes environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See Case Studies"
+      secondaryCtaUrl="/case-studies"
+    />
+  </main>
+</Layout>

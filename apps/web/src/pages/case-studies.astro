@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import {sanity} from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "case-studies"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero
+  }
+`)
+
+const caseStudies = await sanity.fetch(`
+  *[_type == "caseStudy"] | order(featured desc, title asc){
+    title,
+    slug,
+    summary,
+    clientType,
+    environment,
+    metrics,
+    featured
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'Case Studies',
+  headingPrimary: 'Real challenges.',
+  headingAccent: 'Real outcomes.',
+  subHeading:
+    'See how we help organisations design, integrate and build platform foundations across complex, high-stakes environments.',
+}
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'Case Studies | FrontierHQ'}
+  description={page?.seoDescription ?? 'Platform engineering case studies from FrontierHQ.'}
+  activeNav="/case-studies"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Proof in Practice"
+      heading="Platform engineering in real-world environments."
+      body="Our work spans bare metal, cloud, hybrid, Kubernetes, migration and developer platform environments — helping organisations reduce complexity, improve reliability and move with confidence."
+      theme="light"
+    >
+      <div class="grid gap-6 lg:grid-cols-2">
+        {
+          caseStudies.map((study, index) => (
+            <a
+              href={`/case-studies/${study.slug.current}`}
+              class="group overflow-hidden rounded-3xl border border-frontier-light-grey bg-frontier-white text-frontier-dark transition hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl"
+            >
+              <div
+                class:list={[
+                  'h-56',
+                  index % 3 === 0 && 'frontier-gradient-green-cyan',
+                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                ]}
+              />
+
+              <div class="p-8">
+                <div class="flex flex-wrap gap-2">
+                  {study.clientType && (
+                    <span class="rounded-full bg-frontier-dark px-3 py-1 text-xs font-semibold text-frontier-white">
+                      {study.clientType}
+                    </span>
+                  )}
+
+                  {study.environment?.slice(0, 3).map((item) => (
+                    <span class="rounded-full bg-frontier-light-grey px-3 py-1 text-xs font-semibold text-frontier-dark">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <h2 class="mt-6 text-3xl font-bold tracking-tight">
+                  {study.title}
+                </h2>
+
+                {study.summary && (
+                  <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                    {study.summary}
+                  </p>
+                )}
+
+                {study.metrics?.length > 0 && (
+                  <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                    {study.metrics.slice(0, 2).map((metric) => (
+                      <div>
+                        <p class="text-3xl font-bold text-frontier-dark">
+                          {metric.value}
+                        </p>
+                        <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-frontier-mid-grey">
+                          {metric.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+                  Read the case study →
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Have a platform challenge that needs careful delivery?"
+      body="We help organisations modernise, migrate and build reliable platform foundations across real-world environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See What We Do"
+      secondaryCtaUrl="/what-we-do"
+    />
+  </main>
+</Layout>

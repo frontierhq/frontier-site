@@ -1,0 +1,104 @@
+---
+import {sanity} from '../lib/sanity'
+
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import ServiceCard from '../components/ServiceCard.astro'
+import CTASection from '../components/CTASection.astro'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "what-we-do"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero,
+    sections[]{
+      ...,
+      services[]->{
+        title,
+        slug,
+        summary
+      }
+    }
+  }
+`)
+
+const hero = page?.hero ?? {}
+
+const servicesSection = page?.sections?.find(
+  (section) => section._type === 'servicesSection'
+)
+
+const services = servicesSection?.services ?? []
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'What We Do | FrontierHQ'}
+  description={page?.seoDescription ?? 'Platform engineering services from FrontierHQ.'}
+  activeNav="/what-we-do"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Services"
+      heading={servicesSection?.heading ?? 'We design and build the foundations your teams depend on.'}
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((service, index) => (
+            <ServiceCard
+              title={service.title}
+              summary={service.summary}
+              href={`/services/${service.slug.current}`}
+              accent={
+                index % 3 === 0
+                  ? 'green'
+                  : index % 3 === 1
+                    ? 'cyan'
+                    : 'purple'
+              }
+            />
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="How We Work"
+      heading="Consultancy where it matters. Delivery where it counts."
+      body="We operate across strategy, architecture, integration and delivery — helping organisations move from platform complexity toward operational clarity."
+      theme="dark"
+    >
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+        {
+          [
+            ['Discover', 'Understand operational constraints, risk and platform realities.'],
+            ['Design', 'Create architectures that fit your environment and teams.'],
+            ['Integrate', 'Bring together infrastructure, cloud and platform technologies.'],
+            ['Build', 'Implement secure, reliable production-ready platforms.'],
+            ['Enable', 'Help engineering teams adopt and operate effectively.'],
+          ].map(([title, body]) => (
+            <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full"></div>
+              <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
+              <p class="mt-4 text-sm leading-7 text-frontier-light-grey">{body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Let’s build the right platform for your business."
+      body="Whether you need to modernise, migrate or build from the ground up, we can help."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See Case Studies"
+      secondaryCtaUrl="/case-studies"
+    />
+  </main>
+</Layout>
