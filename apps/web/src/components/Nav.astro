@@ -1,10 +1,7 @@
 ---
 import Logo from './Logo.astro'
 
-const {
-  variant = 'dark',
-  activeNav = '',
-} = Astro.props
+const { variant = 'dark', activeNav = '' } = Astro.props
 
 const isLight = variant === 'light'
 
@@ -21,13 +18,13 @@ const linkBase = isLight
   ? 'text-frontier-dark/80 hover:text-frontier-mid-green'
   : 'text-frontier-white/80 hover:text-frontier-green'
 
-const activeClass = isLight
-  ? 'text-frontier-mid-green'
-  : 'text-frontier-green'
+const activeClass = isLight ? 'text-frontier-mid-green' : 'text-frontier-green'
 ---
 
 <header class="absolute inset-x-0 top-0 z-50">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8"
+  >
     <a href="/" class="flex items-center">
       <Logo variant={isLight ? 'dark' : 'light'} />
     </a>

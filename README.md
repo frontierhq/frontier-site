@@ -8,6 +8,7 @@ Modern consultancy website for FrontierHQ built with:
 - Netlify
 
 The site is designed around:
+
 - platform engineering
 - systems integration
 - consultancy delivery
@@ -17,14 +18,14 @@ The site is designed around:
 
 # Stack
 
-| Technology | Purpose |
-|---|---|
-| Astro | Static site generation |
-| Tailwind CSS | Styling |
-| Sanity Studio | Content management |
-| Netlify | Hosting + deployment |
-| TypeScript | Application code |
-| Portable Text | Rich CMS content |
+| Technology    | Purpose                |
+| ------------- | ---------------------- |
+| Astro         | Static site generation |
+| Tailwind CSS  | Styling                |
+| Sanity Studio | Content management     |
+| Netlify       | Hosting + deployment   |
+| TypeScript    | Application code       |
+| Portable Text | Rich CMS content       |
 
 ---
 
@@ -50,6 +51,7 @@ The site is designed around:
 Astro frontend application.
 
 Contains:
+
 - pages
 - layouts
 - reusable UI components
@@ -74,6 +76,7 @@ apps/web/src/
 Sanity CMS Studio.
 
 Contains:
+
 - schemas
 - content models
 - editorial configuration
@@ -158,11 +161,11 @@ PUBLIC_SANITY_API_VERSION=2025-01-01
 
 Recommended environments:
 
-| Environment | Dataset |
-|---|---|
+| Environment       | Dataset     |
+| ----------------- | ----------- |
 | Local Development | development |
-| Staging | staging |
-| Production | production |
+| Staging           | staging     |
+| Production        | production  |
 
 ---
 
@@ -203,6 +206,7 @@ Static Site Deployment
 ## CMS
 
 Sanity Studio can be:
+
 - self-hosted
 - deployed via Sanity hosting
 
@@ -221,6 +225,7 @@ studio.frontierhq.com
 ### Page
 
 Generic content pages:
+
 - Home
 - About
 - Contact
@@ -234,6 +239,7 @@ Generic content pages:
 Platform engineering service offerings.
 
 Examples:
+
 - Bare Metal Platforms
 - Cloud Platforms
 - Hybrid Platforms
@@ -256,12 +262,14 @@ Vendor ecosystem and product relationships.
 # Design Principles
 
 The site intentionally avoids:
+
 - startup aesthetics
 - marketing-heavy language
 - excessive animations
 - generic consultancy messaging
 
 The design aims to communicate:
+
 - operational maturity
 - engineering credibility
 - clarity
@@ -285,6 +293,7 @@ Hands-on delivery
 ```
 
 The site positions FrontierHQ as:
+
 - a consultancy
 - a systems integrator
 - a platform engineering partner
@@ -328,10 +337,12 @@ Netlify Forms
 ```
 
 Submissions are available via:
+
 - Netlify dashboard
 - email notifications
 
 Future integrations may include:
+
 - Attio
 - Slack
 - HubSpot
@@ -357,9 +368,11 @@ PUBLIC_PLAUSIBLE_DOMAIN=frontierhq.com
 # Styling
 
 Typography:
+
 - Red Hat Display
 
 Styling:
+
 - Tailwind CSS
 - Custom Frontier design tokens
 - Brand colour utilities

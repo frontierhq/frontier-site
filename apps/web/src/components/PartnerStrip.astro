@@ -1,11 +1,19 @@
 ---
-const {partners = []} = Astro.props
+type Partner = {
+  name: string
+}
+
+const { partners = [] } = Astro.props as {
+  partners?: Partner[]
+}
 ---
 
 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-  {partners.map((partner) => (
-    <div class="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center">
-      <span class="text-sm font-semibold text-slate-500">{partner.name}</span>
-    </div>
-  ))}
+  {
+    partners.map((partner) => (
+      <div class="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center">
+        <span class="text-sm font-semibold text-slate-500">{partner.name}</span>
+      </div>
+    ))
+  }
 </div>

@@ -9,6 +9,26 @@
     "dev:web": "npm run dev -w apps/web",
     "dev:studio": "npm run dev -w apps/studio",
     "build:web": "npm run build -w apps/web",
-    "build:studio": "npm run build -w apps/studio"
+    "build:studio": "npm run build -w apps/studio",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm run build:web && npm run test:e2e",
+    "fix": "npm run lint:fix && npm run format",
+    "typecheck": "npm run typecheck -w apps/web",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "sanity:types": "npm run sanity:types -w apps/studio"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@frontier/sanity-types": "*",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.59.2"
   }
 }

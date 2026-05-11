@@ -9,28 +9,34 @@ const {
 
 <section class="bg-frontier-dark px-6 pt-36 pb-20 text-frontier-white lg:px-8">
   <div class="mx-auto max-w-7xl">
-    {eyebrow && (
-      <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
-        {eyebrow}
-      </p>
-    )}
+    {
+      eyebrow && (
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          {eyebrow}
+        </p>
+      )
+    }
 
-    <h1 class="mt-6 max-w-5xl text-5xl font-extrabold leading-none tracking-tight sm:text-6xl lg:text-7xl">
+    <h1
+      class="mt-6 max-w-5xl text-5xl font-extrabold leading-none tracking-tight sm:text-6xl lg:text-7xl"
+    >
       <span class="block text-frontier-white">
         {headingPrimary}
       </span>
 
-      {headingAccent && (
-        <span class="mt-2 block text-frontier-green">
-          {headingAccent}
-        </span>
-      )}
+      {
+        headingAccent && (
+          <span class="mt-2 block text-frontier-green">{headingAccent}</span>
+        )
+      }
     </h1>
 
-    {subHeading && (
-      <p class="mt-10 max-w-3xl text-lg leading-8 text-frontier-light-grey">
-        {subHeading}
-      </p>
-    )}
+    {
+      subHeading && (
+        <p class="mt-10 max-w-3xl text-lg leading-8 text-frontier-light-grey">
+          {subHeading}
+        </p>
+      )
+    }
   </div>
 </section>

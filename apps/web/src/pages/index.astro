@@ -1,9 +1,8 @@
 ---
-import {sanity} from '../lib/sanity'
+import { sanity } from '../lib/sanity'
 
 import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
-import Logo from '../components/Logo.astro'
 
 const page = await sanity.fetch(`
   *[_type == "page" && slug.current == "home"][0]{
@@ -13,39 +12,43 @@ const page = await sanity.fetch(`
 `)
 
 const hero = page?.hero
-
 ---
-
 
 <Layout
   title={page?.seoTitle ?? page?.title ?? 'What We Do | FrontierHQ'}
-  description={page?.seoDescription ?? 'Platform engineering services from FrontierHQ.'}
+  description={page?.seoDescription ??
+    'Platform engineering services from FrontierHQ.'}
   activeNav="/what-we-do"
 >
-    <main>
-      <!-- HERO -->
+  <main>
+    <!-- HERO -->
 
-      <Hero {...hero} />
+    <Hero {...hero} />
 
-      <!-- SERVICES -->
+    <!-- SERVICES -->
 
-      <section class="bg-frontier-dark px-6 py-24 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
-            What We Do
-          </p>
+    <section class="bg-frontier-dark px-6 py-24 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <p
+          class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
+        >
+          What We Do
+        </p>
 
-          <h2 class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl">
-            End-to-end platform engineering across any environment
-          </h2>
+        <h2
+          class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl"
+        >
+          End-to-end platform engineering across any environment
+        </h2>
 
-          <p class="mt-6 max-w-3xl text-lg leading-8 text-frontier-light-grey">
-            We combine deep technical consultancy with hands-on delivery to
-            design, integrate and operate platforms that scale.
-          </p>
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-frontier-light-grey">
+          We combine deep technical consultancy with hands-on delivery to
+          design, integrate and operate platforms that scale.
+        </p>
 
-          <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-            {[
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+          {
+            [
               [
                 'Bare Metal Platforms',
                 'Design and build secure, automated infrastructure from the ground up.',
@@ -75,11 +78,9 @@ const hero = page?.hero
                 href="/what-we-do"
                 class="group rounded-2xl border border-frontier-cyan/10 bg-white/5 p-6 transition hover:border-frontier-cyan/30 hover:bg-white/10"
               >
-                <div class="frontier-gradient-cyan-blue mb-5 h-1 w-12 rounded-full"></div>
+                <div class="frontier-gradient-cyan-blue mb-5 h-1 w-12 rounded-full" />
 
-                <h3 class="text-lg font-bold text-frontier-white">
-                  {title}
-                </h3>
+                <h3 class="text-lg font-bold text-frontier-white">{title}</h3>
 
                 <p class="mt-4 text-sm leading-7 text-frontier-light-grey">
                   {body}
@@ -89,69 +90,81 @@ const hero = page?.hero
                   Learn more →
                 </p>
               </a>
-            ))}
-          </div>
+            ))
+          }
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- PARTNERS -->
+    <!-- PARTNERS -->
 
-      <section class="bg-frontier-white px-6 py-20 text-frontier-dark lg:px-8">
-        <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_2fr]">
+    <section class="bg-frontier-white px-6 py-20 text-frontier-dark lg:px-8">
+      <div
+        class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_2fr]"
+      >
+        <div>
+          <p
+            class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey"
+          >
+            Stronger Together
+          </p>
+
+          <h2 class="mt-5 text-4xl font-bold tracking-tight">
+            We work with leading product companies to build what matters
+          </h2>
+
+          <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
+            We partner with best-in-class technology companies and ecosystem
+            partners to deliver the right solutions without tying you to any
+            single vendor.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-2 gap-8 text-xl font-bold text-frontier-mid-grey md:grid-cols-4"
+        >
+          <span>Red Hat</span>
+          <span>VMware</span>
+          <span>Broadcom</span>
+          <span>AWS</span>
+          <span>Microsoft</span>
+          <span>Google Cloud</span>
+          <span>SUSE</span>
+          <span>HashiCorp</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+
+    <section class="bg-frontier-dark px-6 py-24 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="flex items-end justify-between gap-6">
           <div>
-            <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-              Stronger Together
-            </p>
-
-            <h2 class="mt-5 text-4xl font-bold tracking-tight">
-              We work with leading product companies to build what matters
-            </h2>
-
-            <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
-              We partner with best-in-class technology companies and ecosystem
-              partners to deliver the right solutions without tying you to any
-              single vendor.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-8 text-xl font-bold text-frontier-mid-grey md:grid-cols-4">
-            <span>Red Hat</span>
-            <span>VMware</span>
-            <span>Broadcom</span>
-            <span>AWS</span>
-            <span>Microsoft</span>
-            <span>Google Cloud</span>
-            <span>SUSE</span>
-            <span>HashiCorp</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CASE STUDIES -->
-
-      <section class="bg-frontier-dark px-6 py-24 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <div class="flex items-end justify-between gap-6">
-            <div>
-              <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
-                Proof in Practice
-              </p>
-
-              <h2 class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl">
-                Real challenges. Real outcomes.
-              </h2>
-            </div>
-
-            <a
-              href="/case-studies"
-              class="hidden text-sm font-semibold text-frontier-green transition hover:text-frontier-cyan md:block"
+            <p
+              class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
             >
-              View all case studies →
-            </a>
+              Proof in Practice
+            </p>
+
+            <h2
+              class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl"
+            >
+              Real challenges. Real outcomes.
+            </h2>
           </div>
 
-          <div class="mt-14 grid gap-6 lg:grid-cols-2">
-            {[
+          <a
+            href="/case-studies"
+            class="hidden text-sm font-semibold text-frontier-green transition hover:text-frontier-cyan md:block"
+          >
+            View all case studies →
+          </a>
+        </div>
+
+        <div class="mt-14 grid gap-6 lg:grid-cols-2">
+          {
+            [
               [
                 'Modernising a critical platform estate',
                 'We designed and delivered a secure, hybrid platform that improved reliability, reduced risk and accelerated delivery across business teams.',
@@ -163,7 +176,7 @@ const hero = page?.hero
               ],
             ].map(([title, body]) => (
               <article class="overflow-hidden rounded-3xl border border-frontier-cyan/10 bg-white/5 transition hover:border-frontier-cyan/30">
-                <div class="frontier-gradient-cyan-purple h-56 opacity-70"></div>
+                <div class="frontier-gradient-cyan-purple h-56 opacity-70" />
 
                 <div class="p-8">
                   <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-cyan">
@@ -186,33 +199,36 @@ const hero = page?.hero
                   </a>
                 </div>
               </article>
-            ))}
-          </div>
+            ))
+          }
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- CTA -->
+    <!-- CTA -->
 
-      <section class="bg-frontier-white px-6 py-16 text-frontier-dark lg:px-8">
-        <div class="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 class="text-4xl font-bold tracking-tight">
-              Let’s build the right platform for your business.
-            </h2>
+    <section class="bg-frontier-white px-6 py-16 text-frontier-dark lg:px-8">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between"
+      >
+        <div>
+          <h2 class="text-4xl font-bold tracking-tight">
+            Let’s build the right platform for your business.
+          </h2>
 
-            <p class="mt-4 text-lg leading-8 text-frontier-mid-grey">
-              Whether you need to build, integrate, migrate or modernise —
-              we’re here to help.
-            </p>
-          </div>
-
-          <a
-            href="/contact"
-            class="rounded-md bg-frontier-green px-6 py-3 text-sm font-semibold text-frontier-dark transition hover:bg-frontier-cyan"
-          >
-            Let’s Talk
-          </a>
+          <p class="mt-4 text-lg leading-8 text-frontier-mid-grey">
+            Whether you need to build, integrate, migrate or modernise — we’re
+            here to help.
+          </p>
         </div>
-      </section>
-    </main>
+
+        <a
+          href="/contact"
+          class="rounded-md bg-frontier-green px-6 py-3 text-sm font-semibold text-frontier-dark transition hover:bg-frontier-cyan"
+        >
+          Let’s Talk
+        </a>
+      </div>
+    </section>
+  </main>
 </Layout>

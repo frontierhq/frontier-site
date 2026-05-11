@@ -3,7 +3,17 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import {sanity} from '../lib/sanity'
+import { sanity } from '../lib/sanity'
+
+type PartnerListItem = {
+  name: string
+  slug: {
+    current: string
+  }
+  category?: string
+  summary?: string
+  featured?: boolean
+}
 
 const page = await sanity.fetch(`
   *[_type == "page" && slug.current == "partners"][0]{
@@ -11,8 +21,8 @@ const page = await sanity.fetch(`
   }
 `)
 
-const partners = await sanity.fetch(`
-  *[_type == "partner"] | order(featured desc, name asc){
+const partners: PartnerListItem[] = await sanity.fetch(`
+  *[_type == "partner" && defined(slug.current)] | order(featured desc, name asc){
     name,
     slug,
     category,
@@ -32,7 +42,8 @@ const hero = page?.hero ?? {
 
 <Layout
   title={page?.seoTitle ?? page?.title ?? 'Partners | FrontierHQ'}
-  description={page?.seoDescription ?? 'FrontierHQ partner ecosystem and product vendor relationships.'}
+  description={page?.seoDescription ??
+    'FrontierHQ partner ecosystem and product vendor relationships.'}
   activeNav="/partners"
 >
   <main>
@@ -45,41 +56,43 @@ const hero = page?.hero ?? {
       theme="light"
     >
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {partners.map((partner, index) => (
-          <a
-            href={`/partners/${partner.slug.current}`}
-            class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
-          >
-            <div
-              class:list={[
-                'mb-6 h-1 w-16 rounded-full',
-                index % 3 === 0 && 'frontier-gradient-green-cyan',
-                index % 3 === 1 && 'frontier-gradient-cyan-blue',
-                index % 3 === 2 && 'frontier-gradient-cyan-purple',
-              ]}
-            />
+        {
+          partners.map((partner, index) => (
+            <a
+              href={`/partners/${partner.slug.current}`}
+              class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+            >
+              <div
+                class:list={[
+                  'mb-6 h-1 w-16 rounded-full',
+                  index % 3 === 0 && 'frontier-gradient-green-cyan',
+                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                ]}
+              />
 
-            {partner.category && (
-              <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                {partner.category}
+              {partner.category && (
+                <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  {partner.category}
+                </p>
+              )}
+
+              <h2 class="mt-4 text-3xl font-bold text-frontier-dark">
+                {partner.name}
+              </h2>
+
+              {partner.summary && (
+                <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                  {partner.summary}
+                </p>
+              )}
+
+              <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+                View partner →
               </p>
-            )}
-
-            <h2 class="mt-4 text-3xl font-bold text-frontier-dark">
-              {partner.name}
-            </h2>
-
-            {partner.summary && (
-              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
-                {partner.summary}
-              </p>
-            )}
-
-            <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
-              View partner →
-            </p>
-          </a>
-        ))}
+            </a>
+          ))
+        }
       </div>
     </Section>
 

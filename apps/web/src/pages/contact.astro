@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
 import ContactForm from '../components/ContactForm.astro'
-import {sanity} from '../lib/sanity'
+import { sanity } from '../lib/sanity'
 
 const page = await sanity.fetch(`
   *[_type == "page" && slug.current == "contact"][0]{
@@ -26,7 +26,8 @@ const hero = page?.hero ?? {
 
 <Layout
   title={page?.seoTitle ?? page?.title ?? 'Contact | FrontierHQ'}
-  description={page?.seoDescription ?? 'Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges.'}
+  description={page?.seoDescription ??
+    'Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges.'}
   activeNav="/contact"
 >
   <main>
@@ -41,59 +42,73 @@ const hero = page?.hero ?? {
       <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         <!-- FORM -->
 
-        <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 lg:p-10">
+        <div
+          class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 lg:p-10"
+        >
           <ContactForm />
         </div>
 
         <!-- SIDE PANEL -->
 
         <div class="space-y-6">
-          <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
-            <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          <div
+            class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8"
+          >
+            <p
+              class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
+            >
               Typical Conversations
             </p>
 
             <div class="mt-8 space-y-5">
-              {[
-                'Platform modernisation',
-                'Hybrid and Kubernetes strategy',
-                'Cloud and infrastructure integration',
-                'Migration planning and delivery',
-                'CI/CD and platform engineering',
-                'Operational reliability and security',
-              ].map((item) => (
-                <div class="flex items-start gap-4">
-                  <div class="mt-2 h-2 w-2 rounded-full bg-frontier-green"></div>
+              {
+                [
+                  'Platform modernisation',
+                  'Hybrid and Kubernetes strategy',
+                  'Cloud and infrastructure integration',
+                  'Migration planning and delivery',
+                  'CI/CD and platform engineering',
+                  'Operational reliability and security',
+                ].map((item) => (
+                  <div class="flex items-start gap-4">
+                    <div class="mt-2 h-2 w-2 rounded-full bg-frontier-green" />
 
-                  <p class="text-sm leading-7 text-frontier-light-grey">
-                    {item}
-                  </p>
-                </div>
-              ))}
+                    <p class="text-sm leading-7 text-frontier-light-grey">
+                      {item}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
           </div>
 
-          <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
-            <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan">
+          <div
+            class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8"
+          >
+            <p
+              class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
+            >
               Engagement Model
             </p>
 
             <div class="mt-8 space-y-5">
-              {[
-                'Technical consultancy and architecture',
-                'Platform integration and delivery',
-                'Migration and modernisation programmes',
-                'Embedded engineering support',
-                'Platform engineering enablement',
-              ].map((item) => (
-                <div class="flex items-start gap-4">
-                  <div class="mt-2 h-2 w-2 rounded-full bg-frontier-cyan"></div>
+              {
+                [
+                  'Technical consultancy and architecture',
+                  'Platform integration and delivery',
+                  'Migration and modernisation programmes',
+                  'Embedded engineering support',
+                  'Platform engineering enablement',
+                ].map((item) => (
+                  <div class="flex items-start gap-4">
+                    <div class="mt-2 h-2 w-2 rounded-full bg-frontier-cyan" />
 
-                  <p class="text-sm leading-7 text-frontier-light-grey">
-                    {item}
-                  </p>
-                </div>
-              ))}
+                    <p class="text-sm leading-7 text-frontier-light-grey">
+                      {item}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -107,31 +122,31 @@ const hero = page?.hero ?? {
       theme="light"
     >
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          'Financial Services',
-          'Retail & Commerce',
-          'Public Sector',
-          'Healthcare',
-          'Energy',
-          'Technology',
-          'Logistics',
-          'Enterprise Platforms',
-        ].map((industry, index) => (
-          <div class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-            <div
-              class:list={[
-                'mb-6 h-1 w-16 rounded-full',
-                index % 3 === 0 && 'frontier-gradient-green-cyan',
-                index % 3 === 1 && 'frontier-gradient-cyan-blue',
-                index % 3 === 2 && 'frontier-gradient-cyan-purple',
-              ]}
-            ></div>
+        {
+          [
+            'Financial Services',
+            'Retail & Commerce',
+            'Public Sector',
+            'Healthcare',
+            'Energy',
+            'Technology',
+            'Logistics',
+            'Enterprise Platforms',
+          ].map((industry, index) => (
+            <div class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <div
+                class:list={[
+                  'mb-6 h-1 w-16 rounded-full',
+                  index % 3 === 0 && 'frontier-gradient-green-cyan',
+                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                ]}
+              />
 
-            <h3 class="text-xl font-bold text-frontier-dark">
-              {industry}
-            </h3>
-          </div>
-        ))}
+              <h3 class="text-xl font-bold text-frontier-dark">{industry}</h3>
+            </div>
+          ))
+        }
       </div>
     </Section>
 

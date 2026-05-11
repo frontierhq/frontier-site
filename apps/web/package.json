@@ -9,13 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "typecheck": "astro check"
   },
   "dependencies": {
+    "@frontier/sanity-types": "*",
     "@sanity/client": "^7.22.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.2.2",
     "astro-portabletext": "^0.13.0",
     "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^6.0.3"
   }
 }

@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import {sanity} from '../lib/sanity'
+import { sanity } from '../lib/sanity'
 
 const page = await sanity.fetch(`
   *[_type == "page" && slug.current == "how-we-work"][0]{
@@ -25,7 +25,8 @@ const hero = page?.hero ?? {
 
 <Layout
   title={page?.seoTitle ?? page?.title ?? 'How We Work | FrontierHQ'}
-  description={page?.seoDescription ?? 'How FrontierHQ designs, integrates and builds platform foundations.'}
+  description={page?.seoDescription ??
+    'How FrontierHQ designs, integrates and builds platform foundations.'}
   activeNav="/how-we-work"
 >
   <main>
@@ -38,26 +39,30 @@ const hero = page?.hero ?? {
       theme="light"
     >
       <div class="grid gap-6 md:grid-cols-3">
-        {[
+        {
           [
-            'Technical consultancy',
-            'We help you understand the right platform direction, architecture and operating model for your environment.',
-          ],
-          [
-            'Product integration',
-            'We bring together cloud, infrastructure, Kubernetes, security and delivery tooling into coherent platforms.',
-          ],
-          [
-            'Hands-on delivery',
-            'We work alongside your teams to build, migrate, modernise and enable platforms in production.',
-          ],
-        ].map(([title, body]) => (
-          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-            <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full"></div>
-            <h3 class="text-2xl font-bold">{title}</h3>
-            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
-          </article>
-        ))}
+            [
+              'Technical consultancy',
+              'We help you understand the right platform direction, architecture and operating model for your environment.',
+            ],
+            [
+              'Product integration',
+              'We bring together cloud, infrastructure, Kubernetes, security and delivery tooling into coherent platforms.',
+            ],
+            [
+              'Hands-on delivery',
+              'We work alongside your teams to build, migrate, modernise and enable platforms in production.',
+            ],
+          ].map(([title, body]) => (
+            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full" />
+              <h3 class="text-2xl font-bold">{title}</h3>
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {body}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </Section>
 
@@ -68,19 +73,38 @@ const hero = page?.hero ?? {
       theme="dark"
     >
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-        {[
-          ['Discover', 'Understand constraints, risks, systems, teams and operating reality.'],
-          ['Design', 'Define the platform architecture, principles and delivery roadmap.'],
-          ['Integrate', 'Connect infrastructure, cloud, Kubernetes, security and delivery tooling.'],
-          ['Build', 'Implement reliable, secure and production-ready platform foundations.'],
-          ['Enable', 'Help teams adopt, operate and evolve the platform with confidence.'],
-        ].map(([title, body]) => (
-          <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
-            <div class="frontier-gradient-cyan-blue mb-6 h-1 w-16 rounded-full"></div>
-            <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
-            <p class="mt-4 text-sm leading-7 text-frontier-light-grey">{body}</p>
-          </article>
-        ))}
+        {
+          [
+            [
+              'Discover',
+              'Understand constraints, risks, systems, teams and operating reality.',
+            ],
+            [
+              'Design',
+              'Define the platform architecture, principles and delivery roadmap.',
+            ],
+            [
+              'Integrate',
+              'Connect infrastructure, cloud, Kubernetes, security and delivery tooling.',
+            ],
+            [
+              'Build',
+              'Implement reliable, secure and production-ready platform foundations.',
+            ],
+            [
+              'Enable',
+              'Help teams adopt, operate and evolve the platform with confidence.',
+            ],
+          ].map(([title, body]) => (
+            <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <div class="frontier-gradient-cyan-blue mb-6 h-1 w-16 rounded-full" />
+              <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
+              <p class="mt-4 text-sm leading-7 text-frontier-light-grey">
+                {body}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </Section>
 
@@ -90,29 +114,33 @@ const hero = page?.hero ?? {
       theme="light"
     >
       <div class="grid gap-8 md:grid-cols-2">
-        {[
+        {
           [
-            'From metal to Kubernetes',
-            'We work across the full platform stack — from bare metal, Linux, provisioning and virtualisation through to cloud, Kubernetes and developer platforms.',
-          ],
-          [
-            'Not vendor-led',
-            'We work with product companies and ecosystem partners, but our advice is shaped by your environment rather than a single vendor architecture.',
-          ],
-          [
-            'Designed for control',
-            'Security, resilience, governance and operational control are designed into the platform rather than added as afterthoughts.',
-          ],
-          [
-            'Trust through delivery',
-            'We build credibility by doing the work: making pragmatic technical decisions, delivering production systems and enabling teams to own them.',
-          ],
-        ].map(([title, body]) => (
-          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-            <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
-            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
-          </article>
-        ))}
+            [
+              'From metal to Kubernetes',
+              'We work across the full platform stack — from bare metal, Linux, provisioning and virtualisation through to cloud, Kubernetes and developer platforms.',
+            ],
+            [
+              'Not vendor-led',
+              'We work with product companies and ecosystem partners, but our advice is shaped by your environment rather than a single vendor architecture.',
+            ],
+            [
+              'Designed for control',
+              'Security, resilience, governance and operational control are designed into the platform rather than added as afterthoughts.',
+            ],
+            [
+              'Trust through delivery',
+              'We build credibility by doing the work: making pragmatic technical decisions, delivering production systems and enabling teams to own them.',
+            ],
+          ].map(([title, body]) => (
+            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {body}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </Section>
 

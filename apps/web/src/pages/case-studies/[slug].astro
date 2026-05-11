@@ -1,25 +1,46 @@
 ---
+import type { CaseStudy } from '@frontier/sanity-types'
+
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import {sanity} from '../../lib/sanity'
+import { sanity } from '../../lib/sanity'
+
+type SlugOnly = {
+  slug: string
+}
+
+type Metric = {
+  label: string
+  value: string
+}
+
+type CaseStudyPage = Pick<
+  CaseStudy,
+  'title' | 'summary' | 'clientType' | 'problem' | 'solution' | 'outcome'
+> & {
+  environment?: string[]
+  metrics?: Metric[]
+}
 
 export async function getStaticPaths() {
-  const studies = await sanity.fetch(`
+  const studies: SlugOnly[] = await sanity.fetch(`
     *[_type == "caseStudy" && defined(slug.current)]{
       "slug": slug.current
     }
   `)
 
   return studies.map((study) => ({
-    params: {slug: study.slug},
+    params: {
+      slug: study.slug,
+    },
   }))
 }
 
-const {slug} = Astro.params
+const { slug } = Astro.params
 
-const study = await sanity.fetch(
+const study: CaseStudyPage | null = await sanity.fetch(
   `
     *[_type == "caseStudy" && slug.current == $slug][0]{
       title,
@@ -32,8 +53,11 @@ const study = await sanity.fetch(
       metrics
     }
   `,
-  {slug}
+  { slug }
 )
+
+const environment = study?.environment ?? []
+const metrics = study?.metrics ?? []
 
 const hero = {
   eyebrow: study?.clientType ?? 'Case Study',
@@ -45,7 +69,8 @@ const hero = {
 
 <Layout
   title={`${study?.title ?? 'Case Study'} | Frontier`}
-  description={study?.summary ?? 'A FrontierHQ platform engineering case study.'}
+  description={study?.summary ??
+    'A FrontierHQ platform engineering case study.'}
   activeNav="/case-studies"
 >
   <main>
@@ -54,87 +79,97 @@ const hero = {
     <Section theme="light">
       <div class="grid gap-10 lg:grid-cols-[2fr_1fr]">
         <article class="space-y-24">
-          {study?.problem && (
-            <section>
-              <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                Challenge
-              </p>
-              <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                The problem
-              </h2>
-              <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
-                {study.problem}
-              </p>
-            </section>
-          )}
+          {
+            study?.problem && (
+              <section>
+                <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  Challenge
+                </p>
+                <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
+                  The problem
+                </h2>
+                <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
+                  {study.problem}
+                </p>
+              </section>
+            )
+          }
 
-          {study?.solution && (
-            <section>
-              <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                Approach
-              </p>
-              <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                What we did
-              </h2>
-              <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
-                {study.solution}
-              </p>
-            </section>
-          )}
+          {
+            study?.solution && (
+              <section>
+                <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  Approach
+                </p>
+                <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
+                  What we did
+                </h2>
+                <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
+                  {study.solution}
+                </p>
+              </section>
+            )
+          }
 
-          {study?.outcome && (
-            <section>
-              <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                Outcome
-              </p>
-              <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                What changed
-              </h2>
-              <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
-                {study.outcome}
-              </p>
-            </section>
-          )}
+          {
+            study?.outcome && (
+              <section>
+                <p class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  Outcome
+                </p>
+                <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
+                  What changed
+                </h2>
+                <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
+                  {study.outcome}
+                </p>
+              </section>
+            )
+          }
         </article>
 
-        <aside class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-          <h3 class="text-xl font-bold text-frontier-dark">
-            Project details
-          </h3>
+        <aside
+          class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8"
+        >
+          <h3 class="text-xl font-bold text-frontier-dark">Project details</h3>
 
-          {study?.environment?.length > 0 && (
-            <div class="mt-8">
-              <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                Environment
-              </p>
-              <div class="mt-4 flex flex-wrap gap-2">
-                {study.environment.map((item) => (
-                  <span class="rounded-full bg-frontier-light-grey px-3 py-1 text-xs font-semibold text-frontier-dark">
-                    {item}
-                  </span>
+          {
+            environment?.length > 0 && (
+              <div class="mt-8">
+                <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  Environment
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {environment.map((item) => (
+                    <span class="rounded-full bg-frontier-light-grey px-3 py-1 text-xs font-semibold text-frontier-dark">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {
+            metrics?.length > 0 && (
+              <div class="mt-8 space-y-6">
+                <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
+                  Metrics
+                </p>
+
+                {metrics.map((metric) => (
+                  <div>
+                    <p class="text-3xl font-bold text-frontier-dark">
+                      {metric.value}
+                    </p>
+                    <p class="mt-1 text-sm text-frontier-mid-grey">
+                      {metric.label}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </div>
-          )}
-
-          {study?.metrics?.length > 0 && (
-            <div class="mt-8 space-y-6">
-              <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                Metrics
-              </p>
-
-              {study.metrics.map((metric) => (
-                <div>
-                  <p class="text-3xl font-bold text-frontier-dark">
-                    {metric.value}
-                  </p>
-                  <p class="mt-1 text-sm text-frontier-mid-grey">
-                    {metric.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
+            )
+          }
         </aside>
       </div>
     </Section>

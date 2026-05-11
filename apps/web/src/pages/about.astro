@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import {sanity} from '../lib/sanity'
+import { sanity } from '../lib/sanity'
 
 const page = await sanity.fetch(`
   *[_type == "page" && slug.current == "about"][0]{
@@ -25,7 +25,8 @@ const hero = page?.hero ?? {
 
 <Layout
   title={page?.seoTitle ?? page?.title ?? 'About | FrontierHQ'}
-  description={page?.seoDescription ?? 'About FrontierHQ and our approach to real-world platform engineering.'}
+  description={page?.seoDescription ??
+    'About FrontierHQ and our approach to real-world platform engineering.'}
   activeNav="/about"
 >
   <main>
@@ -44,30 +45,34 @@ const hero = page?.hero ?? {
       theme="dark"
     >
       <div class="grid gap-6 md:grid-cols-2">
-        {[
+        {
           [
-            'Platforms should fit the business',
-            'The right platform is not a vendor reference architecture. It reflects your constraints, teams, risks and operating model.',
-          ],
-          [
-            'Trust is built through delivery',
-            'Services are bought on confidence. We build trust by making pragmatic decisions, doing the work and standing behind the outcome.',
-          ],
-          [
-            'Security starts in the foundations',
-            'Control, resilience and compliance work best when they are designed into the platform from the start — not added later.',
-          ],
-          [
-            'Platform engineering is an enablement function',
-            'The goal is not to own everything. The goal is to give teams reliable foundations, clearer paths and less operational friction.',
-          ],
-        ].map(([title, body]) => (
-          <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
-            <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full"></div>
-            <h3 class="text-2xl font-bold text-frontier-white">{title}</h3>
-            <p class="mt-5 text-sm leading-7 text-frontier-light-grey">{body}</p>
-          </article>
-        ))}
+            [
+              'Platforms should fit the business',
+              'The right platform is not a vendor reference architecture. It reflects your constraints, teams, risks and operating model.',
+            ],
+            [
+              'Trust is built through delivery',
+              'Services are bought on confidence. We build trust by making pragmatic decisions, doing the work and standing behind the outcome.',
+            ],
+            [
+              'Security starts in the foundations',
+              'Control, resilience and compliance work best when they are designed into the platform from the start — not added later.',
+            ],
+            [
+              'Platform engineering is an enablement function',
+              'The goal is not to own everything. The goal is to give teams reliable foundations, clearer paths and less operational friction.',
+            ],
+          ].map(([title, body]) => (
+            <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full" />
+              <h3 class="text-2xl font-bold text-frontier-white">{title}</h3>
+              <p class="mt-5 text-sm leading-7 text-frontier-light-grey">
+                {body}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </Section>
 
@@ -78,25 +83,29 @@ const hero = page?.hero ?? {
       theme="light"
     >
       <div class="grid gap-6 md:grid-cols-3">
-        {[
+        {
           [
-            'Advise',
-            'We help define platform direction, architecture, operating models and delivery priorities.',
-          ],
-          [
-            'Integrate',
-            'We bring together infrastructure, cloud, Kubernetes, security, observability and delivery tooling.',
-          ],
-          [
-            'Enable',
-            'We work alongside teams so platforms can be adopted, operated and evolved with confidence.',
-          ],
-        ].map(([title, body]) => (
-          <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-            <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
-            <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{body}</p>
-          </article>
-        ))}
+            [
+              'Advise',
+              'We help define platform direction, architecture, operating models and delivery priorities.',
+            ],
+            [
+              'Integrate',
+              'We bring together infrastructure, cloud, Kubernetes, security, observability and delivery tooling.',
+            ],
+            [
+              'Enable',
+              'We work alongside teams so platforms can be adopted, operated and evolved with confidence.',
+            ],
+          ].map(([title, body]) => (
+            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {body}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </Section>
 
@@ -106,7 +115,9 @@ const hero = page?.hero ?? {
       body="We work with leading product companies and ecosystem partners, but our advice is shaped by the environment you run — not by a single vendor’s ideal architecture."
       theme="dark"
     >
-      <div class="grid grid-cols-2 gap-6 text-xl font-bold text-frontier-light-grey md:grid-cols-4">
+      <div
+        class="grid grid-cols-2 gap-6 text-xl font-bold text-frontier-light-grey md:grid-cols-4"
+      >
         <span>Red Hat</span>
         <span>VMware</span>
         <span>Broadcom</span>

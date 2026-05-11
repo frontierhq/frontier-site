@@ -1,25 +1,48 @@
 ---
+import type { Partner } from '@frontier/sanity-types'
+
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import {sanity} from '../../lib/sanity'
+import { sanity } from '../../lib/sanity'
+
+type SlugOnly = {
+  slug: string
+}
+
+type RelatedService = {
+  title: string
+  slug: {
+    current: string
+  }
+  summary?: string
+}
+
+type PartnerPage = Pick<
+  Partner,
+  'name' | 'category' | 'summary' | 'overview' | 'website'
+> & {
+  products?: string[]
+  capabilities?: string[]
+  relatedServices?: RelatedService[]
+}
 
 export async function getStaticPaths() {
-  const partners = await sanity.fetch(`
+  const partners: SlugOnly[] = await sanity.fetch(`
     *[_type == "partner" && defined(slug.current)]{
       "slug": slug.current
     }
   `)
 
   return partners.map((partner) => ({
-    params: {slug: partner.slug},
+    params: { slug: partner.slug },
   }))
 }
 
-const {slug} = Astro.params
+const { slug } = Astro.params
 
-const partner = await sanity.fetch(
+const partner: PartnerPage | null = await sanity.fetch(
   `
     *[_type == "partner" && slug.current == $slug][0]{
       name,
@@ -36,8 +59,12 @@ const partner = await sanity.fetch(
       }
     }
   `,
-  {slug}
+  { slug }
 )
+
+const products = partner?.products ?? []
+const capabilities = partner?.capabilities ?? []
+const relatedServices = partner?.relatedServices ?? []
 
 const hero = {
   eyebrow: partner?.category ?? 'Partner',
@@ -62,74 +89,80 @@ const hero = {
       theme="light"
     />
 
-    {partner?.products?.length > 0 && (
-      <Section
-        eyebrow="Products"
-        heading="Products and technologies we work with."
-        theme="dark"
-      >
-        <div class="flex flex-wrap gap-3">
-          {partner.products.map((product) => (
-            <span class="rounded-full border border-frontier-cyan/20 bg-white/5 px-4 py-2 text-sm font-semibold text-frontier-light-grey">
-              {product}
-            </span>
-          ))}
-        </div>
-      </Section>
-    )}
+    {
+      products?.length > 0 && (
+        <Section
+          eyebrow="Products"
+          heading="Products and technologies we work with."
+          theme="dark"
+        >
+          <div class="flex flex-wrap gap-3">
+            {products.map((product) => (
+              <span class="rounded-full border border-frontier-cyan/20 bg-white/5 px-4 py-2 text-sm font-semibold text-frontier-light-grey">
+                {product}
+              </span>
+            ))}
+          </div>
+        </Section>
+      )
+    }
 
-    {partner?.capabilities?.length > 0 && (
-      <Section
-        eyebrow="Where We Help"
-        heading="How we integrate this technology into platform environments."
-        theme="light"
-      >
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {partner.capabilities.map((capability, index) => (
-            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-              <div
-                class:list={[
-                  'mb-6 h-1 w-16 rounded-full',
-                  index % 3 === 0 && 'frontier-gradient-green-cyan',
-                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
-                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
-                ]}
-              />
-              <p class="text-lg font-semibold text-frontier-dark">
-                {capability}
-              </p>
-            </article>
-          ))}
-        </div>
-      </Section>
-    )}
+    {
+      capabilities?.length > 0 && (
+        <Section
+          eyebrow="Where We Help"
+          heading="How we integrate this technology into platform environments."
+          theme="light"
+        >
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((capability, index) => (
+              <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+                <div
+                  class:list={[
+                    'mb-6 h-1 w-16 rounded-full',
+                    index % 3 === 0 && 'frontier-gradient-green-cyan',
+                    index % 3 === 1 && 'frontier-gradient-cyan-blue',
+                    index % 3 === 2 && 'frontier-gradient-cyan-purple',
+                  ]}
+                />
+                <p class="text-lg font-semibold text-frontier-dark">
+                  {capability}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Section>
+      )
+    }
 
-    {partner?.relatedServices?.length > 0 && (
-      <Section
-        eyebrow="Related Services"
-        heading="Where this fits into our platform work."
-        theme="dark"
-      >
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {partner.relatedServices.map((service) => (
-            <a
-              href={`/services/${service.slug.current}`}
-              class="group rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 transition hover:border-frontier-cyan/30"
-            >
-              <h3 class="text-2xl font-bold text-frontier-white">
-                {service.title}
-              </h3>
-              <p class="mt-5 text-sm leading-7 text-frontier-light-grey">
-                {service.summary}
-              </p>
-              <p class="mt-8 text-sm font-semibold text-frontier-green transition group-hover:text-frontier-cyan">
-                View service →
-              </p>
-            </a>
-          ))}
-        </div>
-      </Section>
-    )}
+    {
+      relatedServices?.length > 0 && (
+        <Section
+          eyebrow="Related Services"
+          heading="Where this fits into our platform work."
+          theme="dark"
+        >
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {relatedServices.map((service) => (
+              <a
+                href={`/services/${service.slug.current}`}
+                class="group rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 transition hover:border-frontier-cyan/30"
+              >
+                <h3 class="text-2xl font-bold text-frontier-white">
+                  {service.title}
+                </h3>
+                <p class="mt-5 text-sm leading-7 text-frontier-light-grey">
+                  {service.summary}
+                </p>
+                <p class="mt-8 text-sm font-semibold text-frontier-green transition group-hover:text-frontier-cyan">
+                  View service →
+                </p>
+              </a>
+            ))}
+          </div>
+        </Section>
+      )
+    }
 
     <CTASection
       eyebrow="Start the conversation"

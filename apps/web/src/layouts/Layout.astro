@@ -2,7 +2,6 @@
 import '../styles/global.css'
 
 import Footer from '../components/Footer.astro'
-import Logo from '../components/Logo.astro'
 import Nav from '../components/Nav.astro'
 
 const {
@@ -11,15 +10,6 @@ const {
   activeNav = '',
   navVariant = 'dark',
 } = Astro.props
-
-const navItems = [
-  ['What We Do', '/what-we-do'],
-  ['How We Work', '/how-we-work'],
-  ['Partners', '/partners'],
-  ['Case Studies', '/case-studies'],
-  ['About Us', '/about'],
-  ['Insights', '/insights'],
-]
 ---
 
 <!doctype html>
@@ -28,7 +18,7 @@ const navItems = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>{title}</title>
+    <title>{title.includes('Frontier') ? title : `${title} | Frontier`}</title>
     <meta name="description" content={description} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -46,11 +36,11 @@ const navItems = [
 
   <body class="bg-frontier-dark font-sans text-frontier-white antialiased">
     <header class="absolute inset-x-0 top-0 z-50">
-        <Nav variant={navVariant} activeNav={activeNav} />
+      <Nav variant={navVariant} activeNav={activeNav} />
     </header>
 
     <slot />
-      <Footer />
+    <Footer />
   </body>
 </html>
 
