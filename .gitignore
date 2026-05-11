@@ -7,3 +7,4 @@ dist
 .DS_Store
 coverage
 apps/studio/schema.json
+test-results
