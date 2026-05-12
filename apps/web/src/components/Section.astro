@@ -33,7 +33,11 @@ const hasAction = headerActionLabel && headerActionUrl
   <div class:list={['mx-auto', containerClass, spacingClass]}>
     {
       hasHeader && (
-        <div class:list={[hasAction ? 'flex items-end justify-between gap-6' : 'max-w-4xl']}>
+        <div
+          class:list={[
+            hasAction ? 'flex items-end justify-between gap-6' : 'max-w-4xl',
+          ]}
+        >
           <div class={hasAction ? '' : 'max-w-4xl'}>
             {eyebrow && (
               <p

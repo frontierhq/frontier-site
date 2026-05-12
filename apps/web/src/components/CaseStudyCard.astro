@@ -43,19 +43,21 @@ const accentClass =
       : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl',
   ]}
 >
-  <div class:list={[accentClass, 'h-56', isDark && 'opacity-70']} />
+  <div class:list={[accentClass, 'h-56', isDark && 'opacity-70']}></div>
 
   <div class="p-8">
-    {clientType && (
-      <p
-        class:list={[
-          'text-xs font-bold uppercase tracking-[0.25em]',
-          isDark ? 'text-frontier-cyan' : 'text-frontier-dark',
-        ]}
-      >
-        {clientType}
-      </p>
-    )}
+    {
+      clientType && (
+        <p
+          class:list={[
+            'text-xs font-bold uppercase tracking-[0.25em]',
+            isDark ? 'text-frontier-cyan' : 'text-frontier-dark',
+          ]}
+        >
+          {clientType}
+        </p>
+      )
+    }
 
     <h3
       class:list={[
@@ -66,58 +68,66 @@ const accentClass =
       {title}
     </h3>
 
-    {summary && (
-      <p
-        class:list={[
-          'mt-5 text-sm leading-7',
-          isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
-        ]}
-      >
-        {summary}
-      </p>
-    )}
+    {
+      summary && (
+        <p
+          class:list={[
+            'mt-5 text-sm leading-7',
+            isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+          ]}
+        >
+          {summary}
+        </p>
+      )
+    }
 
-    {(environment ?? []).length > 0 && (
-      <div class="mt-6 flex flex-wrap gap-2">
-        {(environment ?? []).slice(0, 3).map((item) => (
-          <span
-            class:list={[
-              'rounded-full px-3 py-1 text-xs font-semibold',
-              isDark
-                ? 'bg-white/10 text-frontier-light-grey'
-                : 'bg-frontier-light-grey text-frontier-dark',
-            ]}
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-    )}
-
-    {(metrics ?? []).length > 0 && (
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        {(metrics ?? []).slice(0, 2).map((metric) => (
-          <div>
-            <p
+    {
+      (environment ?? []).length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-2">
+          {(environment ?? []).slice(0, 3).map((item) => (
+            <span
               class:list={[
-                'text-3xl font-bold',
-                isDark ? 'text-frontier-white' : 'text-frontier-dark',
+                'rounded-full px-3 py-1 text-xs font-semibold',
+                isDark
+                  ? 'bg-white/10 text-frontier-light-grey'
+                  : 'bg-frontier-light-grey text-frontier-dark',
               ]}
             >
-              {metric.value}
-            </p>
-            <p
-              class:list={[
-                'mt-1 text-xs font-semibold uppercase tracking-widest',
-                isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
-              ]}
-            >
-              {metric.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    )}
+              {item}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      (metrics ?? []).length > 0 && (
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {(metrics ?? []).slice(0, 2).map((metric) => (
+            <div>
+              <p
+                class:list={[
+                  'text-3xl font-bold',
+                  isDark ? 'text-frontier-white' : 'text-frontier-dark',
+                ]}
+              >
+                {metric.value}
+              </p>
+              <p
+                class:list={[
+                  'mt-1 text-xs font-semibold uppercase tracking-widest',
+                  isDark
+                    ? 'text-frontier-light-grey'
+                    : 'text-frontier-mid-grey',
+                ]}
+              >
+                {metric.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      )
+    }
 
     <p
       class:list={[
