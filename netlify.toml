@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build:web"
+  publish = "apps/web/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[context.production.environment]
+  PUBLIC_SANITY_DATASET = "production"
+
+[context.deploy-preview.environment]
+  PUBLIC_SANITY_DATASET = "development"
+
+[context.branch-deploy.environment]
+  PUBLIC_SANITY_DATASET = "development"

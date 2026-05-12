@@ -68,16 +68,17 @@ const services = servicesSection?.services ?? []
         'We design and build the foundations your teams depend on.'}
       theme="light"
     >
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 lg:grid-cols-3">
         {
           services.map((service, index) => (
             <ServiceCard
               title={service.title}
-              summary={service.summary}
+              summary={service.summary ?? ''}
               href={`/services/${service.slug.current}`}
               accent={
                 index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
               }
+              class={index === 0 ? 'lg:col-span-3' : ''}
             />
           ))
         }

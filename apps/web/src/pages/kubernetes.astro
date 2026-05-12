@@ -1,0 +1,357 @@
+---
+import MembershipsAndCertifications from '../components/MembershipsAndCertifications.astro'
+import Layout from '../layouts/Layout.astro'
+import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
+import CTASection from '../components/CTASection.astro'
+import { sanity } from '../lib/sanity'
+
+const page = await sanity.fetch(`
+  *[_type == "page" && slug.current == "kubernetes"][0]{
+    title,
+    seoTitle,
+    seoDescription,
+    hero
+  }
+`)
+
+const hero = page?.hero ?? {
+  eyebrow: 'Kubernetes Certified Service Provider',
+  headingPrimary: 'Certified Kubernetes expertise',
+  headingAccent: 'for real-world platform environments.',
+  subHeading:
+    'As a Kubernetes Certified Service Provider, Frontier helps organisations design, build, operate and evolve Kubernetes platforms across cloud, hybrid and private infrastructure environments.',
+}
+
+const serviceCards = [
+  {
+    icon: '/icons/frontier/design.svg',
+    title: 'Kubernetes Consulting',
+    summary:
+      'Kubernetes strategy, platform architecture, operating models and adoption planning for organisations moving toward cloud-native platforms.',
+  },
+  {
+    icon: '/icons/frontier/gitops.svg',
+    title: 'Kubernetes Implementation',
+    summary:
+      'Design and build of production-ready Kubernetes platforms across cloud, hybrid and private infrastructure environments.',
+  },
+  {
+    icon: '/icons/frontier/observability.svg',
+    title: 'Kubernetes Support',
+    summary:
+      'Operational support for Kubernetes platforms, including reliability, lifecycle management, observability, security and day-2 operations.',
+  },
+  {
+    icon: '/icons/frontier/enablement.svg',
+    title: 'Kubernetes Training & Enablement',
+    summary:
+      'Practical Kubernetes enablement for platform and engineering teams, focused on operating, securing and adopting Kubernetes effectively.',
+  },
+]
+
+const capabilities = [
+  {
+    icon: '/icons/frontier/kubernetes.svg',
+    title: 'Kubernetes platform architecture',
+  },
+  {
+    icon: '/icons/frontier/lifecycle.svg',
+    title: 'Cluster build and lifecycle management',
+  },
+  {
+    icon: '/icons/frontier/cloud.svg',
+    title: 'OpenShift and upstream Kubernetes',
+  },
+  {
+    icon: '/icons/frontier/gitops.svg',
+    title: 'GitOps and deployment workflows',
+  },
+  {
+    icon: '/icons/frontier/security.svg',
+    title: 'Runtime security and policy integration',
+  },
+  {
+    icon: '/icons/frontier/observability.svg',
+    title: 'Observability and platform operations',
+  },
+  {
+    icon: '/icons/frontier/hybrid.svg',
+    title: 'Hybrid and private cloud integration',
+  },
+  {
+    icon: '/icons/frontier/migration.svg',
+    title: 'Application migration to Kubernetes',
+  },
+  {
+    icon: '/icons/frontier/developer-platform.svg',
+    title: 'Developer platform enablement',
+  },
+]
+
+const operatingPrinciples = [
+  {
+    icon: '/icons/frontier/design.svg',
+    title: 'Designed for your environment',
+    body: 'We build Kubernetes platforms around your infrastructure, security requirements, delivery workflows and operating model.',
+  },
+  {
+    icon: '/icons/frontier/networking.svg',
+    title: 'Integrated with the wider platform',
+    body: 'We connect Kubernetes with networking, identity, CI/CD, observability, policy and developer workflows.',
+  },
+  {
+    icon: '/icons/frontier/resilience.svg',
+    title: 'Built for day-2 operations',
+    body: 'We focus on lifecycle management, reliability, upgrades, incident response and operational ownership.',
+  },
+  {
+    icon: '/icons/frontier/enablement.svg',
+    title: 'Enabled for engineering teams',
+    body: 'We help teams adopt Kubernetes through golden paths, platform documentation, enablement and practical delivery patterns.',
+  },
+]
+
+const relatedServices = [
+  {
+    icon: '/icons/frontier/kubernetes.svg',
+    title: 'Kubernetes Platforms',
+    summary:
+      'Production-ready Kubernetes platforms with security, observability and developer workflows built in.',
+    href: '/services/kubernetes-platforms',
+  },
+  {
+    icon: '/icons/frontier/hybrid.svg',
+    title: 'Hybrid Platforms',
+    summary:
+      'Connected platforms across data centres, cloud, edge and Kubernetes environments.',
+    href: '/services/hybrid-platforms',
+  },
+  {
+    icon: '/icons/frontier/developer-platform.svg',
+    title: 'Platform Engineering & CI/CD',
+    summary:
+      'Internal developer platforms and delivery workflows that reduce friction for engineering teams.',
+    href: '/services/platform-engineering-ci-cd',
+  },
+]
+
+const expertiseCards = [
+  {
+    icon: '/icons/frontier/kubernetes.svg',
+    title: 'KCSP recognised',
+    body: 'Frontier is part of the Kubernetes Certified Service Provider programme, demonstrating practical experience delivering Kubernetes services.',
+  },
+  {
+    icon: '/icons/frontier/identity.svg',
+    title: 'Certified engineers',
+    body: 'Our engineers bring certified Kubernetes knowledge across architecture, implementation, operations and platform engineering.',
+  },
+  {
+    icon: '/icons/frontier/resilience.svg',
+    title: 'Production focused',
+    body: 'We help clients build platforms that are secure, observable, reliable and ready for real operational use.',
+  },
+]
+---
+
+<Layout
+  title={page?.seoTitle ?? page?.title ?? 'Kubernetes Services | FrontierHQ'}
+  description={page?.seoDescription ??
+    'Kubernetes consulting, implementation, support and enablement services from FrontierHQ, a Kubernetes Certified Service Provider.'}
+  activeNav="/kubernetes"
+>
+  <main>
+    <PageHero {...hero} />
+
+    <Section
+      eyebrow="Certified Expertise"
+      heading="Recognised Kubernetes expertise, grounded in production delivery."
+      body="Frontier is a Kubernetes Certified Service Provider, recognised for helping organisations adopt Kubernetes through professional services, technical expertise and real-world delivery experience."
+      theme="light"
+    >
+      <div class="grid items-center gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+        <a
+          href="https://www.cncf.io/training/certification/kcsp/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+          aria-label="View the CNCF Kubernetes Certified Service Provider programme"
+        >
+          <img
+            src="/images/kcsp-logo.svg"
+            alt="Kubernetes Certified Service Provider"
+            class="mx-auto h-40 w-auto"
+          />
+
+          <p
+            class="mt-6 text-center text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan"
+          >
+            View KCSP programme →
+          </p>
+        </a>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {
+            [
+              [
+                'KCSP recognised',
+                'Frontier is part of the Kubernetes Certified Service Provider programme, demonstrating practical experience delivering Kubernetes services.',
+              ],
+              [
+                'Certified engineers',
+                'Our engineers bring certified Kubernetes knowledge across architecture, implementation, operations and platform engineering.',
+              ],
+              [
+                'Production focused',
+                'We help clients build platforms that are secure, observable, reliable and ready for real operational use.',
+              ],
+            ].map(([title, body]) => (
+              <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+                <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full" />
+                <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
+                <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                  {body}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </Section>
+
+    <MembershipsAndCertifications theme="light" compact />
+
+    <Section
+      eyebrow="Kubernetes Services"
+      heading="Consulting, implementation, support and enablement."
+      body="We provide Kubernetes services across the full platform lifecycle — from early strategy and architecture through to production implementation, operations and team enablement."
+      theme="dark"
+    >
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          serviceCards.map((service) => (
+            <article class="group rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:bg-white/10">
+              <img
+                src={service.icon}
+                alt=""
+                class="mb-8 h-14 w-14 opacity-95 transition group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <h3 class="text-2xl font-bold text-frontier-white">
+                {service.title}
+              </h3>
+
+              <p class="mt-5 text-sm leading-7 text-frontier-light-grey">
+                {service.summary}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Capabilities"
+      heading="Kubernetes platform services across the stack."
+      body="Kubernetes succeeds when it is treated as part of a wider platform, not as an isolated runtime. Frontier helps organisations integrate Kubernetes with infrastructure, cloud, security, observability and software delivery workflows."
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          capabilities.map((capability) => (
+            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:shadow-xl">
+              <img
+                src={capability.icon}
+                alt=""
+                class="mb-8 h-12 w-12 opacity-95"
+                loading="lazy"
+              />
+
+              <p class="text-lg font-semibold text-frontier-dark">
+                {capability.title}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Why It Matters"
+      heading="Kubernetes is powerful, but production platforms need more than clusters."
+      theme="dark"
+    >
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          operatingPrinciples.map((item) => (
+            <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <img
+                src={item.icon}
+                alt=""
+                class="mb-8 h-14 w-14 opacity-95"
+                loading="lazy"
+              />
+
+              <h3 class="text-2xl font-bold text-frontier-white">
+                {item.title}
+              </h3>
+
+              <p class="mt-5 text-sm leading-7 text-frontier-light-grey">
+                {item.body}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section
+      eyebrow="Related Services"
+      heading="Kubernetes services connected to the wider platform."
+      body="Our Kubernetes work often sits alongside hybrid platform design, cloud foundations, migration and platform engineering enablement."
+      theme="light"
+    >
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          relatedServices.map((service) => (
+            <a
+              href={service.href}
+              class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+            >
+              <img
+                src={service.icon}
+                alt=""
+                class="mb-8 h-14 w-14 opacity-95 transition group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <h3 class="text-2xl font-bold text-frontier-dark">
+                {service.title}
+              </h3>
+
+              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+                {service.summary}
+              </p>
+
+              <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
+                View service →
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+
+    <CTASection
+      eyebrow="Start the conversation"
+      heading="Need certified Kubernetes expertise?"
+      body="We help organisations design, implement, support and evolve Kubernetes platforms across real-world infrastructure and cloud environments."
+      primaryCtaLabel="Let’s Talk"
+      primaryCtaUrl="/contact"
+      secondaryCtaLabel="See What We Do"
+      secondaryCtaUrl="/what-we-do"
+    />
+  </main>
+</Layout>

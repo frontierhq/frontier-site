@@ -8,3 +8,5 @@ dist
 coverage
 apps/studio/schema.json
 test-results
+apps/studio/*.tar.gz
+*.ndjson
