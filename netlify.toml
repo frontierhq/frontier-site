@@ -6,10 +6,13 @@
   NODE_VERSION = "22"
 
 [context.production.environment]
-  PUBLIC_SANITY_DATASET = "production"
+  PUBLIC_SANITY_PROJECT_ID = "ll3tn46f"
+  PUBLIC_SANITY_DATASET = "development"
 
 [context.deploy-preview.environment]
+  PUBLIC_SANITY_PROJECT_ID = "ll3tn46f"
   PUBLIC_SANITY_DATASET = "development"
 
 [context.branch-deploy.environment]
+  PUBLIC_SANITY_PROJECT_ID = "ll3tn46f"
   PUBLIC_SANITY_DATASET = "development"
