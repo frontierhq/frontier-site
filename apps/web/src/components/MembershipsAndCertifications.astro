@@ -3,7 +3,14 @@ const { theme = 'dark', compact = false } = Astro.props
 
 const isDark = theme === 'dark'
 
-const groups = [
+const groups: {
+  title: string
+  items: {
+    name: string
+    image: string
+    href?: string
+  }[]
+}[] = [
   {
     title: 'Cloud Native & Open Source',
     items: [

@@ -13,7 +13,9 @@ import ServiceCard from '../components/ServiceCard.astro'
 
 type HomePage = {
   title?: string
-  hero?: unknown
+  seoTitle?: string
+  seoDescription?: string
+  hero?: Record<string, string>
 }
 
 // type HomeService = {
