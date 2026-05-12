@@ -119,6 +119,7 @@ export type Partner = {
   name?: string
   slug?: Slug
   featured?: boolean
+  partnerType?: 'vendor' | 'var'
   category?:
     | 'Cloud'
     | 'Infrastructure'
