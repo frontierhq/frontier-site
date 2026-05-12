@@ -1,5 +1,11 @@
 ---
-const { title = '', summary = '', href = '#', accent = 'green' } = Astro.props
+const {
+  title = '',
+  summary = '',
+  href = '#',
+  accent = 'green',
+  theme = 'light',
+} = Astro.props
 
 const accentClass =
   accent === 'cyan'
@@ -7,28 +13,59 @@ const accentClass =
     : accent === 'purple'
       ? 'frontier-gradient-cyan-purple'
       : 'frontier-gradient-green-cyan'
+
+const isDark = theme === 'dark'
 ---
 
 <a
   href={href}
-  class="group block rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 text-frontier-dark transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+  class:list={[
+    'group block transition',
+    isDark
+      ? 'rounded-2xl border border-frontier-cyan/10 bg-white/5 p-6 hover:border-frontier-cyan/30 hover:bg-white/10'
+      : 'rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
+  ]}
 >
-  <div class:list={[accentClass, 'mb-6 h-1 w-16 rounded-full']}></div>
+  <div
+    class:list={[
+      accentClass,
+      'rounded-full',
+      isDark ? 'mb-5 h-1 w-12' : 'mb-6 h-1 w-16',
+    ]}
+  ></div>
 
-  <h3 class="text-2xl font-bold tracking-tight">
+  <h3
+    class:list={[
+      'font-bold',
+      isDark
+        ? 'text-lg text-frontier-white'
+        : 'text-2xl tracking-tight',
+    ]}
+  >
     {title}
   </h3>
 
   {
     summary && (
-      <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">{summary}</p>
+      <p
+        class:list={[
+          'mt-4 text-sm leading-7',
+          isDark ? 'text-frontier-light-grey' : 'mt-5 text-frontier-mid-grey',
+        ]}
+      >
+        {summary}
+      </p>
     )
   }
 
-  <div
-    class="mt-8 flex items-center gap-2 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan"
+  <p
+    class:list={[
+      'mt-8 text-sm font-semibold transition',
+      isDark
+        ? 'text-frontier-green group-hover:text-frontier-cyan'
+        : 'text-frontier-dark group-hover:text-frontier-cyan',
+    ]}
   >
-    <span>Learn more</span>
-    <span>→</span>
-  </div>
+    Learn more →
+  </p>
 </a>

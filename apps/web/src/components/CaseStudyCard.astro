@@ -11,6 +11,8 @@ const {
   clientType,
   environment = [],
   metrics = [],
+  accent = 'cyan-purple',
+  theme = 'light',
 } = Astro.props as {
   title: string
   summary?: string
@@ -18,41 +20,114 @@ const {
   clientType?: string
   environment?: string[]
   metrics?: Metric[]
+  accent?: 'green-cyan' | 'cyan-blue' | 'cyan-purple'
+  theme?: 'light' | 'dark'
 }
+
+const isDark = theme === 'dark'
+
+const accentClass =
+  accent === 'green-cyan'
+    ? 'frontier-gradient-green-cyan'
+    : accent === 'cyan-blue'
+      ? 'frontier-gradient-cyan-blue'
+      : 'frontier-gradient-cyan-purple'
 ---
 
 <a
   href={href}
-  class="block rounded-3xl bg-slate-900 p-6 text-white transition hover:-translate-y-1 hover:bg-slate-800"
+  class:list={[
+    'group block overflow-hidden rounded-3xl transition',
+    isDark
+      ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30'
+      : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl',
+  ]}
 >
-  {clientType && <p class="text-sm font-medium text-cyan-300">{clientType}</p>}
+  <div class:list={[accentClass, 'h-56', isDark && 'opacity-70']} />
 
-  <h3 class="mt-3 text-2xl font-semibold">{title}</h3>
+  <div class="p-8">
+    {clientType && (
+      <p
+        class:list={[
+          'text-xs font-bold uppercase tracking-[0.25em]',
+          isDark ? 'text-frontier-cyan' : 'text-frontier-dark',
+        ]}
+      >
+        {clientType}
+      </p>
+    )}
 
-  {summary && <p class="mt-4 text-sm leading-6 text-slate-300">{summary}</p>}
+    <h3
+      class:list={[
+        'text-3xl font-bold',
+        isDark ? 'mt-4 text-frontier-white' : 'mt-6 tracking-tight',
+      ]}
+    >
+      {title}
+    </h3>
 
-  {
-    environment?.length > 0 && (
+    {summary && (
+      <p
+        class:list={[
+          'mt-5 text-sm leading-7',
+          isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+        ]}
+      >
+        {summary}
+      </p>
+    )}
+
+    {(environment ?? []).length > 0 && (
       <div class="mt-6 flex flex-wrap gap-2">
-        {environment.map((item) => (
-          <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">
+        {(environment ?? []).slice(0, 3).map((item) => (
+          <span
+            class:list={[
+              'rounded-full px-3 py-1 text-xs font-semibold',
+              isDark
+                ? 'bg-white/10 text-frontier-light-grey'
+                : 'bg-frontier-light-grey text-frontier-dark',
+            ]}
+          >
             {item}
           </span>
         ))}
       </div>
-    )
-  }
+    )}
 
-  {
-    metrics?.length > 0 && (
-      <div class="mt-8 grid grid-cols-2 gap-4">
-        {metrics.slice(0, 2).map((metric) => (
+    {(metrics ?? []).length > 0 && (
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {(metrics ?? []).slice(0, 2).map((metric) => (
           <div>
-            <p class="text-2xl font-semibold">{metric.value}</p>
-            <p class="text-xs text-slate-400">{metric.label}</p>
+            <p
+              class:list={[
+                'text-3xl font-bold',
+                isDark ? 'text-frontier-white' : 'text-frontier-dark',
+              ]}
+            >
+              {metric.value}
+            </p>
+            <p
+              class:list={[
+                'mt-1 text-xs font-semibold uppercase tracking-widest',
+                isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+              ]}
+            >
+              {metric.label}
+            </p>
           </div>
         ))}
       </div>
-    )
-  }
+    )}
+
+    <p
+      class:list={[
+        'mt-8 text-sm font-semibold transition',
+        isDark
+          ? 'text-frontier-green group-hover:text-frontier-cyan'
+          : 'text-frontier-dark group-hover:text-frontier-cyan',
+      ]}
+    >
+      Read the case study →
+    </p>
+  </div>
 </a>
