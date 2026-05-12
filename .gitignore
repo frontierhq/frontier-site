@@ -10,3 +10,4 @@ apps/studio/schema.json
 test-results
 apps/studio/*.tar.gz
 *.ndjson
+apps/studio/dist

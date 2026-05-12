@@ -9,22 +9,20 @@ import PartnerStrip from '../components/PartnerStrip.astro'
 import Section from '../components/Section.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 
-import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
-
-import { sanity } from '../lib/sanity'
+// import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
 
 type HomePage = {
   title?: string
   hero?: unknown
 }
 
-type HomeService = {
-  title: string
-  slug: {
-    current: string
-  }
-  summary?: string
-}
+// type HomeService = {
+//   title: string
+//   slug: {
+//     current: string
+//   }
+//   summary?: string
+// }
 
 type HomePartner = {
   name: string
@@ -49,16 +47,16 @@ const page: HomePage | null = await sanity.fetch(`
   }
 `)
 
-const services: HomeService[] = await sanity.fetch(`
-  *[
-    _type == "service" &&
-    defined(slug.current)
-  ] | order(title asc){
-    title,
-    slug,
-    summary
-  }
-`)
+// const services: HomeService[] = await sanity.fetch(`
+//   *[
+//     _type == "service" &&
+//     defined(slug.current)
+//   ] | order(title asc){
+//     title,
+//     slug,
+//     summary
+//   }
+// `)
 
 const partners: HomePartner[] = await sanity.fetch(`
   *[
@@ -127,20 +125,20 @@ const serviceGroups = [
       body="We design, integrate and build the foundations that sit underneath reliable modern platforms."
       theme="dark"
     >
-        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {
-            serviceGroups.map((service, index) => (
-              <ServiceCard
-                title={service.title}
-                summary={service.summary}
-                href={service.href}
-                accent={
-                  index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
-                }
-              />
-            ))
-          }
-        </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          serviceGroups.map((service, index) => (
+            <ServiceCard
+              title={service.title}
+              summary={service.summary}
+              href={service.href}
+              accent={
+                index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
+              }
+            />
+          ))
+        }
+      </div>
     </Section>
 
     <Section
@@ -167,7 +165,7 @@ const serviceGroups = [
             <CaseStudyCard
               title={study.title}
               summary={study.summary}
-              href=`/case-studies/${study.slug.current}`
+              href={`/case-studies/${study.slug.current}`}
               clientType={study.clientType}
               accent={index % 2 === 0 ? 'cyan-purple' : 'cyan-blue'}
               theme="dark"
