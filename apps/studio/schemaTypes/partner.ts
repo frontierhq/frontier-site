@@ -20,6 +20,18 @@ export const partner = defineType({
     }),
     defineField({name: 'featured', title: 'Featured', type: 'boolean', initialValue: false}),
     defineField({
+      name: 'partnerType',
+      title: 'Partner Type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Vendor', value: 'vendor'},
+          {title: 'Value Added Reseller', value: 'var'},
+        ],
+      },
+      initialValue: 'vendor',
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
@@ -61,4 +73,10 @@ export const partner = defineType({
       of: [{type: 'reference', to: [{type: 'service'}]}],
     }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'partnerType',
+    },
+  },
 })
