@@ -15,8 +15,10 @@ export default [
       '.sanity',
       'node_modules',
       'apps/studio/.sanity/**',
+      'apps/studio/dist/**',
       'apps/web/dist/**',
       'apps/web/.astro/**',
+      'scripts/sanity-diff.mjs',
     ],
   },
 ]

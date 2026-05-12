@@ -1,4 +1,5 @@
 ---
+import MembershipsAndCertifications from '../components/MembershipsAndCertifications.astro'
 import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
@@ -128,6 +129,8 @@ const hero = page?.hero ?? {
         <span>HashiCorp</span>
       </div>
     </Section>
+
+    <MembershipsAndCertifications theme="light" />
 
     <CTASection
       eyebrow="Start the conversation"

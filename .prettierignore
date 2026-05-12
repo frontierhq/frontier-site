@@ -3,3 +3,4 @@ dist
 .astro
 .sanity
 coverage
+apps/studio/dist

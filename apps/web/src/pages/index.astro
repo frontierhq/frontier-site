@@ -9,65 +9,105 @@ import PartnerStrip from '../components/PartnerStrip.astro'
 import Section from '../components/Section.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 
-const page = await sanity.fetch(`
+// import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
+
+type HomePage = {
+  title?: string
+  seoTitle?: string
+  seoDescription?: string
+  hero?: Record<string, string>
+}
+
+// type HomeService = {
+//   title: string
+//   slug: {
+//     current: string
+//   }
+//   summary?: string
+// }
+
+type HomePartner = {
+  name: string
+  slug?: {
+    current: string
+  }
+}
+
+type HomeCaseStudy = {
+  title: string
+  slug: {
+    current: string
+  }
+  summary?: string
+  clientType?: string
+}
+
+const page: HomePage | null = await sanity.fetch(`
   *[_type == "page" && slug.current == "home"][0]{
     title,
     hero
   }
 `)
 
-const hero = page?.hero
+// const services: HomeService[] = await sanity.fetch(`
+//   *[
+//     _type == "service" &&
+//     defined(slug.current)
+//   ] | order(title asc){
+//     title,
+//     slug,
+//     summary
+//   }
+// `)
 
-const services = [
+const partners: HomePartner[] = await sanity.fetch(`
+  *[
+    _type == "partner" &&
+    defined(slug.current)
+  ] | order(name asc){
+    name,
+    slug
+  }
+`)
+
+const caseStudies: HomeCaseStudy[] = await sanity.fetch(`
+  *[
+    _type == "caseStudy" &&
+    defined(slug.current)
+  ] | order(featured desc, title asc)[0...2]{
+    title,
+    slug,
+    summary,
+    clientType
+  }
+`)
+
+const hero = page?.hero ?? {}
+
+const serviceGroups = [
   {
-    title: 'Bare Metal Platforms',
+    title: 'Platform Foundations',
     summary:
-      'Design and build secure, automated infrastructure from the ground up.',
+      'Bare metal, Linux, virtualisation and infrastructure automation for reliable platform foundations.',
+    href: '/services/bare-metal-platforms',
   },
   {
-    title: 'Cloud Platforms',
+    title: 'Cloud & Hybrid Platforms',
     summary:
-      'Build and operate platforms on AWS, Azure, GCP and sovereign clouds.',
+      'Public cloud, private cloud, hybrid integration and platform operations across real-world environments.',
+    href: '/services/hybrid-platforms',
   },
   {
-    title: 'Hybrid Platforms',
+    title: 'Kubernetes & Cloud Native',
     summary:
-      'Connect and manage environments across data centres, clouds and edge.',
+      'Kubernetes, OpenShift, GitOps, observability and developer workflows for modern application platforms.',
+    href: '/kubernetes',
   },
   {
     title: 'Migration & Modernisation',
-    summary: 'Migrate and modernise with minimal risk and continuity.',
-  },
-  {
-    title: 'Platform Engineering',
     summary:
-      'Create internal developer platforms that reduce operational burden.',
-  },
-]
-
-const partners = [
-  'Red Hat',
-  'VMware',
-  'Broadcom',
-  'AWS',
-  'Microsoft',
-  'Google Cloud',
-  'SUSE',
-  'HashiCorp',
-]
-
-const caseStudies = [
-  {
-    title: 'Modernising a critical platform estate',
-    summary:
-      'We designed and delivered a secure, hybrid platform that improved reliability, reduced risk and accelerated delivery across business teams.',
-    clientType: 'Platform Transformation',
-  },
-  {
-    title: 'Building a cloud-native platform from the ground up',
-    summary:
-      'We built a platform that enables rapid product delivery, strong compliance and operational excellence.',
-    clientType: 'Platform Transformation',
+      'Risk-managed platform and application migration without losing operational control.',
+    href: '/services/migrations-and-modernisation',
   },
 ]
 ---
@@ -82,22 +122,21 @@ const caseStudies = [
     <Hero {...hero} />
 
     <Section
-      theme="dark"
       eyebrow="What We Do"
-      heading="End-to-end platform engineering across any environment"
-      body="We combine deep technical consultancy with hands-on delivery to design, integrate and operate platforms that scale."
+      heading="Platform engineering across the environments your business actually runs in."
+      body="We design, integrate and build the foundations that sit underneath reliable modern platforms."
+      theme="dark"
     >
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {
-          services.map((service, index) => (
+          serviceGroups.map((service, index) => (
             <ServiceCard
               title={service.title}
               summary={service.summary}
-              href="/what-we-do"
+              href={service.href}
               accent={
                 index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
               }
-              theme="dark"
             />
           ))
         }
@@ -110,7 +149,7 @@ const caseStudies = [
       body="We partner with best-in-class technology companies and ecosystem partners to deliver the right solutions without tying you to any single vendor."
     >
       <PartnerStrip
-        partners={partners.map((name) => ({ name }))}
+        partners={partners.map(({ name }) => ({ name }))}
         variant="plain"
       />
     </Section>
@@ -128,7 +167,7 @@ const caseStudies = [
             <CaseStudyCard
               title={study.title}
               summary={study.summary}
-              href="/case-studies"
+              href={`/case-studies/${study.slug.current}`}
               clientType={study.clientType}
               accent={index % 2 === 0 ? 'cyan-purple' : 'cyan-blue'}
               theme="dark"

@@ -2,6 +2,7 @@
 import '../styles/global.css'
 
 import Footer from '../components/Footer.astro'
+import MembershipsAndCertifications from '../components/MembershipsAndCertifications.astro'
 import Nav from '../components/Nav.astro'
 
 const {
@@ -40,6 +41,7 @@ const {
     </header>
 
     <slot />
+    <MembershipsAndCertifications theme="dark" compact />
     <Footer />
   </body>
 </html>

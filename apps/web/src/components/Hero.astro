@@ -1,4 +1,6 @@
 ---
+import ClientLogoStrip from './ClientLogoStrip.astro'
+
 const {
   eyebrow,
   headingPrimary,
@@ -65,7 +67,6 @@ const {
     </div>
 
     <!-- STACK CARDS -->
-
     <div class="relative">
       <div class="space-y-5">
         {
@@ -115,22 +116,5 @@ const {
   </div>
 
   <!-- LOGOS -->
-
-  <div class="relative mx-auto mt-24 max-w-7xl">
-    <p class="text-sm font-medium text-frontier-light-grey">
-      Trusted by organisations that rely on their platforms
-    </p>
-
-    <div
-      class="mt-8 grid grid-cols-2 gap-6 text-sm font-bold text-frontier-light-grey sm:grid-cols-4 lg:grid-cols-7"
-    >
-      <span>NatWest</span>
-      <span>Octopus Energy</span>
-      <span>Bank of England</span>
-      <span>NHS</span>
-      <span>PEPCO Group</span>
-      <span>JUST EAT</span>
-      <span>RS</span>
-    </div>
-  </div>
+  <ClientLogoStrip />
 </section>
