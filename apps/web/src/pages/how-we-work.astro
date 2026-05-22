@@ -1,16 +1,42 @@
 ---
+import type { Page } from '@frontier/sanity-types'
 import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
+import TextCard from '../components/TextCard.astro'
 import { sanity } from '../lib/sanity'
 
-const page = await sanity.fetch(`
+type TextCardItem = {
+  title?: string
+  body?: string
+}
+
+type CardSection = {
+  _type: 'cardSection'
+  eyebrow?: string
+  heading?: string
+  body?: string
+  theme?: 'light' | 'dark'
+  columns?: 2 | 3 | 4 | 5
+  showAccent?: boolean
+  cards?: TextCardItem[]
+}
+
+type HowWeWorkPage = Pick<
+  Page,
+  'title' | 'seoTitle' | 'seoDescription' | 'hero'
+> & {
+  sections?: CardSection[]
+}
+
+const page: HowWeWorkPage | null = await sanity.fetch(`
   *[_type == "page" && slug.current == "how-we-work"][0]{
     title,
     seoTitle,
     seoDescription,
-    hero
+    hero,
+    sections[]
   }
 `)
 
@@ -20,6 +46,15 @@ const hero = page?.hero ?? {
   headingAccent: 'Delivery where it counts.',
   subHeading:
     'We help organisations move from platform complexity to operational clarity — combining technical strategy, product integration and hands-on delivery.',
+}
+
+const sections = page?.sections ?? []
+
+function getColumnsClass(columns?: number) {
+  if (columns === 5) return 'lg:grid-cols-5'
+  if (columns === 4) return 'lg:grid-cols-4'
+  if (columns === 2) return 'lg:grid-cols-2'
+  return 'lg:grid-cols-3'
 }
 ---
 
@@ -32,117 +67,31 @@ const hero = page?.hero ?? {
   <main>
     <PageHero {...hero} />
 
-    <Section
-      eyebrow="Our Role"
-      heading="We do not just advise on platforms. We build them."
-      body="Frontier works across strategy, architecture, integration and implementation. That means the platforms we design are grounded in delivery reality — and the platforms we build are aligned to long-term operational goals."
-      theme="light"
-    >
-      <div class="grid gap-6 md:grid-cols-3">
-        {
-          [
-            [
-              'Technical consultancy',
-              'We help you understand the right platform direction, architecture and operating model for your environment.',
-            ],
-            [
-              'Product integration',
-              'We bring together cloud, infrastructure, Kubernetes, security and delivery tooling into coherent platforms.',
-            ],
-            [
-              'Hands-on delivery',
-              'We work alongside your teams to build, migrate, modernise and enable platforms in production.',
-            ],
-          ].map(([title, body]) => (
-            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-              <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full" />
-              <h3 class="text-2xl font-bold">{title}</h3>
-              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
-                {body}
-              </p>
-            </article>
-          ))
-        }
-      </div>
-    </Section>
+    {
+      sections.map((section) => {
+        const theme = section.theme ?? 'light'
 
-    <Section
-      eyebrow="Method"
-      heading="A practical path from complexity to control."
-      body="Every engagement is different, but our work usually follows a simple pattern: understand the reality, design the platform, integrate the right technologies, build the foundation, and enable teams to operate it."
-      theme="dark"
-    >
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-        {
-          [
-            [
-              'Discover',
-              'Understand constraints, risks, systems, teams and operating reality.',
-            ],
-            [
-              'Design',
-              'Define the platform architecture, principles and delivery roadmap.',
-            ],
-            [
-              'Integrate',
-              'Connect infrastructure, cloud, Kubernetes, security and delivery tooling.',
-            ],
-            [
-              'Build',
-              'Implement reliable, secure and production-ready platform foundations.',
-            ],
-            [
-              'Enable',
-              'Help teams adopt, operate and evolve the platform with confidence.',
-            ],
-          ].map(([title, body]) => (
-            <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
-              <div class="frontier-gradient-cyan-blue mb-6 h-1 w-16 rounded-full" />
-              <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
-              <p class="mt-4 text-sm leading-7 text-frontier-light-grey">
-                {body}
-              </p>
-            </article>
-          ))
-        }
-      </div>
-    </Section>
-
-    <Section
-      eyebrow="What Makes Us Different"
-      heading="Built for the environments businesses actually run in."
-      theme="light"
-    >
-      <div class="grid gap-8 md:grid-cols-2">
-        {
-          [
-            [
-              'From metal to Kubernetes',
-              'We work across the full platform stack — from bare metal, Linux, provisioning and virtualisation through to cloud, Kubernetes and developer platforms.',
-            ],
-            [
-              'Not vendor-led',
-              'We work with product companies and ecosystem partners, but our advice is shaped by your environment rather than a single vendor architecture.',
-            ],
-            [
-              'Designed for control',
-              'Security, resilience, governance and operational control are designed into the platform rather than added as afterthoughts.',
-            ],
-            [
-              'Trust through delivery',
-              'We build credibility by doing the work: making pragmatic technical decisions, delivering production systems and enabling teams to own them.',
-            ],
-          ].map(([title, body]) => (
-            <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
-              <h3 class="text-2xl font-bold text-frontier-dark">{title}</h3>
-              <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
-                {body}
-              </p>
-            </article>
-          ))
-        }
-      </div>
-    </Section>
+        return (
+          <Section
+            eyebrow={section.eyebrow}
+            heading={section.heading}
+            body={section.body}
+            theme={theme}
+          >
+            <div
+              class:list={[
+                'grid gap-6 md:grid-cols-2',
+                getColumnsClass(section.columns),
+              ]}
+            >
+              {(section.cards ?? []).map((card) => (
+                <TextCard {...card} theme={theme} />
+              ))}
+            </div>
+          </Section>
+        )
+      })
+    }
 
     <CTASection
       eyebrow="Start the conversation"

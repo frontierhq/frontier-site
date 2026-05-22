@@ -1,0 +1,85 @@
+---
+const {
+  icon = '',
+  title = '',
+  body = '',
+  href = '',
+  linkLabel = '',
+  theme = 'light',
+} = Astro.props
+
+const isDark = theme === 'dark'
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class:list={[
+        'group flex h-full flex-col rounded-3xl p-8 transition',
+        isDark
+          ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30 hover:bg-white/10'
+          : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
+      ]}
+    >
+      {icon && <img src={icon} alt="" class="mb-8 h-14 w-14" loading="lazy" />}
+      <h3
+        class:list={[
+          'text-2xl font-bold',
+          isDark ? 'text-frontier-white' : 'text-frontier-dark',
+        ]}
+      >
+        {title}
+      </h3>
+      {body && (
+        <p
+          class:list={[
+            'mt-5 text-sm leading-7',
+            isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+          ]}
+        >
+          {body}
+        </p>
+      )}
+      {linkLabel && (
+        <p
+          class:list={[
+            'mt-auto pt-8 text-sm font-semibold',
+            isDark ? 'text-frontier-green' : 'text-frontier-dark',
+          ]}
+        >
+          {linkLabel} →
+        </p>
+      )}
+    </a>
+  ) : (
+    <article
+      class:list={[
+        'flex h-full flex-col rounded-3xl p-8',
+        isDark
+          ? 'border border-frontier-cyan/10 bg-white/5'
+          : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark',
+      ]}
+    >
+      {icon && <img src={icon} alt="" class="mb-8 h-14 w-14" loading="lazy" />}
+      <h3
+        class:list={[
+          'text-2xl font-bold',
+          isDark ? 'text-frontier-white' : 'text-frontier-dark',
+        ]}
+      >
+        {title}
+      </h3>
+      {body && (
+        <p
+          class:list={[
+            'mt-5 text-sm leading-7',
+            isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+          ]}
+        >
+          {body}
+        </p>
+      )}
+    </article>
+  )
+}

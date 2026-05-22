@@ -1,0 +1,86 @@
+---
+const {
+  name,
+  summary = '',
+  href = '#',
+  category = '',
+  accent = 'green',
+  theme = 'light',
+} = Astro.props as {
+  name: string
+  summary?: string
+  href: string
+  category?: string
+  accent?: 'green' | 'cyan' | 'purple'
+  theme?: 'light' | 'dark'
+}
+
+const isDark = theme === 'dark'
+
+const accentClass =
+  accent === 'cyan'
+    ? 'frontier-gradient-cyan-blue'
+    : accent === 'purple'
+      ? 'frontier-gradient-cyan-purple'
+      : 'frontier-gradient-green-cyan'
+---
+
+<a
+  href={href}
+  class:list={[
+    'group flex h-full flex-col rounded-3xl p-8 transition',
+    isDark
+      ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30 hover:bg-white/10'
+      : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
+  ]}
+>
+  <div class:list={[accentClass, 'mb-6 h-1 w-16 rounded-full']}></div>
+
+  {
+    category && (
+      <p
+        class:list={[
+          'text-xs font-bold uppercase tracking-[0.25em]',
+          isDark ? 'text-frontier-cyan' : 'text-frontier-mid-grey',
+        ]}
+      >
+        {category}
+      </p>
+    )
+  }
+
+  <h3
+    class:list={[
+      'mt-4 text-3xl font-bold',
+      isDark ? 'text-frontier-white' : 'text-frontier-dark',
+    ]}
+  >
+    {name}
+  </h3>
+
+  <div class="mt-5 flex flex-1 flex-col">
+    {
+      summary && (
+        <p
+          class:list={[
+            'text-sm leading-7',
+            isDark ? 'text-frontier-light-grey' : 'text-frontier-mid-grey',
+          ]}
+        >
+          {summary}
+        </p>
+      )
+    }
+
+    <p
+      class:list={[
+        'mt-auto pt-8 text-sm font-semibold transition',
+        isDark
+          ? 'text-frontier-green group-hover:text-frontier-cyan'
+          : 'text-frontier-dark group-hover:text-frontier-cyan',
+      ]}
+    >
+      View partner →
+    </p>
+  </div>
+</a>

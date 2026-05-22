@@ -1,0 +1,63 @@
+---
+const {
+  title = '',
+  body = '',
+  theme = 'light',
+  accent = 'green',
+  showAccent = true,
+} = Astro.props as {
+  title?: string
+  body?: string
+  theme?: 'light' | 'dark'
+  accent?: 'green' | 'cyan' | 'purple'
+  showAccent?: boolean
+}
+
+const isDark = theme === 'dark'
+
+const accentClass =
+  accent === 'cyan'
+    ? 'frontier-gradient-cyan-blue'
+    : accent === 'purple'
+      ? 'frontier-gradient-cyan-purple'
+      : 'frontier-gradient-green-cyan'
+---
+
+<article
+  class:list={[
+    'flex h-full flex-col rounded-3xl p-8',
+    isDark
+      ? 'border border-frontier-cyan/10 bg-white/5'
+      : 'border border-frontier-light-grey bg-frontier-white',
+  ]}
+>
+  {
+    showAccent && (
+      <div class:list={[accentClass, 'mb-6 h-1 w-16 rounded-full']} />
+    )
+  }
+
+  <h3
+    class:list={[
+      isDark ? 'text-xl text-frontier-white' : 'text-2xl text-frontier-dark',
+      'font-bold',
+    ]}
+  >
+    {title}
+  </h3>
+
+  {
+    body && (
+      <p
+        class:list={[
+          isDark
+            ? 'mt-4 text-frontier-light-grey'
+            : 'mt-5 text-frontier-mid-grey',
+          'text-sm leading-7',
+        ]}
+      >
+        {body}
+      </p>
+    )
+  }
+</article>

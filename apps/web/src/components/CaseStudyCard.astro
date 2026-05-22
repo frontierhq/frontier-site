@@ -37,7 +37,7 @@ const accentClass =
 <a
   href={href}
   class:list={[
-    'group block overflow-hidden rounded-3xl transition',
+    'group flex h-full flex-col overflow-hidden rounded-3xl transition',
     isDark
       ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30'
       : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl',
@@ -45,7 +45,7 @@ const accentClass =
 >
   <div class:list={[accentClass, 'h-56', isDark && 'opacity-70']}></div>
 
-  <div class="p-8">
+  <div class="flex flex-1 flex-col p-8">
     {
       clientType && (
         <p
@@ -131,7 +131,8 @@ const accentClass =
 
     <p
       class:list={[
-        'mt-8 text-sm font-semibold transition',
+        'mt-auto pt-8 text-sm font-semibold transition',
+
         isDark
           ? 'text-frontier-green group-hover:text-frontier-cyan'
           : 'text-frontier-dark group-hover:text-frontier-cyan',

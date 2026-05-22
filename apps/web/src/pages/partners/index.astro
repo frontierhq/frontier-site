@@ -1,9 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import PageHero from '../components/PageHero.astro'
-import Section from '../components/Section.astro'
-import CTASection from '../components/CTASection.astro'
-import { sanity } from '../lib/sanity'
+import Layout from '../../layouts/Layout.astro'
+import PageHero from '../../components/PageHero.astro'
+import PartnerCard from '../../components/PartnerCard.astro'
+import Section from '../../components/Section.astro'
+import CTASection from '../../components/CTASection.astro'
+import { sanity } from '../../lib/sanity'
 
 type PartnerListItem = {
   name: string
@@ -65,39 +66,16 @@ const hero = page?.hero ?? {
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           vendors.map((partner, index) => (
-            <a
+            <PartnerCard
+              name={partner.name}
+              summary={partner.summary ?? ''}
+              category={partner.category ?? ''}
               href={`/partners/${partner.slug.current}`}
-              class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
-            >
-              <div
-                class:list={[
-                  'mb-6 h-1 w-16 rounded-full',
-                  index % 3 === 0 && 'frontier-gradient-green-cyan',
-                  index % 3 === 1 && 'frontier-gradient-cyan-blue',
-                  index % 3 === 2 && 'frontier-gradient-cyan-purple',
-                ]}
-              />
-
-              {partner.category && (
-                <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                  {partner.category}
-                </p>
-              )}
-
-              <h2 class="mt-4 text-3xl font-bold text-frontier-dark">
-                {partner.name}
-              </h2>
-
-              {partner.summary && (
-                <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
-                  {partner.summary}
-                </p>
-              )}
-
-              <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
-                View partner →
-              </p>
-            </a>
+              accent={
+                index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
+              }
+              theme="light"
+            />
           ))
         }
       </div>
@@ -113,39 +91,20 @@ const hero = page?.hero ?? {
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {vars.map((partner, index) => (
-              <a
+              <PartnerCard
+                name={partner.name}
+                summary={partner.summary ?? ''}
+                category={partner.category ?? ''}
                 href={`/partners/${partner.slug.current}`}
-                class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
-              >
-                <div
-                  class:list={[
-                    'mb-6 h-1 w-16 rounded-full',
-                    index % 3 === 0 && 'frontier-gradient-green-cyan',
-                    index % 3 === 1 && 'frontier-gradient-cyan-blue',
-                    index % 3 === 2 && 'frontier-gradient-cyan-purple',
-                  ]}
-                />
-
-                {partner.category && (
-                  <p class="text-xs font-bold uppercase tracking-[0.25em] text-frontier-mid-grey">
-                    {partner.category}
-                  </p>
-                )}
-
-                <h2 class="mt-4 text-3xl font-bold text-frontier-dark">
-                  {partner.name}
-                </h2>
-
-                {partner.summary && (
-                  <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
-                    {partner.summary}
-                  </p>
-                )}
-
-                <p class="mt-8 text-sm font-semibold text-frontier-dark transition group-hover:text-frontier-cyan">
-                  View partner →
-                </p>
-              </a>
+                accent={
+                  index % 3 === 0
+                    ? 'green'
+                    : index % 3 === 1
+                      ? 'cyan'
+                      : 'purple'
+                }
+                theme="light"
+              />
             ))}
           </div>
         </Section>
