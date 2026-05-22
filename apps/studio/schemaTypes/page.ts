@@ -92,6 +92,127 @@ export const page = defineType({
             },
           ],
         }),
+        defineArrayMember({
+          name: 'iconCardSection',
+          title: 'Icon Card Section',
+          type: 'object',
+          fields: [
+            {name: 'eyebrow', title: 'Eyebrow', type: 'string'},
+            {name: 'heading', title: 'Heading', type: 'string'},
+            {name: 'body', title: 'Body', type: 'text', rows: 4},
+            {
+              name: 'theme',
+              title: 'Theme',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Light', value: 'light'},
+                  {title: 'Dark', value: 'dark'},
+                ],
+              },
+              initialValue: 'light',
+            },
+            {
+              name: 'columns',
+              title: 'Columns',
+              type: 'number',
+              initialValue: 3,
+            },
+            {
+              name: 'cards',
+              title: 'Cards',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {name: 'icon', title: 'Icon Path', type: 'string'},
+                    {name: 'title', title: 'Title', type: 'string'},
+                    {name: 'body', title: 'Body', type: 'text', rows: 4},
+                    {name: 'href', title: 'Link URL', type: 'string'},
+                    {name: 'linkLabel', title: 'Link Label', type: 'string'},
+                  ],
+                },
+              ],
+            },
+          ],
+        }),
+        defineArrayMember({
+          name: 'certifiedExpertiseSection',
+          title: 'Certified Expertise Section',
+          type: 'object',
+          fields: [
+            {name: 'eyebrow', title: 'Eyebrow', type: 'string'},
+            {name: 'heading', title: 'Heading', type: 'string'},
+            {name: 'body', title: 'Body', type: 'text', rows: 4},
+            {name: 'logo', title: 'Logo Path', type: 'string'},
+            {name: 'logoAlt', title: 'Logo Alt Text', type: 'string'},
+            {name: 'href', title: 'External Link', type: 'url'},
+            {name: 'linkLabel', title: 'Link Label', type: 'string'},
+            {
+              name: 'cards',
+              title: 'Cards',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {name: 'title', title: 'Title', type: 'string'},
+                    {name: 'body', title: 'Body', type: 'text', rows: 4},
+                  ],
+                },
+              ],
+            },
+          ],
+        }),
+        defineArrayMember({
+          name: 'cardSection',
+          title: 'Card Section',
+          type: 'object',
+          fields: [
+            {name: 'eyebrow', title: 'Eyebrow', type: 'string'},
+            {name: 'heading', title: 'Heading', type: 'string'},
+            {name: 'body', title: 'Body', type: 'text', rows: 4},
+            {
+              name: 'theme',
+              title: 'Theme',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Light', value: 'light'},
+                  {title: 'Dark', value: 'dark'},
+                ],
+              },
+              initialValue: 'light',
+            },
+            {
+              name: 'columns',
+              title: 'Columns',
+              type: 'number',
+              initialValue: 3,
+            },
+            {
+              name: 'showAccent',
+              title: 'Show Accent Bar',
+              type: 'boolean',
+              initialValue: true,
+            },
+            {
+              name: 'cards',
+              title: 'Cards',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  fields: [
+                    {name: 'title', title: 'Title', type: 'string'},
+                    {name: 'body', title: 'Body', type: 'text', rows: 4},
+                  ],
+                }),
+              ],
+            },
+          ],
+        }),
       ],
     }),
   ],

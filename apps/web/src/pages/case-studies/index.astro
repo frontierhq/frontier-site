@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import PageHero from '../components/PageHero.astro'
-import Section from '../components/Section.astro'
-import CTASection from '../components/CTASection.astro'
-import { sanity } from '../lib/sanity'
+import Layout from '../../layouts/Layout.astro'
+import PageHero from '../../components/PageHero.astro'
+import Section from '../../components/Section.astro'
+import CTASection from '../../components/CTASection.astro'
+import { sanity } from '../../lib/sanity'
 
 type Metric = {
   label: string
@@ -64,7 +64,7 @@ const hero = page?.hero ?? {
     <Section
       eyebrow="Proof in Practice"
       heading="Platform engineering in real-world environments."
-      body="Our work spans bare metal, cloud, hybrid, Kubernetes, migration and developer platform environments — helping organisations reduce complexity, improve reliability and move with confidence."
+      body="Platform foundations for cloud, hybrid and Kubernetes environments. Reliable. Observable. Built for real operations."
       theme="light"
     >
       <div class="grid gap-6 lg:grid-cols-2">

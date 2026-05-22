@@ -1,6 +1,9 @@
 ---
 type Partner = {
   name: string
+  slug?: {
+    current: string
+  }
 }
 
 const { partners = [], variant = 'card' } = Astro.props as {
@@ -19,14 +22,21 @@ const isPlain = variant === 'plain'
       ))}
     </div>
   ) : (
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-      {partners.map((partner) => (
-        <div class="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center">
-          <span class="text-sm font-semibold text-slate-500">
+    <div class="grid grid-cols-2 gap-x-16 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+      {partners.map((partner) =>
+        partner.slug?.current ? (
+          <a
+            href={`/partners/${partner.slug.current}`}
+            class="text-lg font-medium text-frontier-dark opacity-55 transition duration-200 hover:opacity-100 hover:text-frontier-cyan"
+          >
+            {partner.name}
+          </a>
+        ) : (
+          <span class="text-lg font-medium text-frontier-dark opacity-55">
             {partner.name}
           </span>
-        </div>
-      ))}
+        )
+      )}
     </div>
   )
 }
