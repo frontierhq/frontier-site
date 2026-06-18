@@ -1,0 +1,43 @@
+---
+import PolicyPanel from './PolicyPanel.astro'
+---
+
+<section
+  class="mx-auto grid max-w-7xl gap-14 px-6 py-24 lg:grid-cols-2 lg:items-center"
+>
+  <div>
+    <p
+      class="mb-6 inline-flex rounded-full border border-emerald-400/30 px-4 py-2 text-sm text-emerald-300"
+    >
+      Azure Privileged Identity Management
+    </p>
+
+    <h1 class="max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">
+      Manage Azure PIM as code.
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+      Define privileged access in configuration. Review changes through pull
+      requests. Deploy through pipelines. Keep Azure PIM consistent, auditable
+      and repeatable.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href="/contact"
+        class="rounded-lg bg-emerald-400 px-5 py-3 font-medium text-black"
+      >
+        Book a demo
+      </a>
+
+      <a
+        href="/docs"
+        class="rounded-lg border border-white/10 px-5 py-3 font-medium text-white"
+      >
+        Read documentation
+      </a>
+    </div>
+  </div>
+
+  <PolicyPanel />
+</section>

@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro'
+import CTA from '../components/CTA.astro'
+---
+
+<Layout title="Pricing | Sheriff">
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <p class="text-sm font-medium text-emerald-300">Pricing</p>
+
+    <h1
+      class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl"
+    >
+      Simple pricing for teams bringing Kubernetes under control.
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
+      Start small, prove value quickly and scale Sheriff across your Kubernetes
+      estate when you are ready.
+    </p>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-3">
+      <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+        <h2 class="text-2xl font-semibold">Starter</h2>
+        <p class="mt-4 text-slate-400">
+          For teams evaluating Kubernetes policy, drift and visibility.
+        </p>
+        <p class="mt-8 text-4xl font-semibold">Free</p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-300">
+          <li>Single cluster</li>
+          <li>Basic policy checks</li>
+          <li>Drift visibility</li>
+          <li>Community support</li>
+        </ul>
+      </article>
+
+      <article
+        class="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 p-8 shadow-2xl shadow-emerald-500/10"
+      >
+        <p class="text-sm font-medium text-emerald-300">Most common</p>
+        <h2 class="mt-3 text-2xl font-semibold">Team</h2>
+        <p class="mt-4 text-slate-300">
+          For platform teams managing Kubernetes across multiple environments.
+        </p>
+        <p class="mt-8 text-4xl font-semibold">Contact us</p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-300">
+          <li>Multiple clusters</li>
+          <li>Custom policy packs</li>
+          <li>Exception tracking</li>
+          <li>Audit-ready evidence</li>
+          <li>Email support</li>
+        </ul>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+        <h2 class="text-2xl font-semibold">Enterprise</h2>
+        <p class="mt-4 text-slate-400">
+          For regulated organisations with larger estates and stricter control
+          requirements.
+        </p>
+        <p class="mt-8 text-4xl font-semibold">Custom</p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-300">
+          <li>Estate-wide governance</li>
+          <li>Advanced reporting</li>
+          <li>SSO and RBAC</li>
+          <li>Private deployment options</li>
+          <li>Priority support</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>
