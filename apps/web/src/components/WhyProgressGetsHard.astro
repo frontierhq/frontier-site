@@ -1,0 +1,55 @@
+---
+import Section from './Section.astro'
+
+const pressures = [
+  {
+    title: 'Clouds multiply',
+    body: 'New platforms and services create opportunity, but they also add more places where decisions, data and responsibility must connect.',
+  },
+  {
+    title: 'Legacy remains essential',
+    body: 'Critical systems cannot simply be switched off. Progress has to work with the infrastructure, applications and constraints already in place.',
+  },
+  {
+    title: 'The whole system is harder to see',
+    body: 'As environments, teams and suppliers grow, it becomes less clear where risk sits or what a change will affect.',
+  },
+]
+---
+
+<Section
+  eyebrow="Why Progress Gets Hard"
+  heading="When the whole system is hard to see, every change carries more weight than it should."
+  body="The technology to move forward may already be in place. But across cloud, legacy infrastructure, suppliers and teams, even a well-intended change can become difficult to make with confidence."
+  theme="light"
+>
+  <div class="grid gap-6 md:grid-cols-3">
+    {
+      pressures.map((pressure, index) => (
+        <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+          <div
+            class:list={[
+              'mb-6 h-1 w-16 rounded-full',
+              index === 0 && 'frontier-gradient-green-cyan',
+              index === 1 && 'frontier-gradient-cyan-blue',
+              index === 2 && 'frontier-gradient-cyan-purple',
+            ]}
+          />
+
+          <h3 class="text-2xl font-bold text-frontier-dark">
+            {pressure.title}
+          </h3>
+
+          <p class="mt-5 text-sm leading-7 text-frontier-mid-grey">
+            {pressure.body}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="mt-10 max-w-4xl text-lg leading-8 text-frontier-mid-grey">
+    Nothing is individually wrong. Together, it can make progress feel harder
+    than it should.
+  </p>
+</Section>

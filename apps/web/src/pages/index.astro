@@ -1,13 +1,14 @@
 ---
 import { sanity } from '../lib/sanity'
 
-import CaseStudyCard from '../components/CaseStudyCard.astro'
 import CTASection from '../components/CTASection.astro'
+import FeaturedCaseStudies from '../components/FeaturedCaseStudies.astro'
 import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
-import PartnerStrip from '../components/PartnerStrip.astro'
-import Section from '../components/Section.astro'
-import ServiceCard from '../components/ServiceCard.astro'
+import PartnerEcosystem from '../components/PartnerEcosystem.astro'
+import PlatformEstate from '../components/PlatformEstate.astro'
+import WhatWeDo from '../components/WhatWeDo.astro'
+import WhyProgressGetsHard from '../components/WhyProgressGetsHard.astro'
 
 // import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
 
@@ -84,32 +85,6 @@ const caseStudies: HomeCaseStudy[] = await sanity.fetch(`
 
 const hero = page?.hero ?? {}
 
-const serviceGroups = [
-  {
-    title: 'Platform Foundations',
-    summary:
-      'Bare metal, Linux, virtualisation and infrastructure automation for reliable platform foundations.',
-    href: '/services/bare-metal-platforms',
-  },
-  {
-    title: 'Cloud & Hybrid Platforms',
-    summary:
-      'Public cloud, private cloud, hybrid integration and platform operations across real-world environments.',
-    href: '/services/hybrid-platforms',
-  },
-  {
-    title: 'Kubernetes & Cloud Native',
-    summary:
-      'Kubernetes, OpenShift, GitOps, observability and developer workflows for modern application platforms.',
-    href: '/kubernetes',
-  },
-  {
-    title: 'Migration & Modernisation',
-    summary:
-      'Risk-managed platform and application migration without losing operational control.',
-    href: '/services/migrations-and-modernisation',
-  },
-]
 ---
 
 <Layout
@@ -121,61 +96,15 @@ const serviceGroups = [
   <main>
     <Hero {...hero} />
 
-    <Section
-      eyebrow="What We Do"
-      heading="Platform engineering across the environments your business actually runs in."
-      body="We design, integrate and build the foundations that sit underneath reliable modern platforms."
-      theme="dark"
-    >
-      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {
-          serviceGroups.map((service, index) => (
-            <ServiceCard
-              title={service.title}
-              summary={service.summary}
-              href={service.href}
-              accent={
-                index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
-              }
-            />
-          ))
-        }
-      </div>
-    </Section>
+    <WhyProgressGetsHard />
 
-    <Section
-      eyebrow="Stronger Together"
-      heading="We work with leading product companies to build what matters"
-      body="We partner with best-in-class technology companies and ecosystem partners to deliver the right solutions without tying you to any single vendor."
-    >
-      <PartnerStrip
-        partners={partners.map(({ name }) => ({ name }))}
-        variant="plain"
-      />
-    </Section>
+    <WhatWeDo />
 
-    <Section
-      theme="dark"
-      eyebrow="Proof in Practice"
-      heading="Real challenges. Real outcomes."
-      headerActionLabel="View all case studies →"
-      headerActionUrl="/case-studies"
-    >
-      <div class="grid gap-6 lg:grid-cols-2">
-        {
-          caseStudies.map((study, index) => (
-            <CaseStudyCard
-              title={study.title}
-              summary={study.summary}
-              href={`/case-studies/${study.slug.current}`}
-              clientType={study.clientType}
-              accent={index % 2 === 0 ? 'cyan-purple' : 'cyan-blue'}
-              theme="dark"
-            />
-          ))
-        }
-      </div>
-    </Section>
+    <PlatformEstate />
+
+    <PartnerEcosystem partners={partners} />
+
+    <FeaturedCaseStudies caseStudies={caseStudies} />
 
     <CTASection
       heading="Let's build the right platform for your business."
