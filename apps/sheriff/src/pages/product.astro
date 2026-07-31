@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro'
+import CTA from '../components/CTA.astro'
+---
+
+<Layout
+  title="Product | Sheriff"
+  description="Sheriff is a declarative way to manage Azure Privileged Identity Management through code, pull requests and pipelines."
+>
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <p class="text-sm font-medium text-emerald-300">Product</p>
+
+    <h1
+      class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl"
+    >
+      Declarative governance for Azure privileged access.
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
+      Sheriff lets teams define Azure PIM configuration in code, review access
+      changes through pull requests and deploy approved state through pipelines.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-6 pb-24">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div>
+        <p class="text-sm font-medium text-emerald-300">Managed resources</p>
+
+        <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+          Bring privileged access under source control.
+        </h2>
+
+        <p class="mt-6 text-lg leading-8 text-slate-400">
+          Manage the Azure PIM configuration that controls who can elevate, when
+          they can activate and under what conditions.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Role eligibility schedules
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Active assignments
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Approval settings
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Activation duration
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          PIM groups
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Azure AD groups
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Subscription scopes
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          Management group scopes
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-white/[0.02]">
+    <div class="mx-auto max-w-7xl px-6 py-24">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-emerald-300">Pipeline first</p>
+
+        <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+          Designed for controlled change.
+        </h2>
+
+        <p class="mt-6 text-lg leading-8 text-slate-400">
+          Instead of changing PIM manually in the portal, teams can propose,
+          review and deploy changes using the same controls they already use for
+          infrastructure.
+        </p>
+      </div>
+
+      <div
+        class="mt-12 rounded-2xl border border-emerald-400/20 bg-black/30 p-6"
+      >
+        <pre
+          class="overflow-x-auto text-sm leading-7 text-emerald-300"><code>name: Deploy Azure PIM configuration
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+steps:
+  - name: Validate Sheriff configuration
+    run: sheriff validate ./pim
+
+  - name: Apply approved PIM state
+    run: sheriff apply ./pim</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

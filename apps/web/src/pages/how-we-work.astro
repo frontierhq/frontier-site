@@ -16,6 +16,8 @@ type CardSection = {
   _type: 'cardSection'
   eyebrow?: string
   heading?: string
+  headingPrimary?: string
+  headingAccent?: string
   body?: string
   theme?: 'light' | 'dark'
   columns?: 2 | 3 | 4 | 5
@@ -40,15 +42,110 @@ const page: HowWeWorkPage | null = await sanity.fetch(`
   }
 `)
 
-const hero = page?.hero ?? {
+const hero = {
   eyebrow: 'How We Work',
-  headingPrimary: 'Consultancy where it matters.',
-  headingAccent: 'Delivery where it counts.',
+  headingPrimary: 'The confidence to',
+  headingAccent: 'make the right change.',
   subHeading:
-    'We help organisations move from platform complexity to operational clarity — combining technical strategy, product integration and hands-on delivery.',
+    'We work alongside your team to understand the whole platform, make risk visible and turn the right decisions into practical progress.',
 }
 
-const sections = page?.sections ?? []
+const roleSection: CardSection = {
+  _type: 'cardSection',
+  eyebrow: 'The role we play',
+  headingPrimary: 'Guidance grounded in',
+  headingAccent: 'delivery.',
+  body:
+    'We work alongside your team from platform direction through to implementation, so early decisions are practical in the environment you operate.',
+  theme: 'light',
+  columns: 3,
+  cards: [
+    {
+      title: 'Understand and shape',
+      body: 'We help you make sense of the platform, operating model and choices that will best support your organisation.',
+    },
+    {
+      title: 'Integrate what is right',
+      body: 'We bring together the technologies, suppliers and services that fit your environment and outcome.',
+    },
+    {
+      title: 'Build alongside your teams',
+      body: 'We work with your people to build, migrate, modernise and evolve platforms in production.',
+    },
+  ],
+}
+
+const methodSection: CardSection = {
+  _type: 'cardSection',
+  eyebrow: 'The way we work',
+  headingPrimary: 'Start with the reality.',
+  headingAccent: 'Move forward with confidence.',
+  body:
+    'No two environments are the same. We begin by understanding yours, then design and build a practical path forward with your team.',
+  theme: 'dark',
+  columns: 5,
+  cards: [
+    {
+      title: 'Understand',
+      body: 'Build a shared picture of constraints, risks, systems, teams and operating reality.',
+    },
+    {
+      title: 'Design',
+      body: 'Define the platform architecture, principles and a practical delivery roadmap.',
+    },
+    {
+      title: 'Integrate',
+      body: 'Connect infrastructure, cloud, Kubernetes, security and delivery tooling.',
+    },
+    {
+      title: 'Build',
+      body: 'Implement reliable, secure and production-ready platform foundations.',
+    },
+    {
+      title: 'Enable',
+      body: 'Help teams adopt, operate and evolve the platform with confidence.',
+    },
+  ],
+}
+
+const differentiatorSection: CardSection = {
+  _type: 'cardSection',
+  eyebrow: 'What sets our work apart',
+  headingPrimary: 'Your environment sets',
+  headingAccent: 'the direction.',
+  body:
+    'We start with the reality your teams operate in, then bring together the right technology, delivery capability and people around the outcome you need.',
+  theme: 'light',
+  columns: 4,
+  cards: [
+    {
+      title: 'Across the whole estate',
+      body: 'From data centre foundations to cloud, Kubernetes and applications, we work across the environments your business relies on.',
+    },
+    {
+      title: 'Technology chosen for fit',
+      body: 'Decisions are shaped by your environment and outcome, not a vendor agenda.',
+    },
+    {
+      title: 'Control built in',
+      body: 'Security, resilience, governance and operational control are designed in from the start.',
+    },
+    {
+      title: 'Delivery that builds confidence',
+      body: 'Practical decisions, production delivery and teams enabled to own what comes next.',
+    },
+  ],
+}
+
+const sections = (page?.sections ?? []).map((section) =>
+  section.eyebrow === 'Our role'
+    ? roleSection
+    : section.eyebrow === 'Method'
+      ? methodSection
+      : section.eyebrow === 'What makes us different'
+        ? differentiatorSection
+      : section
+)
 
 function getColumnsClass(columns?: number) {
   if (columns === 5) return 'lg:grid-cols-5'
@@ -75,6 +172,8 @@ function getColumnsClass(columns?: number) {
           <Section
             eyebrow={section.eyebrow}
             heading={section.heading}
+            headingPrimary={section.headingPrimary}
+            headingAccent={section.headingAccent}
             body={section.body}
             theme={theme}
           >
@@ -95,8 +194,9 @@ function getColumnsClass(columns?: number) {
 
     <CTASection
       eyebrow="Start the conversation"
-      heading="Need a platform partner that can advise and deliver?"
-      body="We help organisations design, integrate and build platform foundations across bare metal, cloud, hybrid and Kubernetes environments."
+      headingPrimary="Make your next change"
+      headingAccent="with confidence."
+      body="Tell us what you need to achieve. We’ll help you understand the platform you have and find a practical path forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See What We Do"

@@ -1,0 +1,20 @@
+---
+import PartnerStrip from './PartnerStrip.astro'
+import Section from './Section.astro'
+
+type Partner = {
+  name: string
+}
+
+const { partners } = Astro.props as {
+  partners: Partner[]
+}
+---
+
+<Section
+  eyebrow="Stronger Together"
+  heading="Build what matters with the right partners."
+  body="We work with leading technology companies. You get the right fit, without vendor lock-in."
+>
+  <PartnerStrip partners={partners} variant="plain" />
+</Section>

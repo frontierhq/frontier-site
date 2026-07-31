@@ -1,0 +1,40 @@
+---
+import CaseStudyCard from './CaseStudyCard.astro'
+import Section from './Section.astro'
+
+type CaseStudy = {
+  title: string
+  slug: {
+    current: string
+  }
+  summary?: string
+  clientType?: string
+}
+
+const { caseStudies } = Astro.props as {
+  caseStudies: CaseStudy[]
+}
+---
+
+<Section
+  theme="dark"
+  eyebrow="Proof in Practice"
+  heading="Real challenges. Real outcomes."
+  headerActionLabel="View all case studies →"
+  headerActionUrl="/case-studies"
+>
+  <div class="grid gap-6 lg:grid-cols-2">
+    {
+      caseStudies.map((study, index) => (
+        <CaseStudyCard
+          title={study.title}
+          summary={study.summary}
+          href={`/case-studies/${study.slug.current}`}
+          clientType={study.clientType}
+          accent={index % 2 === 0 ? 'cyan-purple' : 'cyan-blue'}
+          theme="dark"
+        />
+      ))
+    }
+  </div>
+</Section>

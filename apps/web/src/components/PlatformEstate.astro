@@ -1,0 +1,54 @@
+---
+import Section from './Section.astro'
+import ServiceCard from './ServiceCard.astro'
+
+const areas = [
+  {
+    title: 'Data Centre & Infrastructure Platforms',
+    summary:
+      'Reliable data centres, from bare metal and Linux to provisioning and lifecycle automation.',
+    href: '/services/bare-metal-platforms',
+  },
+  {
+    title: 'Cloud & Hybrid Platforms',
+    summary:
+      'Public, private and hybrid cloud. Run them as one platform.',
+    href: '/services/hybrid-platforms',
+  },
+  {
+    title: 'Kubernetes & Cloud Native',
+    summary:
+      'Kubernetes, OpenShift, GitOps and observability for modern application platforms.',
+    href: '/kubernetes',
+  },
+  {
+    title: 'Migration & Modernisation',
+    summary:
+      'Modernise platforms and applications without losing operational control.',
+    href: '/services/migrations-and-modernisation',
+  },
+]
+---
+
+<Section
+  eyebrow="Across Your Platform"
+  heading="Platform work for the environments you actually run."
+  body="From bare metal to Kubernetes, we build stronger foundations for change."
+  theme="dark"
+>
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    {
+      areas.map((area, index) => (
+        <ServiceCard
+          title={area.title}
+          summary={area.summary}
+          href={area.href}
+          accent={
+            index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
+          }
+          alignTitle
+        />
+      ))
+    }
+  </div>
+</Section>

@@ -7,9 +7,12 @@
   ],
   "scripts": {
     "dev:web": "npm run dev -w apps/web",
+    "dev:sheriff": "npm run dev -w apps/web",
     "dev:studio": "npm run dev -w apps/studio",
     "build:web": "npm run build -w apps/web",
     "dev:web:host": "npm run dev -w apps/web -- --host 0.0.0.0",
+    "dev:sheriff:host": "npm run dev -w apps/sheriff -- --host 0.0.0.0",
+    "build:sheriff": "npm run build -w apps/sheriff",
     "build:studio": "npm run build -w apps/studio",
     "dev:studio:host": "npm run dev -w apps/studio -- --host 0.0.0.0",
     "lint": "eslint .",

@@ -2,6 +2,8 @@
 const {
   eyebrow = '',
   heading = '',
+  headingPrimary = '',
+  headingAccent = '',
   body = '',
   primaryCtaLabel = 'Let’s Talk',
   primaryCtaUrl = '/contact',
@@ -9,6 +11,8 @@ const {
   secondaryCtaUrl = '',
   dark = false,
 } = Astro.props
+
+const resolvedHeadingPrimary = headingPrimary || heading
 ---
 
 <section
@@ -21,7 +25,7 @@ const {
 >
   <div class="mx-auto max-w-7xl">
     <div
-      class="overflow-hidden rounded-[2rem] border border-frontier-cyan/10 bg-gradient-to-br from-frontier-dark via-frontier-dark-blue to-frontier-dark-purple p-10 lg:p-14"
+      class="overflow-hidden border border-frontier-cyan/10 bg-gradient-to-br from-frontier-dark via-frontier-dark-blue to-frontier-dark-purple p-10 lg:p-14"
     >
       <div class="max-w-4xl">
         {
@@ -32,11 +36,20 @@ const {
           )
         }
 
-        <h2
-          class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl"
-        >
-          {heading}
-        </h2>
+        {
+          resolvedHeadingPrimary && (
+            <h2 class="mt-5 text-4xl font-bold tracking-tight text-frontier-white lg:text-5xl">
+              <span class="block">{resolvedHeadingPrimary}</span>
+              {
+                headingAccent && (
+                  <span class="mt-1 block text-frontier-green">
+                    {headingAccent}
+                  </span>
+                )
+              }
+            </h2>
+          )
+        }
 
         {
           body && (
@@ -49,7 +62,7 @@ const {
         <div class="mt-10 flex flex-wrap gap-4">
           <a
             href={primaryCtaUrl}
-            class="rounded-md bg-frontier-green px-6 py-3 text-sm font-semibold text-frontier-dark transition hover:bg-frontier-cyan"
+            class="rounded-md bg-frontier-green px-6 py-3 text-sm font-bold text-frontier-dark transition hover:bg-frontier-cyan"
           >
             {primaryCtaLabel}
           </a>
@@ -58,7 +71,7 @@ const {
             secondaryCtaLabel && (
               <a
                 href={secondaryCtaUrl}
-                class="rounded-md border border-frontier-cyan/30 px-6 py-3 text-sm font-semibold text-frontier-white transition hover:border-frontier-cyan hover:bg-frontier-cyan/10"
+                class="rounded-md border border-frontier-cyan/30 px-6 py-3 text-sm font-bold text-frontier-white transition hover:border-frontier-cyan hover:bg-frontier-cyan/10"
               >
                 {secondaryCtaLabel}
               </a>

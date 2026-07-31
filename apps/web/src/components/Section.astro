@@ -2,6 +2,8 @@
 const {
   eyebrow = '',
   heading = '',
+  headingPrimary = '',
+  headingAccent = '',
   body = '',
   theme = 'light',
   spacing = 'default',
@@ -25,7 +27,8 @@ const spacingClass =
 
 const containerClass = container === 'narrow' ? 'max-w-4xl' : 'max-w-7xl'
 
-const hasHeader = eyebrow || heading || body
+const resolvedHeadingPrimary = headingPrimary || heading
+const hasHeader = eyebrow || resolvedHeadingPrimary || headingAccent || body
 const hasAction = headerActionLabel && headerActionUrl
 ---
 
@@ -50,9 +53,16 @@ const hasAction = headerActionLabel && headerActionUrl
               </p>
             )}
 
-            {heading && (
+            {resolvedHeadingPrimary && (
               <h2 class="mt-5 text-4xl font-bold tracking-tight lg:text-5xl">
-                {heading}
+                <span class="block">{resolvedHeadingPrimary}</span>
+                {
+                  headingAccent && (
+                    <span class="mt-1 block text-frontier-green">
+                      {headingAccent}
+                    </span>
+                  )
+                }
               </h2>
             )}
 
@@ -65,7 +75,7 @@ const hasAction = headerActionLabel && headerActionUrl
             <a
               href={headerActionUrl}
               class:list={[
-                'hidden text-sm font-semibold transition md:block',
+                'hidden text-sm font-bold transition md:block',
                 isDark
                   ? 'text-frontier-green hover:text-frontier-cyan'
                   : 'text-frontier-dark hover:text-frontier-cyan',

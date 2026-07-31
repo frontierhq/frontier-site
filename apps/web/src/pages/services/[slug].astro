@@ -106,7 +106,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((capability, index) => (
-              <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <article class="border border-frontier-cyan/10 bg-white/5 p-8">
                 <div
                   class:list={[
                     'mb-6 h-1 w-16 rounded-full',
@@ -137,7 +137,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {outcomes.map((outcome, index) => (
-              <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <article class="border border-frontier-light-grey bg-frontier-white p-8">
                 <div
                   class:list={[
                     'mb-6 h-1 w-16 rounded-full',
@@ -191,7 +191,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
             {relatedCaseStudies.map((study) => (
               <a
                 href={`/case-studies/${study.slug.current}`}
-                class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+                class="group border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
               >
                 <h3 class="text-2xl font-bold text-frontier-dark">
                   {study.title}

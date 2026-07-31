@@ -24,7 +24,7 @@ const {
   </div>
 
   <div
-    class="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2"
+    class="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_38rem]"
   >
     <div>
       <p
@@ -34,7 +34,7 @@ const {
       </p>
 
       <h1
-        class="mt-6 max-w-4xl text-5xl font-extrabold leading-none tracking-tight sm:text-6xl lg:text-7xl"
+        class="mt-6 max-w-4xl text-5xl font-bold leading-none tracking-tight sm:text-6xl lg:text-7xl"
       >
         <span class="block text-frontier-white">
           {headingPrimary}
@@ -52,62 +52,86 @@ const {
       <div class="mt-10 flex flex-wrap gap-4">
         <a
           href={primaryCtaUrl}
-          class="rounded-md bg-frontier-green px-6 py-3 text-sm font-semibold text-frontier-dark transition hover:bg-frontier-cyan"
+          class="rounded-md bg-frontier-green px-6 py-3 text-sm font-bold text-frontier-dark transition hover:bg-frontier-cyan"
         >
           {primaryCtaLabel}
         </a>
 
         <a
           href={secondaryCtaUrl}
-          class="rounded-md border border-frontier-cyan/30 px-6 py-3 text-sm font-semibold text-frontier-white transition hover:border-frontier-cyan hover:bg-frontier-cyan/10"
+          class="rounded-md border border-frontier-cyan/30 px-6 py-3 text-sm font-bold text-frontier-white transition hover:border-frontier-cyan hover:bg-frontier-cyan/10"
         >
           {secondaryCtaLabel}
         </a>
       </div>
     </div>
 
-    <!-- STACK CARDS -->
+    <!-- YOUR OPERATING ENVIRONMENT -->
     <div class="relative">
-      <div class="space-y-5">
+      <div
+        class="relative flex flex-col items-center xl:w-[72rem] xl:max-w-none xl:-translate-x-32 xl:[mask-image:linear-gradient(to_right,black_0%,black_48%,transparent_100%)] xl:[-webkit-mask-image:linear-gradient(to_right,black_0%,black_48%,transparent_100%)]"
+      >
         {
           [
-            ['APPLICATIONS', 'Cloud-native apps · Business services'],
-
             [
-              'KUBERNETES & PLATFORMS',
-              'Services · Runtime APIs · Observability',
+              'APPLICATIONS',
+              'Services customers and teams rely on.',
             ],
 
             [
-              'CLOUD & VIRTUALISATION',
-              'Public cloud · Private cloud · Networks · Storage · Identity',
+              'PLATFORM LAYER',
+              'Where delivery and operations connect.',
             ],
 
             [
-              'BARE METAL & INFRASTRUCTURE',
-              'Servers · Provisioning · Operating systems',
+              'CLOUD & DATA CENTRES',
+              'The environments that must work together.',
+            ],
+
+            [
+              'FOUNDATIONS',
+              'Infrastructure and operating systems.',
             ],
           ].map(([title, body], index) => (
             <div
               class:list={[
-                'rounded-3xl border p-8 shadow-2xl backdrop-blur transition hover:-translate-y-1',
+                'relative p-7 transition hover:-translate-y-1 sm:p-8 xl:flex xl:min-h-[15.625rem] xl:flex-col xl:justify-end',
                 index === 0 &&
-                  'border-frontier-purple/20 bg-frontier-dark-purple/30',
-                index === 1 &&
-                  'border-frontier-cyan/20 bg-frontier-dark-blue/30',
-                index === 2 &&
-                  'border-frontier-blue/20 bg-frontier-dark-cyan/30',
-                index === 3 &&
-                  'border-frontier-green/20 bg-frontier-dark-green/30',
+                  'w-[78%] sm:w-[62%] xl:w-[18rem] xl:px-16 xl:pb-4',
+                index === 1 && 'w-[86%] sm:w-[75%] xl:w-[36rem] xl:px-12',
+                index === 2 && 'w-[94%] sm:w-[88%] xl:w-[54rem] xl:px-12',
+                index === 3 && 'w-full xl:w-[72rem] xl:px-12',
               ]}
             >
-              <p class="text-sm font-bold tracking-wide text-frontier-white">
-                {title}
-              </p>
+              <div
+                aria-hidden="true"
+                class:list={[
+                  'absolute inset-0 rounded-none border shadow-none',
+                  index === 0 &&
+                    '[clip-path:polygon(6rem_0,calc(100%_-_6rem)_0,100%_100%,0_100%)] xl:[clip-path:polygon(50%_0,50%_0,100%_100%,0_100%)]',
+                  index > 0 &&
+                    '[clip-path:polygon(6rem_0,calc(100%_-_6rem)_0,100%_100%,0_100%)] xl:[clip-path:polygon(9rem_0,calc(100%_-_9rem)_0,100%_100%,0_100%)]',
+                  index === 0 &&
+                    'border-frontier-purple/20 bg-frontier-dark-purple/30',
+                  index === 1 &&
+                    'border-frontier-cyan/20 bg-frontier-dark-blue/30',
+                  index === 2 &&
+                    'border-frontier-blue/20 bg-frontier-dark-cyan/30',
+                  index === 3 &&
+                    'border-frontier-green/20 bg-frontier-dark-green/30',
+                ]}
+              >
+              </div>
 
-              <p class="mt-3 text-sm leading-6 text-frontier-light-grey">
-                {body}
-              </p>
+              <div class="relative text-center">
+                <p class="text-sm font-bold tracking-wide text-frontier-white">
+                  {title}
+                </p>
+
+                <p class="mt-3 text-sm leading-6 text-frontier-light-grey">
+                  {body}
+                </p>
+              </div>
             </div>
           ))
         }

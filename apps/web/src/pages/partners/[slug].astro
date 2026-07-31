@@ -116,7 +116,7 @@ const hero = {
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((capability, index) => (
-              <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <article class="border border-frontier-light-grey bg-frontier-white p-8">
                 <div
                   class:list={[
                     'mb-6 h-1 w-16 rounded-full',
@@ -146,7 +146,7 @@ const hero = {
             {relatedServices.map((service) => (
               <a
                 href={`/services/${service.slug.current}`}
-                class="group rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 transition hover:border-frontier-cyan/30"
+                class="group border border-frontier-cyan/10 bg-white/5 p-8 transition hover:border-frontier-cyan/30"
               >
                 <h3 class="text-2xl font-bold text-frontier-white">
                   {service.title}
