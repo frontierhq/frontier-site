@@ -8,49 +8,64 @@ import Section from '../components/Section.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 import CTASection from '../components/CTASection.astro'
 
-type ServicesSection = {
-  _type: 'servicesSection'
-  heading?: string
-  services?: {
-    title: string
-    slug: {
-      current: string
-    }
-    summary?: string
-  }[]
-}
-
-type WhatWeDoPage = Pick<
-  Page,
-  'title' | 'seoTitle' | 'seoDescription' | 'hero'
-> & {
-  sections?: ServicesSection[]
-}
+type WhatWeDoPage = Pick<Page, 'title' | 'seoTitle' | 'seoDescription' | 'hero'>
 
 const page = await sanity.fetch<WhatWeDoPage | null>(`
   *[_type == "page" && slug.current == "what-we-do"][0]{
     title,
     seoTitle,
     seoDescription,
-    hero,
-    sections[]{
-      ...,
-      services[]->{
-        title,
-        slug,
-        summary
-      }
-    }
+    hero
   }
 `)
 
 const hero = page?.hero ?? {}
 
-const servicesSection = page?.sections?.find(
-  (section) => section._type === 'servicesSection'
-)
+const platformAreas = [
+  {
+    title: 'Data Centre & Infrastructure Platforms',
+    summary:
+      'Bare metal, Linux, virtualisation, provisioning and lifecycle automation for reliable data centre infrastructure.',
+    href: '/services/bare-metal-platforms',
+    accent: 'green',
+  },
+  {
+    title: 'Cloud & Hybrid Platforms',
+    summary:
+      'Public cloud, private cloud and hybrid integration built around your operating model and real-world environment.',
+    href: '/services/cloud-platforms',
+    accent: 'cyan',
+  },
+  {
+    title: 'Kubernetes & Cloud Native',
+    summary:
+      'Production-ready Kubernetes platforms, developer workflows and observability for modern applications.',
+    href: '/services/kubernetes-platforms',
+    accent: 'purple',
+  },
+  {
+    title: 'Migration & Modernisation',
+    summary:
+      'Risk-managed platform and application change that maintains operational continuity as you move forward.',
+    href: '/services/migrations-and-modernisation',
+    accent: 'green',
+  },
+]
 
-const services = servicesSection?.services ?? []
+const deliveryCapabilities = [
+  {
+    title: 'Platform engineering & delivery workflows',
+    body: 'We build the internal platforms, automation and delivery practices that make the right path easier for engineering teams.',
+  },
+  {
+    title: 'Consulting & integration',
+    body: 'We bring the right technologies, suppliers and decisions together around the outcome your organisation needs.',
+  },
+  {
+    title: 'Enablement for lasting change',
+    body: 'We work alongside your teams so the platform can be understood, operated and evolved with confidence.',
+  },
+]
 ---
 
 <Layout
@@ -63,22 +78,20 @@ const services = servicesSection?.services ?? []
     <PageHero {...hero} />
 
     <Section
-      eyebrow="Services"
-      heading={servicesSection?.heading ??
-        'We design and build the foundations your teams depend on.'}
+      eyebrow="Across the Platform Estate"
+      heading="Platform work across the environments your business actually runs in."
+      body="From bare metal to Kubernetes, we help teams create stronger foundations for change."
       theme="light"
     >
-      <div class="grid gap-6 lg:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2">
         {
-          services.map((service, index) => (
+          platformAreas.map((area) => (
             <ServiceCard
-              title={service.title}
-              summary={service.summary ?? ''}
-              href={`/services/${service.slug.current}`}
-              accent={
-                index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
-              }
-              class={index === 0 ? 'lg:col-span-3' : ''}
+              title={area.title}
+              summary={area.summary}
+              href={area.href}
+              accent={area.accent}
+              alignTitle
             />
           ))
         }
@@ -86,34 +99,21 @@ const services = servicesSection?.services ?? []
     </Section>
 
     <Section
-      eyebrow="How We Work"
-      heading="Consultancy where it matters. Delivery where it counts."
-      body="We operate across strategy, architecture, integration and delivery — helping organisations move from platform complexity toward operational clarity."
+      eyebrow="How Frontier Helps"
+      heading="The delivery capability behind every platform."
+      body="Whatever the environment, we combine hands-on engineering, integration and enablement to help your teams move forward with confidence."
       theme="dark"
     >
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+      <div class="grid gap-6 md:grid-cols-3">
         {
-          [
-            [
-              'Discover',
-              'Understand operational constraints, risk and platform realities.',
-            ],
-            [
-              'Design',
-              'Create architectures that fit your environment and teams.',
-            ],
-            [
-              'Integrate',
-              'Bring together infrastructure, cloud and platform technologies.',
-            ],
-            ['Build', 'Implement secure, reliable production-ready platforms.'],
-            ['Enable', 'Help engineering teams adopt and operate effectively.'],
-          ].map(([title, body]) => (
+          deliveryCapabilities.map((capability) => (
             <div class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
               <div class="frontier-gradient-green-cyan mb-6 h-1 w-16 rounded-full" />
-              <h3 class="text-xl font-bold text-frontier-white">{title}</h3>
+              <h3 class="text-xl font-bold text-frontier-white">
+                {capability.title}
+              </h3>
               <p class="mt-4 text-sm leading-7 text-frontier-light-grey">
-                {body}
+                {capability.body}
               </p>
             </div>
           ))
@@ -123,8 +123,8 @@ const services = servicesSection?.services ?? []
 
     <CTASection
       eyebrow="Start the conversation"
-      heading="Let’s build the right platform for your business."
-      body="Whether you need to modernise, migrate or build from the ground up, we can help."
+      heading="Start with the outcome you need to achieve."
+      body="We’ll help you understand the platform you have, make the path forward clearer and build the foundations for confident change."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See Case Studies"

@@ -30,7 +30,7 @@ const activeClass = isLight ? 'text-frontier-mid-green' : 'text-frontier-green'
       <Logo variant={isLight ? 'dark' : 'light'} />
     </a>
 
-    <div class="hidden gap-8 text-sm font-medium md:flex">
+    <div class="hidden gap-8 text-sm font-normal md:flex">
       {
         navItems.map(([label, href]) => (
           <a
@@ -50,7 +50,7 @@ const activeClass = isLight ? 'text-frontier-mid-green' : 'text-frontier-green'
     <a
       href="/contact"
       class:list={[
-        'rounded-md px-5 py-3 text-sm font-semibold transition',
+        'rounded-md px-5 py-3 text-sm font-bold transition',
         isLight
           ? 'bg-frontier-dark text-frontier-white hover:bg-frontier-mid-green'
           : 'bg-frontier-green text-frontier-dark hover:bg-frontier-cyan',
