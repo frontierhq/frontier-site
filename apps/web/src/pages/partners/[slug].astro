@@ -84,18 +84,14 @@ const hero = {
 
     <Section
       eyebrow="Overview"
-      heading={`Working with ${partner?.name ?? 'this partner'}.`}
+      heading={`How ${partner?.name ?? 'this technology'} fits your platform.`}
       body={partner?.overview}
       theme="light"
     />
 
     {
       products?.length > 0 && (
-        <Section
-          eyebrow="Products"
-          heading="Products and technologies we work with."
-          theme="dark"
-        >
+        <Section eyebrow="Products" heading="Technology in scope." theme="dark">
           <div class="flex flex-wrap gap-3">
             {products.map((product) => (
               <span class="rounded-full border border-frontier-cyan/20 bg-white/5 px-4 py-2 text-sm font-semibold text-frontier-light-grey">
@@ -111,7 +107,7 @@ const hero = {
       capabilities?.length > 0 && (
         <Section
           eyebrow="Where We Help"
-          heading="How we integrate this technology into platform environments."
+          heading="What this can help your team achieve."
           theme="light"
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -165,9 +161,9 @@ const hero = {
     }
 
     <CTASection
-      eyebrow="Start the conversation"
-      heading={`Need help with ${partner?.name ?? 'partner'} technologies?`}
-      body="We help organisations integrate product technologies into secure, reliable platform foundations."
+      eyebrow="Operate predictably. Innovate safely."
+      heading={`What should ${partner?.name ?? 'this technology'} make possible for your team?`}
+      body="Tell us about the environment and outcome. We’ll help you integrate the technology into a platform your teams can operate with confidence."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See What We Do"

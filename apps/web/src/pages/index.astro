@@ -84,13 +84,14 @@ const caseStudies: HomeCaseStudy[] = await sanity.fetch(`
 `)
 
 const hero = page?.hero ?? {}
-
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'What We Do | FrontierHQ'}
+  title={page?.seoTitle ??
+    page?.title ??
+    'Platform Engineering for Real-World Environments | FrontierHQ'}
   description={page?.seoDescription ??
-    'Platform engineering services from FrontierHQ.'}
+    'Design, integration and hands-on platform engineering across bare metal, cloud, hybrid and Kubernetes environments.'}
   activeNav="/what-we-do"
 >
   <main>
@@ -107,8 +108,9 @@ const hero = page?.hero ?? {}
     <FeaturedCaseStudies caseStudies={caseStudies} />
 
     <CTASection
-      heading="Start with the outcome you need to achieve."
-      body="Understand your platform. Clarify the path forward. Build for confident change."
+      eyebrow="Operate predictably. Innovate safely."
+      heading="What does your platform need to make possible?"
+      body="Tell us what you need to achieve. We’ll help you see the whole system, make risk visible and find a practical path forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
     />

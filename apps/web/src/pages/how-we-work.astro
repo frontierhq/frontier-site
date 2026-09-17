@@ -55,8 +55,7 @@ const roleSection: CardSection = {
   eyebrow: 'The role we play',
   headingPrimary: 'Guidance grounded in',
   headingAccent: 'delivery.',
-  body:
-    'We work alongside your team from platform direction through to implementation, so early decisions are practical in the environment you operate.',
+  body: 'We work alongside your team from platform direction through to implementation, so early decisions are practical in the environment you operate.',
   theme: 'light',
   columns: 3,
   cards: [
@@ -80,8 +79,7 @@ const methodSection: CardSection = {
   eyebrow: 'The way we work',
   headingPrimary: 'Start with the reality.',
   headingAccent: 'Move forward with confidence.',
-  body:
-    'No two environments are the same. We begin by understanding yours, then design and build a practical path forward with your team.',
+  body: 'No two environments are the same. We begin by understanding yours, then design and build a practical path forward with your team.',
   theme: 'dark',
   columns: 5,
   cards: [
@@ -113,8 +111,7 @@ const differentiatorSection: CardSection = {
   eyebrow: 'What sets our work apart',
   headingPrimary: 'Your environment sets',
   headingAccent: 'the direction.',
-  body:
-    'We start with the reality your teams operate in, then bring together the right technology, delivery capability and people around the outcome you need.',
+  body: 'We start with the reality your teams operate in, then bring together the right technology, delivery capability and people around the outcome you need.',
   theme: 'light',
   columns: 4,
   cards: [
@@ -144,7 +141,7 @@ const sections = (page?.sections ?? []).map((section) =>
       ? methodSection
       : section.eyebrow === 'What makes us different'
         ? differentiatorSection
-      : section
+        : section
 )
 
 function getColumnsClass(columns?: number) {
@@ -193,7 +190,7 @@ function getColumnsClass(columns?: number) {
     }
 
     <CTASection
-      eyebrow="Start the conversation"
+      eyebrow="Operate predictably. Innovate safely."
       headingPrimary="Make your next change"
       headingAccent="with confidence."
       body="Tell us what you need to achieve. We’ll help you understand the platform you have and find a practical path forward."

@@ -90,7 +90,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
 
     <Section
       eyebrow="Overview"
-      heading={`What ${service?.title ?? 'this service'} helps organisations achieve.`}
+      heading="What this work makes possible."
       body={service?.overview ?? ''}
       theme="light"
     />
@@ -101,7 +101,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
       capabilities?.length > 0 && (
         <Section
           eyebrow="Capabilities"
-          heading="Deep technical capability across the platform stack."
+          heading="What we bring together around your outcome."
           theme="dark"
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +132,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
       outcomes?.length > 0 && (
         <Section
           eyebrow="Outcomes"
-          heading="Built to improve operational confidence and delivery."
+          heading="What your teams can do with confidence."
           theme="light"
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -214,9 +214,9 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
     <!-- CTA -->
 
     <CTASection
-      eyebrow="Start the conversation"
-      heading={`Need help with ${service?.title ?? 'your platform'}?`}
-      body="We help organisations design, integrate and build secure, reliable platform foundations across real-world environments."
+      eyebrow="Operate predictably. Innovate safely."
+      heading={`What should ${service?.title ?? 'your platform'} make possible for your teams?`}
+      body="Tell us what you need to achieve. We’ll help you understand the environment, make risk visible and find a practical path forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See Case Studies"
