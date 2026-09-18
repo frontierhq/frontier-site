@@ -1,0 +1,26 @@
+{
+  "title": "Consulting and integration",
+  "slug": "consulting-and-integration",
+  "featured": false,
+  "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production.",
+  "overview": "The hardest platform decisions rarely belong to one product or one team. Architecture, suppliers, delivery constraints and the operating model all shape what will work in practice.\n\nWe help you make the whole system visible, bring the right people and technologies around the outcome and turn the decision into working infrastructure. Our role can span architecture, product integration, delivery leadership and enablement, with advice grounded in what your teams will need to operate.",
+  "positioning": "See the whole platform, choose a practical direction and carry the decision through to production.",
+  "capabilities": [
+    "Platform architecture",
+    "Technical consultancy",
+    "Vendor ecosystem integration",
+    "Delivery leadership",
+    "Engineering enablement",
+    "Operational readiness planning"
+  ],
+  "outcomes": [
+    "Make platform decisions with clearer evidence",
+    "See implementation risk earlier",
+    "Align architecture with the operating model",
+    "Turn decisions into working systems",
+    "Prepare teams to operate what is built",
+    "Build internal confidence for what comes next"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

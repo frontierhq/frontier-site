@@ -4,18 +4,8 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import { sanity } from '../lib/sanity'
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "about"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = {
   eyebrow: 'About Frontier',
   headingPrimary: 'Build the platform your teams need',
   headingAccent: 'for what comes next.',
@@ -25,9 +15,8 @@ const hero = page?.hero ?? {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'About | FrontierHQ'}
-  description={page?.seoDescription ??
-    'About FrontierHQ and our approach to real-world platform engineering.'}
+  title="About Frontier | Platform Engineering"
+  description="Meet Frontier, a hands-on platform engineering partner for complex bare metal, cloud, hybrid and Kubernetes environments."
   activeNav="/about"
 >
   <main>

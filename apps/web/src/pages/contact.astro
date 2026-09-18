@@ -3,18 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import { sanity } from '../lib/sanity'
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "contact"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = {
   eyebrow: 'Contact',
   headingPrimary: 'Let’s talk about the platform challenges',
   headingAccent: 'in front of you.',
@@ -24,9 +14,8 @@ const hero = page?.hero ?? {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Contact | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges.'}
+  title="Contact Frontier | Platform Engineering"
+  description="Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges."
   activeNav="/contact"
 >
   <main>

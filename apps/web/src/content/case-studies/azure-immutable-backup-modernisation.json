@@ -1,0 +1,60 @@
+{
+  "title": "Modernising Cloud Backup with Immutable Infrastructure on Microsoft Azure",
+  "slug": "azure-immutable-backup-modernisation",
+  "featured": true,
+  "summary": "We helped a financial services organisation modernise and secure its Azure backup platform using Infrastructure as Code, CI-driven automation, and immutable backup capabilities. The project improved operational resilience, reduced risk, and enabled the safe migration of hundreds of workloads across multiple Azure subscriptions without data loss.",
+  "clientType": "Financial Services",
+  "environment": [
+    "Microsoft Azure",
+    "Terraform",
+    "Infrastructure as Code",
+    "CI/CD",
+    "Azure Backup",
+    "Immutable Recovery Services Vaults",
+    "Python",
+    "Cloud Platform Engineering"
+  ],
+  "problem": "The client wanted to modernise and secure its cloud backup platform while improving operational consistency and reducing manual processes. The existing environment lacked Infrastructure as Code and CI/CD automation, creating operational risk, limiting visibility, and increasing the likelihood of configuration drift across environments.\n\nOperating within a regulated financial services environment, the organisation also needed to strengthen protection against ransomware, accidental deletion, and data loss by adopting Azure’s immutable backup capabilities.\n\nA key challenge was migrating existing protected workloads to new immutable Recovery Services Vaults without disrupting ongoing backup operations or losing access to historical recovery points.",
+  "solution": "We modernised the backup platform by introducing Infrastructure as Code, CI-driven deployment pipelines, and immutable backup infrastructure on Microsoft Azure.\n\nWe extended the client’s existing Terraform-based platform engineering framework to support immutable Recovery Services Vaults and standardised backup policies for virtual machines, SQL workloads, blob storage, and PostgreSQL services.\n\nTo support the migration of existing workloads, we developed a custom Python-based migration pipeline that enabled backup protection to be transitioned safely and consistently while preserving historical recovery points and maintaining continuous protection throughout the process.\n\nAll infrastructure changes and migration activities were delivered through version-controlled pipelines, improving traceability, auditability, and operational control.",
+  "outcome": "We delivered a secure, scalable, and production-ready backup platform with immutability enabled by default across all newly deployed vaults.\n\nThe client successfully migrated hundreds of workloads to the new platform without data loss or interruption to backup protection. Manual provisioning and operational overhead were significantly reduced through Infrastructure as Code and automated deployment pipelines.\n\nThe new platform improved consistency across environments, strengthened resilience against ransomware and accidental deletion, and provided a scalable foundation for future growth and regulatory compliance.",
+  "metrics": [
+    {
+      "label": "Infrastructure Migration Scale",
+      "value": "400+ Azure Virtual Machines migrated"
+    },
+    {
+      "label": "Database Migration Scale",
+      "value": "300+ SQL databases migrated"
+    },
+    {
+      "label": "Platform Coverage",
+      "value": "Delivered across 8 Azure subscriptions"
+    },
+    {
+      "label": "Data Protection Outcome",
+      "value": "Zero data loss during migration"
+    }
+  ],
+  "services": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    }
+  ]
+}

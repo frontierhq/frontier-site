@@ -1,0 +1,59 @@
+{
+  "title": "Containerising and Modernising an AI-Powered SaaS Platform on Kubernetes",
+  "slug": "ai-saas-kubernetes-modernisation",
+  "featured": true,
+  "summary": "We helped an AI-powered SaaS provider modernise its application platform by containerising workloads, implementing CI/CD automation, and migrating to a secure multi-cluster Kubernetes environment. The project reduced operational overhead, improved deployment reliability, lowered infrastructure costs, and accelerated product delivery.",
+  "clientType": "Technology",
+  "environment": [
+    "Microsoft Azure",
+    "Kubernetes",
+    "Containers",
+    "CI/CD",
+    "Cloud Platform Engineering",
+    "Infrastructure Automation",
+    "Cloud-Native Services"
+  ],
+  "problem": "The client’s AI-powered SaaS platform was running on virtual machines, creating significant operational overhead and high infrastructure costs due to inefficient use of compute resources.\n\nDeployments were time consuming, inconsistent across environments, and considered high risk due to the potential for service interruption. The lack of automation and standardised tooling limited deployment frequency and slowed the delivery of new features.\n\nAt the same time, the business was onboarding new customers and needed a more scalable, reliable, and efficient platform to support continued growth.",
+  "solution": "We modernised the existing platform by containerising applications and services and migrating workloads to a secure multi-cluster managed Kubernetes environment.\n\nWe designed cloud landing zones aligned to Microsoft’s Cloud Adoption Framework, creating a scalable and production-ready platform foundation capable of supporting future growth.\n\nTo improve engineering efficiency and deployment reliability, we implemented CI/CD automation, integrated cloud-native services, and standardised tooling, configuration management, and secrets storage across environments.\n\nWe also accelerated development workflows by creating reusable infrastructure and application components, enabling self-service workflows and establishing clear golden paths to production.",
+  "outcome": "The client significantly reduced the time spent managing infrastructure and increased focus on product development and feature delivery.\n\nDeployment processes became faster, safer, and more predictable through automation and standardisation, allowing smaller changes to be deployed more frequently with lower operational risk.\n\nThe modernised platform improved infrastructure efficiency, reduced cloud costs, and provided a scalable foundation capable of supporting continued customer growth and future platform evolution.",
+  "metrics": [
+    {
+      "label": "Infrastructure Modernisation",
+      "value": "Migrated from virtual machines to multi-cluster Kubernetes"
+    },
+    {
+      "label": "Deployment Efficiency",
+      "value": "Faster, safer, and more predictable deployments through CI/CD automation"
+    },
+    {
+      "label": "Operational Improvement",
+      "value": "Reduced infrastructure management overhead for engineering teams"
+    },
+    {
+      "label": "Platform Scalability",
+      "value": "Secure cloud-native platform designed to support continued customer growth"
+    }
+  ],
+  "services": [
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    }
+  ]
+}

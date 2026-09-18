@@ -1,0 +1,20 @@
+{
+  "name": "WWT",
+  "slug": "wwt",
+  "featured": false,
+  "partnerType": "var",
+  "category": "Other",
+  "summary": "Technology reach and delivery capacity across cloud, data centre, networking, security and enterprise platforms.",
+  "overview": "WWT brings broad technology relationships and delivery capability across infrastructure, cloud, networking, security, data and AI. Frontier contributes hands-on platform engineering and integration, helping customers bring those technologies together around the environment they run and the outcome they need.",
+  "website": "https://wwt.com",
+  "products": [],
+  "capabilities": [
+    "Platform architecture",
+    "Technology integration",
+    "Cloud and data centre delivery",
+    "Kubernetes and automation",
+    "Security and operational readiness",
+    "Engineering enablement"
+  ],
+  "relatedServices": []
+}

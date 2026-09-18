@@ -56,13 +56,11 @@ const hasAction = headerActionLabel && headerActionUrl
             {resolvedHeadingPrimary && (
               <h2 class="mt-5 text-4xl font-bold tracking-tight lg:text-5xl">
                 <span class="block">{resolvedHeadingPrimary}</span>
-                {
-                  headingAccent && (
-                    <span class="mt-1 block text-frontier-green">
-                      {headingAccent}
-                    </span>
-                  )
-                }
+                {headingAccent && (
+                  <span class="mt-1 block text-frontier-green">
+                    {headingAccent}
+                  </span>
+                )}
               </h2>
             )}
 

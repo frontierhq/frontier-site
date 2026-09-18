@@ -1,16 +1,10 @@
 ---
-import type { Partner } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
-
-type SlugOnly = {
-  slug: string
-}
-
 type RelatedService = {
   title: string
   slug: {
@@ -19,48 +13,34 @@ type RelatedService = {
   summary?: string
 }
 
-type PartnerPage = Pick<
-  Partner,
-  'name' | 'category' | 'summary' | 'overview' | 'website'
-> & {
-  products?: string[]
-  capabilities?: string[]
-  relatedServices?: RelatedService[]
+type PartnerPage = {
+  name: string
+  category?: string
+  summary?: string
+  overview?: string
+  website?: string
+  products: string[]
+  capabilities: string[]
+  relatedServices: RelatedService[]
 }
 
 export async function getStaticPaths() {
-  const partners: SlugOnly[] = await sanity.fetch(`
-    *[_type == "partner" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `)
-
+  const partners = await getCollection('partners')
   return partners.map((partner) => ({
-    params: { slug: partner.slug },
+    params: { slug: partner.data.slug },
+    props: {
+      partner: {
+        ...partner.data,
+        relatedServices: partner.data.relatedServices.map((service) => ({
+          ...service,
+          slug: { current: service.slug },
+        })),
+      },
+    },
   }))
 }
 
-const { slug } = Astro.params
-
-const partner: PartnerPage | null = await sanity.fetch(
-  `
-    *[_type == "partner" && slug.current == $slug][0]{
-      name,
-      category,
-      summary,
-      overview,
-      website,
-      products,
-      capabilities,
-      relatedServices[]->{
-        title,
-        slug,
-        summary
-      }
-    }
-  `,
-  { slug }
-)
+const { partner } = Astro.props as { partner: PartnerPage }
 
 const products = partner?.products ?? []
 const capabilities = partner?.capabilities ?? []

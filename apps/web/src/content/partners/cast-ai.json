@@ -1,0 +1,54 @@
+{
+  "name": "Cast AI",
+  "slug": "cast-ai",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Kubernetes",
+  "summary": "Cast AI provides Kubernetes automation and optimisation technologies that help organisations improve infrastructure efficiency, cost management, and cluster operations across cloud environments.  \n\nTogether, we help organisations design, integrate, and operate Cast AI environments across secure Kubernetes and cloud infrastructure platforms. From workload optimisation and autoscaling through to operational governance and platform efficiency, we help teams create scalable, resilient, and cost-effective Kubernetes environments.",
+  "overview": "Cast AI technologies help organisations simplify Kubernetes operations through intelligent automation, optimisation, and cloud cost management. The platform focuses on Kubernetes optimisation, workload automation, cost monitoring, and application performance automation across cloud-native environments.  \n\nTogether, we help organisations build, integrate, and operate Cast AI environments across cloud and enterprise Kubernetes infrastructure. From cluster optimisation and workload automation through to operational governance and infrastructure visibility, we help teams create environments that are efficient, scalable, and operationally consistent.\n\nOur focus is on building modern Kubernetes platform foundations that support long-term operational efficiency. This includes automation, observability, workload optimisation, lifecycle management, platform security, and operational enablement across complex cloud-native environments.\n\nWe help organisations reduce infrastructure waste, improve platform resilience, and operate Kubernetes environments with greater confidence and efficiency.",
+  "logo": "/images/partners/4603b99842b51e5824027a4d44e67d7b5a68c96c-355x142.png",
+  "website": "https://cast.ai",
+  "products": [
+    "CAST AI Kubernetes Automation Platform",
+    "OMNI",
+    "Kubernetes Optimisation",
+    "Kubernetes Security",
+    "Application Performance Automation (APA)"
+  ],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)",
+    "Reselling"
+  ],
+  "relatedServices": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    }
+  ]
+}

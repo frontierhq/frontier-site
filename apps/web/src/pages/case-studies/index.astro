@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
+import { getCollection } from 'astro:content'
 
 type Metric = {
   label: string
@@ -22,28 +22,18 @@ type CaseStudyListItem = {
   featured?: boolean
 }
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "case-studies"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'case-studies'
+)
+const caseStudies: CaseStudyListItem[] = (await getCollection('caseStudies'))
+  .sort(
+    (a, b) =>
+      Number(b.data.featured ?? false) - Number(a.data.featured ?? false) ||
+      a.data.title.localeCompare(b.data.title)
+  )
+  .map(({ data }) => ({ ...data, slug: { current: data.slug } }))
 
-const caseStudies: CaseStudyListItem[] = await sanity.fetch(`
-  *[_type == "caseStudy" && defined(slug.current)] | order(featured desc, title asc){
-    title,
-    slug,
-    summary,
-    clientType,
-    environment,
-    metrics,
-    featured
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = page?.data.hero ?? {
   eyebrow: 'Case Studies',
   headingPrimary: 'See how teams made',
   headingAccent: 'confident change possible.',
@@ -53,9 +43,11 @@ const hero = page?.hero ?? {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Case Studies | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Platform engineering case studies from FrontierHQ.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'Platform Engineering Case Studies | Frontier'}
+  description={page?.data.seoDescription ??
+    'See how organisations improve reliability, reduce risk and modernise complex cloud, hybrid and Kubernetes platforms with Frontier.'}
   activeNav="/case-studies"
 >
   <main>

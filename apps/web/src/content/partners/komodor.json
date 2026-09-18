@@ -1,0 +1,59 @@
+{
+  "name": "Komodor",
+  "slug": "komodor",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Kubernetes",
+  "summary": "Komodor provides an AI SRE and Kubernetes operations platform that helps organisations troubleshoot, manage, and optimise cloud-native environments.\n\nTogether, we help organisations design, integrate, and operate Komodor across secure Kubernetes and cloud infrastructure platforms. From troubleshooting and incident response through to reliability, automation, and operational visibility, we help teams create resilient and operationally consistent Kubernetes environments.",
+  "overview": "Komodor helps platform, DevOps, and SRE teams manage Kubernetes environments through AI-assisted troubleshooting, reliability insights, change tracking, and operational automation.\n\nTogether, we help organisations build, integrate, and operate Komodor across cloud, hybrid, and enterprise Kubernetes infrastructure. From Kubernetes troubleshooting and incident management through to cost optimisation, automation, and platform governance, we help teams create environments that are reliable, observable, and operationally consistent.\n\nOur focus is on building strong Kubernetes operational foundations that support long-term platform reliability. This includes observability, incident response, lifecycle management, automation, platform security, and operational enablement across complex cloud-native environments.\n\nWe help organisations reduce operational complexity, improve resilience, and operate Kubernetes platforms with confidence.",
+  "logo": "/images/partners/f85e77e0e8c2277dd509b61ce26e02916b6cf8f8-153x32.png",
+  "website": "https://komodor.com/",
+  "products": [
+    "Komodor AI SRE Platform",
+    "Klaudia AI",
+    "Kubernetes Troubleshooting",
+    "Kubernetes Management",
+    "Change Intelligence"
+  ],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Reselling",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Hybrid platforms",
+      "slug": "hybrid-platforms",
+      "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    }
+  ]
+}

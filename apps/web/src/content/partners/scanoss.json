@@ -1,0 +1,49 @@
+{
+  "name": "SCANOSS",
+  "slug": "scanoss",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Security",
+  "summary": "SCANOSS provides open source software intelligence and software composition analysis (SCA) technologies for modern DevSecOps and software supply chain environments.\n\nTogether, we help organisations design, integrate, and operate SCANOSS technologies across secure software delivery and platform engineering environments. From software inventory and SBOM generation through to vulnerability analysis and licence compliance, we help teams create secure, reliable, and operationally consistent software delivery platforms.",
+  "overview": "SCANOSS helps organisations improve software supply chain visibility through open source inventorying, software composition analysis, vulnerability detection, and SBOM management. The platform focuses on identifying declared and undeclared open source components, licence compliance, and software supply chain governance across modern development environments.  \n\nTogether, we help organisations build, integrate, and operate SCANOSS environments across cloud-native, enterprise, and platform engineering ecosystems. From OSS inventorying and dependency analysis through to CI/CD integration and operational governance, we help teams create environments that support secure, scalable, and reliable software delivery practices.\n\nOur focus is on building strong software delivery foundations that support long-term engineering quality, compliance, and operational consistency. This includes SBOM generation, software composition analysis, licence governance, automation, lifecycle management, and developer enablement across complex engineering environments.\n\nWe help organisations reduce software supply chain risk, improve open source governance, and deliver applications with confidence.",
+  "logo": "/images/partners/34c138fb531034746ac3718011e8223bcebcc5f9-363x104.png",
+  "website": "https://scanoss.com/",
+  "products": [
+    "SCANOSS Platform",
+    "SBOM Workbench",
+    "OSSKB",
+    "SCANOSS Engine",
+    "SCANOSS APIs"
+  ],
+  "capabilities": [
+    "Deployment",
+    "CI/CD Integration",
+    "Application Security",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)",
+    "Reselling"
+  ],
+  "relatedServices": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    }
+  ]
+}

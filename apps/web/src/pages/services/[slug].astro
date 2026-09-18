@@ -1,17 +1,10 @@
 ---
-import type { Service } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
-
-type SlugOnly = {
-  slug: string
-}
-
-// type RelatedCaseStudy = Pick<CaseStudy, 'title' | 'slug' | 'summary'>
 type RelatedCaseStudy = {
   title: string
   slug: {
@@ -20,52 +13,33 @@ type RelatedCaseStudy = {
   summary?: string
 }
 
-type ServicePage = Pick<
-  Service,
-  | 'title'
-  | 'summary'
-  | 'overview'
-  | 'capabilities'
-  | 'outcomes'
-  | 'technologies'
-> & {
-  relatedCaseStudies?: RelatedCaseStudy[]
+type ServicePage = {
+  title: string
+  summary?: string
+  overview?: string
+  capabilities: string[]
+  outcomes: string[]
+  technologies: string[]
+  relatedCaseStudies: RelatedCaseStudy[]
 }
 
 export async function getStaticPaths() {
-  const services: SlugOnly[] = await sanity.fetch(`
-    *[_type == "service" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `)
-
+  const services = await getCollection('services')
   return services.map((service) => ({
-    params: {
-      slug: service.slug,
+    params: { slug: service.data.slug },
+    props: {
+      service: {
+        ...service.data,
+        relatedCaseStudies: service.data.relatedCaseStudies.map((study) => ({
+          ...study,
+          slug: { current: study.slug },
+        })),
+      },
     },
   }))
 }
 
-const { slug } = Astro.params
-
-const service: ServicePage | null = await sanity.fetch(
-  `
-    *[_type == "service" && slug.current == $slug][0]{
-      title,
-      summary,
-      overview,
-      capabilities,
-      outcomes,
-      technologies,
-      relatedCaseStudies[]->{
-        title,
-        slug,
-        summary
-      }
-    }
-  `,
-  { slug }
-)
+const { service } = Astro.props as { service: ServicePage }
 
 const hero = {
   eyebrow: 'Service',
@@ -215,7 +189,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
 
     <CTASection
       eyebrow="Operate predictably. Innovate safely."
-      heading={`What should ${service?.title ?? 'your platform'} make possible for your teams?`}
+      heading="What should this work make possible for your teams?"
       body="Tell us what you need to achieve. We’ll help you understand the environment, make risk visible and find a practical path forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"

@@ -1,60 +1,35 @@
 ---
-import type { CaseStudy } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
-
-type SlugOnly = {
-  slug: string
-}
-
 type Metric = {
   label: string
   value: string
 }
 
-type CaseStudyPage = Pick<
-  CaseStudy,
-  'title' | 'summary' | 'clientType' | 'problem' | 'solution' | 'outcome'
-> & {
-  environment?: string[]
-  metrics?: Metric[]
+type CaseStudyPage = {
+  title: string
+  summary: string
+  clientType?: string
+  problem: string
+  solution: string
+  outcome: string
+  environment: string[]
+  metrics: Metric[]
 }
 
 export async function getStaticPaths() {
-  const studies: SlugOnly[] = await sanity.fetch(`
-    *[_type == "caseStudy" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `)
-
+  const studies = await getCollection('caseStudies')
   return studies.map((study) => ({
-    params: {
-      slug: study.slug,
-    },
+    params: { slug: study.data.slug },
+    props: { study: study.data },
   }))
 }
 
-const { slug } = Astro.params
-
-const study: CaseStudyPage | null = await sanity.fetch(
-  `
-    *[_type == "caseStudy" && slug.current == $slug][0]{
-      title,
-      summary,
-      clientType,
-      environment,
-      problem,
-      solution,
-      outcome,
-      metrics
-    }
-  `,
-  { slug }
-)
+const { study } = Astro.props as { study: CaseStudyPage }
 
 const environment = study?.environment ?? []
 const metrics = study?.metrics ?? []

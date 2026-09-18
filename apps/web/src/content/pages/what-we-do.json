@@ -1,0 +1,40 @@
+{
+  "title": "What we do",
+  "slug": "what-we-do",
+  "seoTitle": "What we do",
+  "seoDescription": "What we do",
+  "hero": {
+    "eyebrow": "What we do",
+    "headingAccent": "across your whole platform.",
+    "headingPrimary": "Build the confidence to change",
+    "subHeading": "You need platform foundations that let your teams change with confidence across data centres, cloud and Kubernetes.\n\nDesigned for reliability, resilience and operational confidence."
+  },
+  "sections": [
+    {
+      "heading": "We design and build the foundations your teams depend on.",
+      "services": [
+        {
+          "_ref": "b109c40c-7e85-4498-8aba-d6ae42bb0905"
+        },
+        {
+          "_ref": "c736db25-8e88-45b2-ad71-833056c0b27d"
+        },
+        {
+          "_ref": "60444b9b-c138-45f1-9a3f-50890473e8e3"
+        },
+        {
+          "_ref": "3e8bcb0e-5ef0-4451-9cb9-54c3c53cc432"
+        },
+        {
+          "_ref": "140aba2f-ce62-45a5-bce0-c5249f13ea88"
+        },
+        {
+          "_ref": "48d73bf0-dd2e-4c3e-870f-d48a138af746"
+        },
+        {
+          "_ref": "5ac0bae4-e476-451c-ac4d-74210caf3e77"
+        }
+      ]
+    }
+  ]
+}

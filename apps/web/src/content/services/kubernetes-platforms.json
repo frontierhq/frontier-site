@@ -1,0 +1,26 @@
+{
+  "title": "Kubernetes platforms",
+  "slug": "kubernetes-platforms",
+  "featured": false,
+  "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence.",
+  "overview": "Your teams want Kubernetes to make application delivery easier. Without consistent security, observability and operating workflows, the platform can introduce another layer of uncertainty instead.\n\nWe design and build Kubernetes foundations that fit the environment you already run. Across upstream Kubernetes and enterprise distributions such as OpenShift, we bring delivery workflows, operations and developer enablement together so your teams can use and evolve the platform with confidence.",
+  "positioning": "Build a Kubernetes platform your engineering teams can understand, operate and change safely.",
+  "capabilities": [
+    "OpenShift and Kubernetes engineering",
+    "GitOps and deployment workflows",
+    "Multicluster platform architecture",
+    "Platform observability",
+    "Runtime security integration",
+    "Developer platform enablement"
+  ],
+  "outcomes": [
+    "Deliver applications through a clearer path",
+    "Operate clusters more reliably",
+    "Keep runtime security visible",
+    "Reduce day-to-day operational effort",
+    "Give developers a more consistent experience",
+    "Change the platform with confidence"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

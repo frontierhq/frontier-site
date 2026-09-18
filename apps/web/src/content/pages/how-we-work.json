@@ -1,0 +1,89 @@
+{
+  "title": "How we work",
+  "slug": "how-we-work",
+  "hero": {
+    "eyebrow": "How we work",
+    "headingAccent": "make the right change.",
+    "headingPrimary": "The confidence to",
+    "subHeading": "We work alongside your team to understand the whole platform, make risk visible and turn the right decisions into practical progress."
+  },
+  "sections": [
+    {
+      "body": "Frontier works across strategy, architecture, integration and implementation. That means the platforms we design are grounded in delivery reality — and the platforms we build are aligned to long-term operational goals.",
+      "cards": [
+        {
+          "body": "We help you understand the right platform direction, architecture and operating model for your environment.",
+          "title": "Technical consultancy"
+        },
+        {
+          "body": "We bring together cloud, infrastructure, Kubernetes, security and delivery tooling into coherent platforms.",
+          "title": "Product integration"
+        },
+        {
+          "body": "We work alongside your teams to build, migrate, modernise and enable platforms in production.",
+          "title": "Hands-on delivery"
+        }
+      ],
+      "columns": 3,
+      "eyebrow": "Our role",
+      "heading": "We do not just advise on platforms. We build them.",
+      "showAccent": true,
+      "theme": "light"
+    },
+    {
+      "body": "Every engagement is different, but our work usually follows a simple pattern: understand the reality, design the platform, integrate the right technologies, build the foundation, and enable teams to operate it.",
+      "cards": [
+        {
+          "body": "Understand constraints, risks, systems, teams and operating reality.",
+          "title": "Discover"
+        },
+        {
+          "body": "Define the platform architecture, principles and delivery roadmap.",
+          "title": "Design"
+        },
+        {
+          "body": "Connect infrastructure, cloud, Kubernetes, security and delivery tooling.",
+          "title": "Integrate"
+        },
+        {
+          "body": "Implement reliable, secure and production-ready platform foundations.",
+          "title": "Build"
+        },
+        {
+          "body": "Help teams adopt, operate and evolve the platform with confidence.",
+          "title": "Enable"
+        }
+      ],
+      "columns": 5,
+      "eyebrow": "Method",
+      "heading": "A practical path from complexity to control.",
+      "showAccent": true,
+      "theme": "dark"
+    },
+    {
+      "cards": [
+        {
+          "body": "We work across the full platform stack — from bare metal, Linux, provisioning and virtualisation through to cloud, Kubernetes and developer platforms.",
+          "title": "From metal to Kubernetes"
+        },
+        {
+          "body": "We work with product companies and ecosystem partners, but our advice is shaped by your environment rather than a single vendor architecture.",
+          "title": "Not vendor-led"
+        },
+        {
+          "body": "Security, resilience, governance and operational control are designed into the platform rather than added as afterthoughts.",
+          "title": "Designed for control"
+        },
+        {
+          "body": "We build credibility by doing the work: making pragmatic technical decisions, delivering production systems and enabling teams to own them.",
+          "title": "Trust through delivery"
+        }
+      ],
+      "columns": 4,
+      "eyebrow": "What makes us different",
+      "heading": "Built for the environments businesses actually run in.",
+      "showAccent": true,
+      "theme": "light"
+    }
+  ]
+}

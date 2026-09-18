@@ -1,11 +1,10 @@
 ---
-import type { Page } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
 import TextCard from '../components/TextCard.astro'
-import { sanity } from '../lib/sanity'
 
 type TextCardItem = {
   title?: string
@@ -25,22 +24,9 @@ type CardSection = {
   cards?: TextCardItem[]
 }
 
-type HowWeWorkPage = Pick<
-  Page,
-  'title' | 'seoTitle' | 'seoDescription' | 'hero'
-> & {
-  sections?: CardSection[]
-}
-
-const page: HowWeWorkPage | null = await sanity.fetch(`
-  *[_type == "page" && slug.current == "how-we-work"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero,
-    sections[]
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'how-we-work'
+)
 
 const hero = {
   eyebrow: 'How We Work',
@@ -134,7 +120,8 @@ const differentiatorSection: CardSection = {
   ],
 }
 
-const sections = (page?.sections ?? []).map((section) =>
+const pageSections = (page?.data.sections ?? []) as CardSection[]
+const sections = pageSections.map((section) =>
   section.eyebrow === 'Our role'
     ? roleSection
     : section.eyebrow === 'Method'
@@ -153,9 +140,11 @@ function getColumnsClass(columns?: number) {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'How We Work | FrontierHQ'}
-  description={page?.seoDescription ??
-    'How FrontierHQ designs, integrates and builds platform foundations.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'How We Deliver Platform Engineering | Frontier'}
+  description={page?.data.seoDescription ??
+    'See how Frontier combines platform strategy, architecture, integration and hands-on engineering to make complex change safer and easier to operate.'}
   activeNav="/how-we-work"
 >
   <main>

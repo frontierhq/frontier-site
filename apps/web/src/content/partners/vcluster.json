@@ -1,0 +1,31 @@
+{
+  "name": "vCluster",
+  "slug": "vcluster",
+  "featured": false,
+  "partnerType": "vendor",
+  "category": "Kubernetes",
+  "summary": "Isolated Kubernetes environments that give teams autonomy without multiplying the underlying infrastructure.",
+  "overview": "vCluster provides isolated virtual Kubernetes clusters on shared or dedicated infrastructure. Frontier helps organisations fit that capability into their wider platform, including tenant design, security, GitOps, observability and day-to-day operations, so teams can self-serve without losing control of the estate.",
+  "website": "https://vcluster.com",
+  "products": ["vCluster"],
+  "capabilities": [
+    "Platform and tenant architecture",
+    "vCluster implementation",
+    "GitOps integration",
+    "Security and access design",
+    "Observability integration",
+    "Operational enablement"
+  ],
+  "relatedServices": [
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    }
+  ]
+}

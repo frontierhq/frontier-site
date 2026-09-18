@@ -1,5 +1,5 @@
 ---
-import { sanity } from '../lib/sanity'
+import { getCollection } from 'astro:content'
 
 import CTASection from '../components/CTASection.astro'
 import FeaturedCaseStudies from '../components/FeaturedCaseStudies.astro'
@@ -9,8 +9,6 @@ import PartnerEcosystem from '../components/PartnerEcosystem.astro'
 import PlatformEstate from '../components/PlatformEstate.astro'
 import WhatWeDo from '../components/WhatWeDo.astro'
 import WhyProgressGetsHard from '../components/WhyProgressGetsHard.astro'
-
-// import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
 
 type HomePage = {
   title?: string
@@ -43,54 +41,35 @@ type HomeCaseStudy = {
   clientType?: string
 }
 
-const page: HomePage | null = await sanity.fetch(`
-  *[_type == "page" && slug.current == "home"][0]{
-    title,
-    hero
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'home'
+)
+const partners: HomePartner[] = (await getCollection('partners'))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name))
+  .map(({ data }) => ({ name: data.name, slug: { current: data.slug } }))
+const caseStudies: HomeCaseStudy[] = (await getCollection('caseStudies'))
+  .sort(
+    (a, b) =>
+      Number(b.data.featured ?? false) - Number(a.data.featured ?? false) ||
+      a.data.title.localeCompare(b.data.title)
+  )
+  .slice(0, 2)
+  .map(({ data }) => ({
+    title: data.title,
+    slug: { current: data.slug },
+    summary: data.summary,
+    clientType: data.clientType,
+  }))
 
-// const services: HomeService[] = await sanity.fetch(`
-//   *[
-//     _type == "service" &&
-//     defined(slug.current)
-//   ] | order(title asc){
-//     title,
-//     slug,
-//     summary
-//   }
-// `)
-
-const partners: HomePartner[] = await sanity.fetch(`
-  *[
-    _type == "partner" &&
-    defined(slug.current)
-  ] | order(name asc){
-    name,
-    slug
-  }
-`)
-
-const caseStudies: HomeCaseStudy[] = await sanity.fetch(`
-  *[
-    _type == "caseStudy" &&
-    defined(slug.current)
-  ] | order(featured desc, title asc)[0...2]{
-    title,
-    slug,
-    summary,
-    clientType
-  }
-`)
-
-const hero = page?.hero ?? {}
+const pageData: HomePage | undefined = page?.data
+const hero = pageData?.hero ?? {}
 ---
 
 <Layout
-  title={page?.seoTitle ??
-    page?.title ??
+  title={pageData?.seoTitle ??
+    pageData?.title ??
     'Platform Engineering for Real-World Environments | FrontierHQ'}
-  description={page?.seoDescription ??
+  description={pageData?.seoDescription ??
     'Design, integration and hands-on platform engineering across bare metal, cloud, hybrid and Kubernetes environments.'}
   activeNav="/what-we-do"
 >

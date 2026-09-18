@@ -1,5 +1,5 @@
 ---
-import type { Page } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
@@ -7,7 +7,6 @@ import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
 import IconCard from '../components/IconCard.astro'
 import MembershipsAndCertifications from '../components/MembershipsAndCertifications.astro'
-import { sanity } from '../lib/sanity'
 
 type IconCardItem = {
   icon?: string
@@ -42,24 +41,11 @@ type CertifiedExpertiseSection = {
   }[]
 }
 
-type KubernetesPage = Pick<
-  Page,
-  'title' | 'seoTitle' | 'seoDescription' | 'hero'
-> & {
-  sections?: Array<IconCardSection | CertifiedExpertiseSection>
-}
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'kubernetes'
+)
 
-const page: KubernetesPage | null = await sanity.fetch(`
-  *[_type == "page" && slug.current == "kubernetes"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero,
-    sections[]
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = page?.data.hero ?? {
   eyebrow: 'Kubernetes Certified Service Provider',
   headingPrimary: 'Give your teams a Kubernetes platform',
   headingAccent: 'they can change with confidence.',
@@ -67,7 +53,9 @@ const hero = page?.hero ?? {
     'As a Kubernetes Certified Service Provider, we help you design, build and integrate Kubernetes across cloud, hybrid and private infrastructure environments.',
 }
 
-const sections = page?.sections ?? []
+const sections = (page?.data.sections ?? []) as Array<
+  IconCardSection | CertifiedExpertiseSection
+>
 
 const cta = {
   eyebrow: 'Operate predictably. Innovate safely.',
@@ -87,9 +75,11 @@ function getColumnsClass(columns?: number) {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Kubernetes Services | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Kubernetes consulting, implementation, support and enablement services from FrontierHQ, a Kubernetes Certified Service Provider.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'Kubernetes Consulting & Platform Engineering | Frontier'}
+  description={page?.data.seoDescription ??
+    'Design, build and operate secure Kubernetes platforms across cloud, hybrid and private infrastructure with a certified Frontier engineering team.'}
   activeNav="/kubernetes"
 >
   <main>

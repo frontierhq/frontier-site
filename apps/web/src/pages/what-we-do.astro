@@ -1,6 +1,5 @@
 ---
-import type { Page } from '@frontier/sanity-types'
-import { sanity } from '../lib/sanity'
+import { getCollection } from 'astro:content'
 
 import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
@@ -8,18 +7,10 @@ import Section from '../components/Section.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 import CTASection from '../components/CTASection.astro'
 
-type WhatWeDoPage = Pick<Page, 'title' | 'seoTitle' | 'seoDescription' | 'hero'>
-
-const page = await sanity.fetch<WhatWeDoPage | null>(`
-  *[_type == "page" && slug.current == "what-we-do"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
-
-const hero = page?.hero ?? {}
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'what-we-do'
+)
+const hero = page?.data.hero ?? {}
 
 const platformAreas = [
   {
@@ -69,9 +60,11 @@ const deliveryCapabilities = [
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'What We Do | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Platform engineering services from FrontierHQ.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'Platform Engineering Services | Frontier'}
+  description={page?.data.seoDescription ??
+    "Explore Frontier's platform engineering services across data centres, cloud, hybrid, Kubernetes, CI/CD, migration and integration."}
   activeNav="/what-we-do"
 >
   <main>

@@ -1,0 +1,156 @@
+{
+  "title": "Kubernetes",
+  "slug": "kubernetes",
+  "sections": [
+    {
+      "body": "Frontier is a Kubernetes Certified Service Provider, recognised for helping organisations adopt Kubernetes through professional services, technical expertise and real-world delivery experience.",
+      "cards": [
+        {
+          "body": "Frontier is part of the Kubernetes Certified Service Provider programme, demonstrating practical experience delivering Kubernetes services.",
+          "title": "KCSP recognised"
+        },
+        {
+          "body": "Our engineers bring certified Kubernetes knowledge across architecture, implementation, operations and platform engineering.",
+          "title": "Certified engineers"
+        },
+        {
+          "body": "We help clients build platforms that are secure, observable, reliable and ready for real operational use.",
+          "title": "Production focused"
+        }
+      ],
+      "eyebrow": "Certified Expertise",
+      "heading": "Recognised Kubernetes expertise, grounded in production delivery.",
+      "href": "https://www.cncf.io/training/certification/kcsp/",
+      "linkLabel": "View KCSP programme",
+      "logo": "/images/kcsp-logo.svg"
+    },
+    {
+      "cards": [
+        {
+          "body": "Kubernetes strategy, platform architecture, operating models and adoption planning for organisations moving toward cloud-native platforms.",
+          "icon": "/icons/frontier/design.svg",
+          "title": "Kubernetes Consulting"
+        },
+        {
+          "body": "Design and build of production-ready Kubernetes platforms across cloud, hybrid and private infrastructure environments",
+          "icon": "/icons/frontier/gitops.svg",
+          "title": "Kubernetes Implementation"
+        },
+        {
+          "body": "Operational support for Kubernetes platforms, including reliability, lifecycle management, observability, security and day-2 operations.",
+          "icon": "/icons/frontier/observability.svg",
+          "title": "Kubernetes Support"
+        },
+        {
+          "body": "Practical Kubernetes enablement for platform and engineering teams, focused on operating, securing and adopting Kubernetes effectively.",
+          "icon": "/icons/frontier/enablement.svg",
+          "title": "Kubernetes Training & Enablement"
+        }
+      ],
+      "columns": 4,
+      "eyebrow": "Kubernetes services",
+      "heading": "Consulting, implementation, support and enablement.",
+      "theme": "dark"
+    },
+    {
+      "body": "Kubernetes succeeds when it is treated as part of a wider platform, not as an isolated runtime. Frontier helps organisations integrate Kubernetes with infrastructure, cloud, security, observability and software delivery workflows.",
+      "cards": [
+        {
+          "icon": "/icons/frontier/kubernetes.svg",
+          "title": "Kubernetes platform architecture"
+        },
+        {
+          "icon": "/icons/frontier/lifecycle.svg",
+          "title": "Cluster build and lifecycle management"
+        },
+        {
+          "icon": "/icons/frontier/cloud.svg",
+          "title": "OpenShift and upstream Kubernetes"
+        },
+        {
+          "icon": "/icons/frontier/gitops.svg",
+          "title": "GitOps and deployment workflows"
+        },
+        {
+          "icon": "/icons/frontier/security.svg",
+          "title": "Runtime security and policy integration"
+        },
+        {
+          "icon": "/icons/frontier/observability.svg",
+          "title": "Observability and platform operations"
+        },
+        {
+          "icon": "/icons/frontier/hybrid.svg",
+          "title": "Hybrid and private cloud integration"
+        },
+        {
+          "icon": "/icons/frontier/migration.svg",
+          "title": "Application migration to Kubernetes"
+        },
+        {
+          "icon": "/icons/frontier/developer-platform.svg",
+          "title": "Developer platform enablement"
+        }
+      ],
+      "columns": 3,
+      "eyebrow": "Capabilities",
+      "heading": "Kubernetes platform services across the stack.",
+      "theme": "light"
+    },
+    {
+      "cards": [
+        {
+          "body": "We build Kubernetes platforms around your infrastructure, security requirements, delivery workflows and operating model.",
+          "icon": "/icons/frontier/design.svg",
+          "title": "Designed for your environment"
+        },
+        {
+          "body": "We connect Kubernetes with networking, identity, CI/CD, observability, policy and developer workflows.",
+          "icon": "/icons/frontier/networking.svg",
+          "title": "Integrated with the wider platform"
+        },
+        {
+          "body": "We focus on lifecycle management, reliability, upgrades, incident response and operational ownership.",
+          "icon": "/icons/frontier/resilience.svg",
+          "title": "Built for day-2 operations"
+        },
+        {
+          "body": "We help teams adopt Kubernetes through golden paths, platform documentation, enablement and practical delivery patterns.",
+          "icon": "/icons/frontier/enablement.svg",
+          "title": "Enabled for engineering teams"
+        }
+      ],
+      "columns": 4,
+      "eyebrow": "Why It Matters",
+      "heading": "Kubernetes is powerful, but production platforms need more than clusters",
+      "theme": "dark"
+    },
+    {
+      "body": "Our Kubernetes work often sits alongside hybrid platform design, cloud foundations, migration and platform engineering enablement.",
+      "cards": [
+        {
+          "body": "Production-ready Kubernetes platforms with security, observability and developer workflows built in.",
+          "href": "/services/kubernetes-platforms",
+          "icon": "/icons/frontier/kubernetes.svg",
+          "title": "Kubernetes Platforms"
+        },
+        {
+          "body": "Connected platforms across data centres, cloud, edge and Kubernetes environments.",
+          "href": "/services/hybrid-platforms",
+          "icon": "/icons/frontier/hybrid.svg",
+          "title": "Hybrid Platforms"
+        },
+        {
+          "body": "Internal developer platforms and delivery workflows that reduce friction for engineering teams.",
+          "href": "/services/platform-engineering-and-cicd",
+          "icon": "/icons/frontier/developer-platform.svg",
+          "title": "Platform Engineering & CI/CD"
+        }
+      ],
+      "columns": 3,
+      "eyebrow": "Related services",
+      "heading": "Kubernetes services connected to the wider platform.",
+      "theme": "light"
+    }
+  ]
+}

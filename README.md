@@ -1,400 +1,46 @@
 # Frontier Website
 
-Modern consultancy website for FrontierHQ built with:
+FrontierHQ's marketing website, built with Astro, Tailwind CSS, TypeScript and Netlify.
 
-- Astro
-- Tailwind CSS
-- Sanity CMS
-- Netlify
+Content lives in the repository alongside the site code. Repeatable content is stored in Astro content collections under `apps/web/src/content`; bespoke page layout and messaging remains code-owned in `apps/web/src/pages` and `apps/web/src/components`.
 
-The site is designed around:
+## Development
 
-- platform engineering
-- systems integration
-- consultancy delivery
-- operationally-focused enterprise messaging
-
----
-
-# Stack
-
-| Technology    | Purpose                |
-| ------------- | ---------------------- |
-| Astro         | Static site generation |
-| Tailwind CSS  | Styling                |
-| Sanity Studio | Content management     |
-| Netlify       | Hosting + deployment   |
-| TypeScript    | Application code       |
-| Portable Text | Rich CMS content       |
-
----
-
-# Repository Structure
-
-```txt
-.
-├── apps
-│   ├── studio         # Sanity Studio
-│   └── web            # Astro website
-│
-├── package.json
-├── pnpm-workspace.yaml
-└── README.md
-```
-
----
-
-# Applications
-
-## `apps/web`
-
-Astro frontend application.
-
-Contains:
-
-- pages
-- layouts
-- reusable UI components
-- Sanity integration
-- Tailwind styling
-
-### Important directories
-
-```txt
-apps/web/src/
-├── components/
-├── layouts/
-├── pages/
-├── lib/
-└── styles/
-```
-
----
-
-## `apps/studio`
-
-Sanity CMS Studio.
-
-Contains:
-
-- schemas
-- content models
-- editorial configuration
-
-### Important directories
-
-```txt
-apps/studio/
-├── schemaTypes/
-├── sanity.config.ts
-└── sanity.cli.ts
-```
-
----
-
-# Requirements
-
-- Node.js 20+
-- npm 10+ (or pnpm if preferred)
-
----
-
-# Installation
-
-From repository root:
+Requirements: Node.js 22.12+ and npm.
 
 ```bash
 npm install
-```
-
----
-
-# Local Development
-
-## Run frontend
-
-```bash
 npm run dev:web
 ```
 
-Frontend runs on:
+The site runs at `http://localhost:4321`.
+
+## Content
 
 ```txt
-http://localhost:4321
+apps/web/src/content/
+├── case-studies/   # Structured case studies
+├── legal/          # Markdown legal documents
+├── pages/          # Page-level SEO, hero and section data
+├── partners/       # Partner records
+└── services/       # Service records
 ```
 
----
+Astro validates each collection at build time through `apps/web/src/content.config.ts`. Content changes are reviewed and deployed through the normal Git and Netlify workflow:
 
-## Run Sanity Studio
+```txt
+Edit content → commit/PR → Netlify build → static deployment
+```
+
+## Commands
 
 ```bash
-npm run dev:studio
+npm run dev:web       # Start the site locally
+npm run typecheck     # Check Astro and TypeScript types
+npm run build:web     # Build the production site
+npm run content:validate
+npm run lint
+npm run format:check
 ```
 
-Studio runs on:
-
-```txt
-http://localhost:3333
-```
-
----
-
-# Environment Variables
-
-Create:
-
-```txt
-apps/web/.env
-```
-
-Example:
-
-```env
-PUBLIC_SANITY_PROJECT_ID=your_project_id
-PUBLIC_SANITY_DATASET=development
-PUBLIC_SANITY_API_VERSION=2025-01-01
-```
-
----
-
-# Sanity Datasets
-
-Recommended environments:
-
-| Environment       | Dataset     |
-| ----------------- | ----------- |
-| Local Development | development |
-| Staging           | staging     |
-| Production        | production  |
-
----
-
-# Build
-
-## Frontend
-
-```bash
-npm run build:web
-```
-
-## Studio
-
-```bash
-npm run build:studio
-```
-
----
-
-# Deployment
-
-## Frontend
-
-Hosted on Netlify.
-
-Typical deployment flow:
-
-```txt
-Git Push
-↓
-Netlify Build
-↓
-Static Site Deployment
-```
-
----
-
-## CMS
-
-Sanity Studio can be:
-
-- self-hosted
-- deployed via Sanity hosting
-
-Typical production setup:
-
-```txt
-studio.frontierhq.com
-```
-
----
-
-# Content Architecture
-
-## Core Content Types
-
-### Page
-
-Generic content pages:
-
-- Home
-- About
-- Contact
-- Case Studies
-- Legal
-
----
-
-### Service
-
-Platform engineering service offerings.
-
-Examples:
-
-- Bare Metal Platforms
-- Cloud Platforms
-- Hybrid Platforms
-- Kubernetes Platforms
-
----
-
-### Case Study
-
-Delivery examples and client outcomes.
-
----
-
-### Partner
-
-Vendor ecosystem and product relationships.
-
----
-
-# Design Principles
-
-The site intentionally avoids:
-
-- startup aesthetics
-- marketing-heavy language
-- excessive animations
-- generic consultancy messaging
-
-The design aims to communicate:
-
-- operational maturity
-- engineering credibility
-- clarity
-- trust
-- technical depth
-
----
-
-# Content Philosophy
-
-The messaging strategy focuses on:
-
-```txt
-Operational reality
-+
-Technical depth
-+
-Systems integration
-+
-Hands-on delivery
-```
-
-The site positions FrontierHQ as:
-
-- a consultancy
-- a systems integrator
-- a platform engineering partner
-
----
-
-# Routing Structure
-
-## Core Pages
-
-```txt
-/
-├── /what-we-do
-├── /how-we-work
-├── /case-studies
-├── /partners
-├── /about
-├── /contact
-└── /legal
-```
-
----
-
-## Dynamic Routes
-
-```txt
-/services/[slug]
-/case-studies/[slug]
-/partners/[slug]
-/legal/[slug]
-```
-
----
-
-# Forms
-
-Contact forms use:
-
-```txt
-Netlify Forms
-```
-
-Submissions are available via:
-
-- Netlify dashboard
-- email notifications
-
-Future integrations may include:
-
-- Attio
-- Slack
-- HubSpot
-
----
-
-# Analytics
-
-Recommended analytics stack:
-
-```txt
-Plausible Analytics
-```
-
-Configured via:
-
-```env
-PUBLIC_PLAUSIBLE_DOMAIN=frontierhq.com
-```
-
----
-
-# Styling
-
-Typography:
-
-- Red Hat Display
-
-Styling:
-
-- Tailwind CSS
-- Custom Frontier design tokens
-- Brand colour utilities
-
----
-
-# Future Enhancements
-
-Potential future work:
-
-- Insights / technical articles
-- Search
-- Partner logos
-- Rich media case studies
-- Team profiles
-- Attio CRM integration
-- Advanced analytics
-- Image optimisation
-- Portable Text custom renderers
-
----
-
-# License
-
-Internal FrontierHQ project.
+Netlify deploys `apps/web` with `npm run build:web` and publishes `apps/web/dist`.

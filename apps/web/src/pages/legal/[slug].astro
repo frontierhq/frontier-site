@@ -2,60 +2,29 @@
 import Layout from '../../layouts/Layout.astro'
 
 import Section from '../../components/Section.astro'
-import { sanity } from '../../lib/sanity'
-import { PortableText } from 'astro-portabletext'
-
-type SlugOnly = {
-  slug: string
-}
+import { getCollection, render, type CollectionEntry } from 'astro:content'
 
 export async function getStaticPaths() {
-  const pages: SlugOnly[] = await sanity.fetch(`
-    *[
-      _type == "page" &&
-      slug.current in ["privacy", "terms"]
-    ]{
-      "slug": slug.current
-    }
-  `)
+  const pages = await getCollection('legal')
   return pages.map((page) => ({
-    params: {
-      slug: page.slug,
-    },
+    params: { slug: page.data.slug },
+    props: { page },
   }))
 }
 
-const { slug } = Astro.params
-
-const page = await sanity.fetch(
-  `
-    *[
-      _type == "page" &&
-      slug.current == $slug
-    ][0]{
-      title,
-      seoTitle,
-      seoDescription,
-      body
-    }
-  `,
-  { slug }
-)
-
-if (!page) {
-  throw new Error(`Legal page not found for slug: ${slug}`)
-}
+const { page } = Astro.props as { page: CollectionEntry<'legal'> }
+const { Content } = await render(page)
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Legal | FrontierHQ'}
-  description={page?.seoDescription ?? 'FrontierHQ legal information.'}
+  title={page.data.seoTitle ?? page.data.title ?? 'Legal | FrontierHQ'}
+  description={page.data.seoDescription ?? 'FrontierHQ legal information.'}
   navVariant="light"
 >
   <main class="bg-frontier-white">
     <Section
       eyebrow="Legal"
-      heading={page.title}
+      heading={page.data.title}
       theme="light"
       container="narrow"
     >
@@ -69,7 +38,7 @@ if (!page) {
           prose-strong:text-frontier-dark
           prose-a:text-frontier-mid-green"
       >
-        {page?.body && <PortableText value={page.body} />}
+        <Content />
       </article>
     </Section>
   </main>

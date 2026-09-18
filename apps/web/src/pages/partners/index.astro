@@ -4,7 +4,7 @@ import PageHero from '../../components/PageHero.astro'
 import PartnerCard from '../../components/PartnerCard.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
+import { getCollection } from 'astro:content'
 
 type PartnerListItem = {
   name: string
@@ -17,29 +17,30 @@ type PartnerListItem = {
   partnerType?: 'vendor' | 'var'
 }
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "partners"][0]{
-    title, seoTitle, seoDescription, hero
-  }
-`)
-
-const partners: PartnerListItem[] = await sanity.fetch(`
-  *[_type == "partner" && defined(slug.current)] | order(featured desc, name asc){
-    name,
-    slug,
-    category,
-    summary,
-    featured,
-    partnerType
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'partners'
+)
+const partners: PartnerListItem[] = (await getCollection('partners'))
+  .sort(
+    (a, b) =>
+      Number(b.data.featured ?? false) - Number(a.data.featured ?? false) ||
+      a.data.name.localeCompare(b.data.name)
+  )
+  .map(({ data }) => ({
+    name: data.name,
+    slug: { current: data.slug },
+    category: data.category,
+    summary: data.summary,
+    featured: data.featured,
+    partnerType: data.partnerType,
+  }))
 
 const vendors = partners.filter(
   (p) => !p.partnerType || p.partnerType === 'vendor'
 )
 const vars = partners.filter((p) => p.partnerType === 'var')
 
-const hero = page?.hero ?? {
+const hero = page?.data.hero ?? {
   eyebrow: 'Partners',
   headingPrimary: 'Build around your outcome.',
   headingAccent: 'Keep your options open.',
@@ -49,9 +50,11 @@ const hero = page?.hero ?? {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Partners | FrontierHQ'}
-  description={page?.seoDescription ??
-    'FrontierHQ partner ecosystem and product vendor relationships.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'Technology Partners | Frontier'}
+  description={page?.data.seoDescription ??
+    "See how Frontier integrates leading technologies into secure, reliable platforms built around each customer's environment and goals."}
   activeNav="/partners"
 >
   <main>
