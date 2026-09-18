@@ -1,0 +1,42 @@
+{
+  "name": "Sysdig",
+  "slug": "sysdig",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Security",
+  "summary": "Sysdig provides cloud-native security and observability platforms for Kubernetes, containers, and enterprise cloud environments.\n\nTogether, we help organisations design, integrate, and operate Sysdig technologies across secure Kubernetes and cloud infrastructure platforms. From runtime security and compliance through to observability and threat detection, we help teams create environments that are secure, resilient, and operationally consistent.",
+  "overview": "Sysdig technologies help organisations secure and monitor modern cloud-native infrastructure environments.\n\nTogether, we help organisations build, integrate, and operate Sysdig environments across cloud, hybrid, and enterprise Kubernetes infrastructure. From container security and runtime threat detection through to observability, compliance, and operational governance, we help teams create environments that are scalable, secure, and operationally consistent.\n\nOur focus is on building secure platform foundations that support long-term cloud-native operations. This includes runtime security, observability, compliance enablement, lifecycle management, platform governance, and operational visibility across complex infrastructure environments.\n\nWe help organisations reduce operational risk, improve platform resilience, and operate Kubernetes environments with confidence.",
+  "logo": "/images/partners/0d6bd88cdea1510445ce36fb3d98a317d792843a-270x148.png",
+  "website": "https://www.sysdig.com",
+  "products": ["Sysdig Secure", "Sysdig Monitor", "Sysdig Sage", "Falco"],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Hybrid platforms",
+      "slug": "hybrid-platforms",
+      "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    }
+  ]
+}

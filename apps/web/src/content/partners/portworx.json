@@ -1,0 +1,64 @@
+{
+  "name": "Portworx by Everpure",
+  "slug": "portworx",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Kubernetes",
+  "summary": "Portworx by Everpure provides cloud-native storage, data protection, and Kubernetes data platform technologies for enterprise infrastructure environments.\n\nTogether, we help organisations design, integrate, and operate Portworx environments across secure Kubernetes and cloud infrastructure platforms. From persistent storage and disaster recovery through to platform resilience and operational governance, we help teams create scalable, reliable, and operationally consistent cloud-native environments.",
+  "overview": "Portworx by Everpure supports modern cloud-native infrastructure and enterprise Kubernetes operations through scalable storage, data protection, and platform resilience solutions.\n\nTogether, we help organisations build, integrate, and operate Portworx environments across cloud, hybrid, and enterprise Kubernetes infrastructure. From persistent Kubernetes storage and data services through to disaster recovery, automation, and operational governance, we help teams create environments that are secure, resilient, and operationally consistent.\n\nOur focus is on building reliable Kubernetes platform foundations that support long-term operational scalability and resilience. This includes storage automation, observability, lifecycle management, disaster recovery, platform resilience, and operational enablement across complex cloud-native environments.\n\nWe help organisations improve data availability, reduce operational risk, and operate Kubernetes platforms with confidence.",
+  "logo": "/images/partners/ac451676f153c0dd8780ab69f59a26000e677dab-354x142.png",
+  "website": "https://portworx.com/",
+  "products": [
+    "Portworx Enterprise",
+    "Portworx Backup",
+    "Portworx Disaster Recovery",
+    "Portworx Data Services",
+    "Evergreen//One"
+  ],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Reselling",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Hybrid platforms",
+      "slug": "hybrid-platforms",
+      "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Home",
+  "slug": "home",
+  "seoTitle": "Platform Engineering for Real-World Environments | FrontierHQ",
+  "seoDescription": "Design, integration and hands-on platform engineering across bare metal, cloud, hybrid and Kubernetes environments.",
+  "hero": {
+    "eyebrow": "Platform engineering for real-world environments",
+    "headingAccent": "your teams can change with confidence.",
+    "headingPrimary": "Build what comes next on a platform",
+    "primaryCtaLabel": "Start a Conversation",
+    "primaryCtaUrl": "/contact",
+    "secondaryCtaLabel": "See What We Do",
+    "secondaryCtaUrl": "/what-we-do",
+    "subHeading": "We help you see the whole system, make risk visible and bring the right technologies together across bare metal, cloud, hybrid and Kubernetes environments."
+  }
+}

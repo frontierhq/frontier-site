@@ -3,18 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import PageHero from '../components/PageHero.astro'
 import Section from '../components/Section.astro'
 import CTASection from '../components/CTASection.astro'
-import { sanity } from '../lib/sanity'
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "contact"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = {
   eyebrow: 'Contact',
   headingPrimary: 'Let’s talk about the platform challenges',
   headingAccent: 'in front of you.',
@@ -24,9 +14,8 @@ const hero = page?.hero ?? {
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Contact | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges.'}
+  title="Contact Frontier | Platform Engineering"
+  description="Talk to FrontierHQ about platform engineering, migration, Kubernetes and hybrid infrastructure challenges."
   activeNav="/contact"
 >
   <main>
@@ -34,16 +23,14 @@ const hero = page?.hero ?? {
 
     <Section
       eyebrow="Start the Conversation"
-      heading="Tell us what you are trying to achieve."
-      body="We work with organisations across infrastructure, cloud, Kubernetes and platform engineering environments. Most engagements begin with understanding the operational reality, technical constraints and goals in front of you."
+      heading="Start with what you need to achieve."
+      body="Tell us about the environment you run, the pressure behind the next change and what success would make possible for your teams."
       theme="dark"
     >
       <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         <!-- FORM -->
 
-        <div
-          class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8 lg:p-10"
-        >
+        <div class="border border-frontier-cyan/10 bg-white/5 p-8 lg:p-10">
           <div
             style="width:100%;height:500px;"
             data-fillout-id="9N3ay1kbTbus"
@@ -57,9 +44,7 @@ const hero = page?.hero ?? {
         <!-- SIDE PANEL -->
 
         <div class="space-y-6">
-          <div
-            class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8"
-          >
+          <div class="border border-frontier-cyan/10 bg-white/5 p-8">
             <p
               class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
             >
@@ -88,9 +73,7 @@ const hero = page?.hero ?? {
             </div>
           </div>
 
-          <div
-            class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8"
-          >
+          <div class="border border-frontier-cyan/10 bg-white/5 p-8">
             <p
               class="text-sm font-bold uppercase tracking-[0.25em] text-frontier-cyan"
             >
@@ -122,8 +105,8 @@ const hero = page?.hero ?? {
     </Section>
 
     <Section
-      eyebrow="Trusted Environments"
-      heading="Built for organisations operating critical platforms."
+      eyebrow="Where We Work"
+      heading="Critical platforms leave little room for guesswork."
       body="Our work spans bare metal, cloud, hybrid and Kubernetes environments across sectors where operational reliability, governance and delivery confidence matter."
       theme="light"
     >
@@ -139,7 +122,7 @@ const hero = page?.hero ?? {
             'Logistics',
             'Enterprise Platforms',
           ].map((industry, index) => (
-            <div class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+            <div class="border border-frontier-light-grey bg-frontier-white p-8">
               <div
                 class:list={[
                   'mb-6 h-1 w-16 rounded-full',
@@ -158,8 +141,8 @@ const hero = page?.hero ?? {
 
     <CTASection
       eyebrow="Prefer to start with a discussion?"
-      heading="We are happy to begin with a technical conversation."
-      body="No hard sell. No generic discovery workshop. Just a practical discussion about your environment, constraints and platform goals."
+      heading="Bring us the platform question in front of you."
+      body="We’ll start with a practical technical conversation about your environment, constraints and goals."
       primaryCtaLabel="Email Frontier"
       primaryCtaUrl="mailto:hello@frontierhq.com"
       secondaryCtaLabel="See Case Studies"

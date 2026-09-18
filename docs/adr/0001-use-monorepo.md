@@ -6,13 +6,7 @@ Accepted
 
 ## Context
 
-The project contains two closely related applications:
-
-- the public marketing website
-
-- the Sanity Studio used to manage content
-
-Both applications should evolve together and share project conventions, scripts, environment documentation, and future packages.
+The project contains the public marketing website plus shared documentation and configuration. Keeping the website in a workspace leaves room for future packages without introducing a second runtime application.
 
 ## Decision
 
@@ -23,8 +17,6 @@ Use a single monorepo with npm workspaces.
 apps/
 
   web/
-
-  studio/
 
 packages/
 

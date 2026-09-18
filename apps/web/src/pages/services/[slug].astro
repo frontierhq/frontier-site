@@ -1,17 +1,10 @@
 ---
-import type { Service } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
-
-type SlugOnly = {
-  slug: string
-}
-
-// type RelatedCaseStudy = Pick<CaseStudy, 'title' | 'slug' | 'summary'>
 type RelatedCaseStudy = {
   title: string
   slug: {
@@ -20,52 +13,33 @@ type RelatedCaseStudy = {
   summary?: string
 }
 
-type ServicePage = Pick<
-  Service,
-  | 'title'
-  | 'summary'
-  | 'overview'
-  | 'capabilities'
-  | 'outcomes'
-  | 'technologies'
-> & {
-  relatedCaseStudies?: RelatedCaseStudy[]
+type ServicePage = {
+  title: string
+  summary?: string
+  overview?: string
+  capabilities: string[]
+  outcomes: string[]
+  technologies: string[]
+  relatedCaseStudies: RelatedCaseStudy[]
 }
 
 export async function getStaticPaths() {
-  const services: SlugOnly[] = await sanity.fetch(`
-    *[_type == "service" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `)
-
+  const services = await getCollection('services')
   return services.map((service) => ({
-    params: {
-      slug: service.slug,
+    params: { slug: service.data.slug },
+    props: {
+      service: {
+        ...service.data,
+        relatedCaseStudies: service.data.relatedCaseStudies.map((study) => ({
+          ...study,
+          slug: { current: study.slug },
+        })),
+      },
     },
   }))
 }
 
-const { slug } = Astro.params
-
-const service: ServicePage | null = await sanity.fetch(
-  `
-    *[_type == "service" && slug.current == $slug][0]{
-      title,
-      summary,
-      overview,
-      capabilities,
-      outcomes,
-      technologies,
-      relatedCaseStudies[]->{
-        title,
-        slug,
-        summary
-      }
-    }
-  `,
-  { slug }
-)
+const { service } = Astro.props as { service: ServicePage }
 
 const hero = {
   eyebrow: 'Service',
@@ -90,7 +64,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
 
     <Section
       eyebrow="Overview"
-      heading={`What ${service?.title ?? 'this service'} helps organisations achieve.`}
+      heading="What this work makes possible."
       body={service?.overview ?? ''}
       theme="light"
     />
@@ -101,12 +75,12 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
       capabilities?.length > 0 && (
         <Section
           eyebrow="Capabilities"
-          heading="Deep technical capability across the platform stack."
+          heading="What we bring together around your outcome."
           theme="dark"
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((capability, index) => (
-              <article class="rounded-3xl border border-frontier-cyan/10 bg-white/5 p-8">
+              <article class="border border-frontier-cyan/10 bg-white/5 p-8">
                 <div
                   class:list={[
                     'mb-6 h-1 w-16 rounded-full',
@@ -132,12 +106,12 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
       outcomes?.length > 0 && (
         <Section
           eyebrow="Outcomes"
-          heading="Built to improve operational confidence and delivery."
+          heading="What your teams can do with confidence."
           theme="light"
         >
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {outcomes.map((outcome, index) => (
-              <article class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8">
+              <article class="border border-frontier-light-grey bg-frontier-white p-8">
                 <div
                   class:list={[
                     'mb-6 h-1 w-16 rounded-full',
@@ -191,7 +165,7 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
             {relatedCaseStudies.map((study) => (
               <a
                 href={`/case-studies/${study.slug.current}`}
-                class="group rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
+                class="group border border-frontier-light-grey bg-frontier-white p-8 transition hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl"
               >
                 <h3 class="text-2xl font-bold text-frontier-dark">
                   {study.title}
@@ -214,9 +188,9 @@ const relatedCaseStudies = service?.relatedCaseStudies ?? []
     <!-- CTA -->
 
     <CTASection
-      eyebrow="Start the conversation"
-      heading={`Need help with ${service?.title ?? 'your platform'}?`}
-      body="We help organisations design, integrate and build secure, reliable platform foundations across real-world environments."
+      eyebrow="Operate predictably. Innovate safely."
+      heading="What should this work make possible for your teams?"
+      body="Tell us what you need to achieve. We’ll help you understand the environment, make risk visible and find a practical path forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See Case Studies"

@@ -16,7 +16,7 @@ const isPlain = variant === 'plain'
 
 {
   isPlain ? (
-    <div class="grid grid-cols-2 gap-8 text-xl font-bold text-frontier-light-grey md:grid-cols-4">
+    <div class="grid grid-cols-2 gap-8 text-xl font-bold text-frontier-mid-grey md:grid-cols-4">
       {partners.map((partner) => (
         <span>{partner.name}</span>
       ))}
@@ -27,12 +27,12 @@ const isPlain = variant === 'plain'
         partner.slug?.current ? (
           <a
             href={`/partners/${partner.slug.current}`}
-            class="text-lg font-medium text-frontier-dark opacity-55 transition duration-200 hover:opacity-100 hover:text-frontier-cyan"
+            class="text-lg font-normal text-frontier-dark opacity-55 transition duration-200 hover:opacity-100 hover:text-frontier-cyan"
           >
             {partner.name}
           </a>
         ) : (
-          <span class="text-lg font-medium text-frontier-dark opacity-55">
+          <span class="text-lg font-normal text-frontier-dark opacity-55">
             {partner.name}
           </span>
         )

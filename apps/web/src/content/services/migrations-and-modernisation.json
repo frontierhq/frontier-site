@@ -1,0 +1,26 @@
+{
+  "title": "Migrations and modernisation",
+  "slug": "migrations-and-modernisation",
+  "featured": false,
+  "summary": "Modernise platforms and applications without losing control of the services people rely on.",
+  "overview": "Your organisation needs to move forward while critical services keep running. Legacy dependencies, platform boundaries and incomplete visibility can make each migration decision carry more risk than it should.\n\nWe make the current environment and its dependencies visible, then work alongside your teams to plan and deliver the transition. From virtualisation and infrastructure modernisation to Kubernetes adoption and hybrid migration, we help you change the platform without losing operational control.",
+  "positioning": "Make the migration path visible, protect operational continuity and leave your teams ready for the next change.",
+  "capabilities": [
+    "Platform migration planning",
+    "Virtualisation migration",
+    "Kubernetes adoption",
+    "Legacy integration",
+    "Infrastructure modernisation",
+    "Environment transition management"
+  ],
+  "outcomes": [
+    "Move forward with migration risk visible",
+    "Keep critical services running through change",
+    "Improve platform scalability",
+    "Modernise operational capabilities",
+    "Leave the platform easier to maintain",
+    "Give teams confidence for the next change"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

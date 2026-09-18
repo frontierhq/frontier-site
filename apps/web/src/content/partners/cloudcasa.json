@@ -1,0 +1,64 @@
+{
+  "name": "CloudCasa by Catalogic",
+  "slug": "cloudcasa",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Kubernetes",
+  "summary": "CloudCasa by Catalogic provides Kubernetes backup, disaster recovery, and migration solutions for cloud-native and enterprise infrastructure environments.\n\nTogether, we help organisations design, integrate, and operate CloudCasa environments across secure Kubernetes and cloud infrastructure platforms. From backup and recovery through to migration, resilience, and operational governance, we help teams create scalable, reliable, and operationally consistent cloud-native environments.",
+  "overview": "CloudCasa by Catalogic helps organisations protect, recover, and migrate Kubernetes workloads across cloud, hybrid, and on-premises infrastructure environments. The platform provides Kubernetes-native backup, disaster recovery, migration, and replication capabilities with support for SaaS and self-hosted deployments.  \n\nTogether, we help organisations build, integrate, and operate CloudCasa environments across enterprise Kubernetes infrastructure. From backup and disaster recovery through to workload migration and operational governance, we help teams create environments that are secure, resilient, and operationally consistent.\n\nOur focus is on building reliable Kubernetes platform foundations that support long-term operational resilience and recovery readiness. This includes backup automation, disaster recovery, observability, lifecycle management, migration enablement, and operational support across complex cloud-native environments.\n\nWe help organisations improve workload resilience, reduce operational risk, and operate Kubernetes platforms with confidence.",
+  "logo": "/images/partners/f5ef907a709c9cfc7ee7b48ed655f59d2b1805ca-321x157.png",
+  "website": "https://cloudcasa.io/?utm_source=google&utm_medium=cpc&utm_campaign=23598034225&utm_agid=195188710524&campaign=Brand&utm_term=cloud%20casa&creative=798127179792&device=c&placement&matchtype=p&network=g&gad_source=1&gad_campaignid=23598034225&gbraid=0AAAAADi-f5Mb3n8CGk-y5ej1KbaT-h5xE&gclid=EAIaIQobChMI1563683HlAMVYoBQBh14Hwo-EAAYAiAAEgIlUPD_BwE",
+  "products": [
+    "CloudCasa Backup",
+    "CloudCasa Disaster Recovery",
+    "CloudCasa Migration",
+    "CloudCasa for Velero",
+    "CloudCasa Self-Hosted"
+  ],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Reselling",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Hybrid platforms",
+      "slug": "hybrid-platforms",
+      "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    }
+  ]
+}

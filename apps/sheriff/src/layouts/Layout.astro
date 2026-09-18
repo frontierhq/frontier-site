@@ -1,0 +1,55 @@
+---
+import '../styles/global.css'
+import Footer from '../components/Footer.astro'
+
+const {
+  title = 'Sheriff | Kubernetes governance, automated',
+  description = 'Sheriff helps platform teams govern Kubernetes environments with policy, visibility and drift detection.',
+} = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body class="bg-[#050b0c] text-white antialiased">
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050b0c]/80 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+      >
+        <a href="/" class="flex items-center gap-3 font-semibold">
+          <span
+            class="grid h-8 w-8 place-items-center rounded-lg border border-emerald-400/40 text-emerald-300"
+          >
+          </span>
+          Sheriff
+        </a>
+
+        <nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
+          <a href="/product" class="hover:text-white">Product</a>
+          <a href="/use-cases" class="hover:text-white">Use Cases</a>
+          <a href="/docs" class="hover:text-white">Documentation</a>
+          <a href="https://github.com" class="hover:text-white">GitHub</a>
+        </nav>
+
+        <a
+          href="/contact"
+          class="rounded-lg bg-emerald-400 px-4 py-2 text-sm font-medium text-black"
+        >
+          Book demo
+        </a>
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

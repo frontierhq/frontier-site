@@ -1,0 +1,54 @@
+{
+  "name": "Sonar",
+  "slug": "sonar",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "CI/CD",
+  "summary": "Sonar provides code quality and application security solutions that help organisations improve software reliability, maintainability, and secure development practices.\n\nTogether, we help organisations design, integrate, and operate Sonar technologies across modern software delivery and platform engineering environments. From code quality governance and security analysis through to CI/CD integration and developer enablement, we help teams create secure, reliable, and operationally consistent software delivery platforms.",
+  "overview": "Sonar technologies help organisations improve software quality and application security across modern development environments.\n\nTogether, we help organisations build, integrate, and operate Sonar environments across cloud-native, enterprise, and platform engineering ecosystems. From automated code analysis and security scanning through to CI/CD integration and operational governance, we help teams create environments that support reliable, scalable, and secure software delivery practices.\n\nOur focus is on building strong software delivery foundations that support long-term engineering quality and operational consistency. This includes code quality management, security analysis, automation, observability, lifecycle management, and developer enablement across complex engineering environments.\n\nWe help organisations reduce technical debt, improve delivery confidence, and maintain secure and reliable software development operations.",
+  "logo": "/images/partners/6a3a47ec746a61121f60ada5ebf3956827fcc98b-361x140.png",
+  "website": "https://www.sonarsource.com/?utm_source=google&utm_medium=cpc&utm_campaign=SQ-EMEA-North-UKI-Brand-OG&utm_content=808038312213&utm_term=sonarsource&s_campaign=SQ-EMEA-North-UKI-Brand-OG&s_content=808038312213&s_term=sonarsource&s_category=Paid&s_source=Paid%20Search&s_origin=Google&gad_source=1&gad_campaignid=21484226150&gbraid=0AAAAAC0fKmrVgYtFQk1dDFGGt66JczEr8&gclid=CjwKCAjwt7XQBhBkEiwAtStppziCYjMM9tHvL5fEXwX_SJU1pjZtQ7Qrtm4vpEQaKV1WyN9HDf2hDBoCJzIQAvD_BwE",
+  "products": [
+    "SonarQube Server",
+    "SonarQube Cloud",
+    "SonarLint",
+    "SonarQube for IDE",
+    "SonarQube Advanced Security"
+  ],
+  "capabilities": [
+    "Deployment",
+    "CI/CD Integration",
+    "Developer Enablement",
+    "Reselling",
+    "Best Practice",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    }
+  ]
+}

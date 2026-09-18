@@ -1,0 +1,26 @@
+{
+  "title": "Bare metal platforms",
+  "slug": "bare-metal-platforms",
+  "featured": true,
+  "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence.",
+  "overview": "Your modern platform still depends on the metal, operating systems and lifecycle processes underneath it. When those foundations drift or rely on manual work, every layer above becomes harder to change.\n\nWe design and build automated infrastructure foundations across servers, provisioning and secure Linux baselines. Your teams get a repeatable platform they can understand, operate and evolve as demand changes.",
+  "positioning": "Build reliable, automated foundations from the metal up, with the visibility and control to change them safely.",
+  "capabilities": [
+    "Bare metal provisioning and lifecycle automation",
+    "Secure operating system baselines",
+    "Infrastructure as Code",
+    "Hardware and platform integration",
+    "Observability and operational tooling"
+  ],
+  "outcomes": [
+    "Provision environments with less manual effort",
+    "See and reduce infrastructure drift",
+    "Operate infrastructure more consistently",
+    "Improve platform reliability",
+    "Keep lifecycle changes under control",
+    "Give teams a foundation they can evolve"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": [],
+  "sortOrder": 1
+}

@@ -37,7 +37,7 @@ const accentClass =
 <a
   href={href}
   class:list={[
-    'group flex h-full flex-col overflow-hidden rounded-3xl transition',
+    'group flex h-full flex-col overflow-hidden transition',
     isDark
       ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30'
       : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl',
@@ -87,7 +87,7 @@ const accentClass =
           {(environment ?? []).slice(0, 3).map((item) => (
             <span
               class:list={[
-                'rounded-full px-3 py-1 text-xs font-semibold',
+                'rounded-full px-3 py-1 text-xs font-bold',
                 isDark
                   ? 'bg-white/10 text-frontier-light-grey'
                   : 'bg-frontier-light-grey text-frontier-dark',
@@ -115,7 +115,7 @@ const accentClass =
               </p>
               <p
                 class:list={[
-                  'mt-1 text-xs font-semibold uppercase tracking-widest',
+                  'mt-1 text-xs font-bold uppercase tracking-widest',
                   isDark
                     ? 'text-frontier-light-grey'
                     : 'text-frontier-mid-grey',
@@ -131,7 +131,7 @@ const accentClass =
 
     <p
       class:list={[
-        'mt-auto pt-8 text-sm font-semibold transition',
+        'mt-auto pt-8 text-sm font-bold transition',
 
         isDark
           ? 'text-frontier-green group-hover:text-frontier-cyan'

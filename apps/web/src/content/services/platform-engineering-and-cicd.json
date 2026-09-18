@@ -1,0 +1,26 @@
+{
+  "title": "Platform engineering & CI/CD",
+  "slug": "platform-engineering-and-cicd",
+  "featured": false,
+  "summary": "Make the safest route to production the easiest one for your engineering teams.",
+  "overview": "Your teams want to ship useful changes without having to relearn the route to production each time. Fragmented pipelines, platform choices and operating practices create friction and make delivery harder to trust.\n\nWe design and build internal platforms, CI/CD architecture, GitOps workflows and golden paths around the way your teams work. The result is a clearer, repeatable route from code to production that teams can adopt and improve over time.",
+  "positioning": "Give engineering teams a clear, repeatable route to production with the right controls built in.",
+  "capabilities": [
+    "CI/CD architecture",
+    "GitOps implementation",
+    "Internal developer platforms",
+    "Golden path design",
+    "Deployment automation",
+    "Secure software delivery patterns"
+  ],
+  "outcomes": [
+    "Ship software through a clearer path",
+    "Remove avoidable developer friction",
+    "Increase confidence in each deployment",
+    "Work consistently across teams",
+    "Make the platform easier to adopt",
+    "Reduce the operational burden on engineers"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

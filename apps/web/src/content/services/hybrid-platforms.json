@@ -1,0 +1,26 @@
+{
+  "title": "Hybrid platforms",
+  "slug": "hybrid-platforms",
+  "featured": false,
+  "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform.",
+  "overview": "Most organisations do not run in one environment. Private infrastructure, cloud, edge and Kubernetes each solve useful problems, but the connections between them can make every change harder to understand.\n\nWe bring networking, identity, automation, governance and operations together across the estate. Your teams gain a clearer view of dependencies, more consistent ways of working and the freedom to evolve each environment without losing control of the whole.",
+  "positioning": "Connect the environments you already run so your teams can see, operate and change the whole platform with confidence.",
+  "capabilities": [
+    "Hybrid cloud integration",
+    "Cross-environment networking",
+    "Identity federation",
+    "Platform standardisation",
+    "Multi-environment automation",
+    "Operational tooling integration"
+  ],
+  "outcomes": [
+    "See operations across the whole estate",
+    "Reduce fragmentation between environments",
+    "Move workloads with fewer surprises",
+    "Build resilience across platform boundaries",
+    "Manage the estate more consistently",
+    "Make integration risk visible earlier"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Reducing Microsoft Azure Cloud Costs in Financial Services",
+  "slug": "azure-cloud-cost-optimisation-financial-services",
+  "featured": true,
+  "summary": "We helped a FTSE 100 financial services organisation reduce Microsoft Azure cloud costs by over £1 million annually through cloud optimisation, FinOps practices, and AI-powered cost monitoring. The project improved visibility, reduced waste, and enabled engineering teams to make more informed infrastructure decisions without impacting service performance.",
+  "clientType": "Financial Services",
+  "environment": [
+    "Microsoft Azure",
+    "FinOps",
+    "Cloud Cost Optimisation",
+    "CI/CD",
+    "AI-Powered Monitoring",
+    "Red Hat OpenShift",
+    "Cloud Infrastructure"
+  ],
+  "problem": "The client had been operating in Microsoft Azure for several years, enabling development teams to rapidly build and deploy applications and services across the organisation.\n\nOver time, however, cloud resources had become increasingly overprovisioned, creating unnecessary spend and low utilisation across the environment. Limited visibility into real-world cloud costs had also contributed to a culture where cloud consumption was not being actively optimised or governed.\n\nWith board-level cost reduction targets in place, the organisation needed to reduce cloud waste without impacting platform stability, application performance, or service availability.",
+  "solution": "We reviewed application and service requirements across business units to identify opportunities for resizing, reconfiguration, and optimisation across the Azure estate.\n\nWe optimised the usage of services including Cosmos DB, SQL Server, Container Registry, Log Analytics, and Red Hat OpenShift, improving resource efficiency while maintaining platform performance.\n\nTo support long-term cost governance, we extended CI/CD pipelines to provide engineers with real-time visibility into the projected cost impact of infrastructure and application changes before deployment.\n\nWe also integrated AI-powered cost insights and anomaly detection tooling, enabling teams and cost centre owners to identify unexpected spend increases early and respond proactively.",
+  "outcome": "The organisation achieved more than £1 million in annual cloud savings without impacting service availability or application performance.\n\nEngineering teams gained significantly greater visibility into infrastructure costs and were able to make more informed sizing and deployment decisions during development, reducing future cloud waste.\n\nThe optimisation programme also uncovered infrastructure misconfigurations that could have led to service interruption, enabling issues to be corrected before they affected production systems.",
+  "metrics": [
+    {
+      "label": "Annual Cost Savings",
+      "value": "Over £1 million annual Azure cost savings"
+    },
+    {
+      "label": "Service Reliability",
+      "value": "No impact to service performance during optimisation"
+    },
+    {
+      "label": "Cloud Governance",
+      "value": "Real-time cloud cost visibility integrated into CI/CD workflows"
+    },
+    {
+      "label": "Operational Improvement",
+      "value": "Reduced cloud waste and improved infrastructure utilisation"
+    }
+  ],
+  "services": [
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    }
+  ]
+}

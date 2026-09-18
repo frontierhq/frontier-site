@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
+import { getCollection } from 'astro:content'
 
 type Metric = {
   label: string
@@ -22,40 +22,32 @@ type CaseStudyListItem = {
   featured?: boolean
 }
 
-const page = await sanity.fetch(`
-  *[_type == "page" && slug.current == "case-studies"][0]{
-    title,
-    seoTitle,
-    seoDescription,
-    hero
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'case-studies'
+)
+const caseStudies: CaseStudyListItem[] = (await getCollection('caseStudies'))
+  .sort(
+    (a, b) =>
+      Number(b.data.featured ?? false) - Number(a.data.featured ?? false) ||
+      a.data.title.localeCompare(b.data.title)
+  )
+  .map(({ data }) => ({ ...data, slug: { current: data.slug } }))
 
-const caseStudies: CaseStudyListItem[] = await sanity.fetch(`
-  *[_type == "caseStudy" && defined(slug.current)] | order(featured desc, title asc){
-    title,
-    slug,
-    summary,
-    clientType,
-    environment,
-    metrics,
-    featured
-  }
-`)
-
-const hero = page?.hero ?? {
+const hero = page?.data.hero ?? {
   eyebrow: 'Case Studies',
-  headingPrimary: 'Real challenges.',
-  headingAccent: 'Real outcomes.',
+  headingPrimary: 'See how teams made',
+  headingAccent: 'confident change possible.',
   subHeading:
-    'See how we help organisations design, integrate and build platform foundations across complex, high-stakes environments.',
+    'Real platform challenges, the engineering choices that made risk visible and what each team could do next.',
 }
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'Case Studies | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Platform engineering case studies from FrontierHQ.'}
+  title={page?.data.seoTitle ??
+    page?.data.title ??
+    'Platform Engineering Case Studies | Frontier'}
+  description={page?.data.seoDescription ??
+    'See how organisations improve reliability, reduce risk and modernise complex cloud, hybrid and Kubernetes platforms with Frontier.'}
   activeNav="/case-studies"
 >
   <main>
@@ -63,8 +55,8 @@ const hero = page?.hero ?? {
 
     <Section
       eyebrow="Proof in Practice"
-      heading="Platform engineering in real-world environments."
-      body="Platform foundations for cloud, hybrid and Kubernetes environments. Reliable. Observable. Built for real operations."
+      heading="The challenge is only part of the story."
+      body="Each case study follows the work from the pressure behind the change to the confidence and freedom the client’s team gained."
       theme="light"
     >
       <div class="grid gap-6 lg:grid-cols-2">
@@ -72,7 +64,7 @@ const hero = page?.hero ?? {
           caseStudies.map((study, index) => (
             <a
               href={`/case-studies/${study.slug.current}`}
-              class="group overflow-hidden rounded-3xl border border-frontier-light-grey bg-frontier-white text-frontier-dark transition hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl"
+              class="group overflow-hidden border border-frontier-light-grey bg-frontier-white text-frontier-dark transition hover:-translate-y-1 hover:border-frontier-cyan/40 hover:shadow-2xl"
             >
               <div
                 class:list={[
@@ -134,9 +126,9 @@ const hero = page?.hero ?? {
     </Section>
 
     <CTASection
-      eyebrow="Start the conversation"
-      heading="Have a platform challenge that needs careful delivery?"
-      body="We help organisations modernise, migrate and build reliable platform foundations across real-world environments."
+      eyebrow="Operate predictably. Innovate safely."
+      heading="What would your next platform change make possible?"
+      body="Tell us where progress feels harder than it should. We’ll help make the risk visible and find a practical route forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See What We Do"

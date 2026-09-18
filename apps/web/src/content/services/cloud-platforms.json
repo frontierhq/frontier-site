@@ -1,0 +1,26 @@
+{
+  "title": "Cloud platforms",
+  "slug": "cloud-platforms",
+  "featured": false,
+  "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start.",
+  "overview": "Cloud should give your teams room to move, but provider defaults rarely reflect the way your organisation operates. As accounts, identities, policies and workloads grow, it becomes harder to see how a change will affect the whole environment.\n\nWe design and build cloud foundations around your teams, security posture and delivery model. From landing zones and identity integration to Infrastructure as Code and operational automation, we make the platform easier to understand, govern and evolve.",
+  "positioning": "Give your teams a cloud platform they can operate predictably and change without losing control.",
+  "capabilities": [
+    "Cloud landing zones",
+    "AWS, Azure and GCP platform engineering",
+    "Identity and access integration",
+    "Infrastructure as Code",
+    "FinOps and governance foundations",
+    "Cloud operations and automation"
+  ],
+  "outcomes": [
+    "Adopt cloud services with a clear operating model",
+    "Keep governance and compliance visible",
+    "Reduce operational complexity",
+    "Understand and control cloud costs",
+    "Operate accounts and environments consistently",
+    "Make changes with greater confidence"
+  ],
+  "technologies": [],
+  "relatedCaseStudies": []
+}

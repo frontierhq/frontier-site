@@ -1,0 +1,59 @@
+{
+  "name": "Edera",
+  "slug": "edera",
+  "featured": true,
+  "partnerType": "vendor",
+  "category": "Security",
+  "summary": "Edera provides hardened runtime isolation and Kubernetes security technologies for cloud-native and AI infrastructure environments.\n\nTogether, we help organisations design, integrate, and operate Edera environments across secure Kubernetes and cloud infrastructure platforms. From workload isolation and runtime security through to multi-tenancy and platform resilience, we help teams create secure, scalable, and operationally consistent cloud-native environments.",
+  "overview": "Edera helps organisations secure Kubernetes and AI infrastructure through hardened runtime isolation and hypervisor-based workload protection. The platform focuses on secure multi-tenancy, runtime isolation, and cloud-native infrastructure security using a lightweight hypervisor architecture built for modern Kubernetes environments.  \n\nTogether, we help organisations build, integrate, and operate Edera environments across cloud, hybrid, and enterprise Kubernetes infrastructure. From runtime isolation and Kubernetes security through to operational governance, observability, and platform resilience, we help teams create environments that are secure, resilient, and operationally consistent.\n\nOur focus is on building secure Kubernetes platform foundations that support long-term operational resilience and workload isolation. This includes runtime security, observability, lifecycle management, operational enablement, secure multi-tenancy, and infrastructure hardening across complex cloud-native environments.\n\nWe help organisations reduce operational risk, improve platform security, and operate Kubernetes environments with confidence.",
+  "logo": "/images/partners/a67f3be37ee228ead3f34b2bb4d2b38ae273bec0-270x148.png",
+  "website": "https://edera.dev/",
+  "products": ["Edera for GPUs", "Edera for Containers"],
+  "capabilities": [
+    "Deployment",
+    "Platform Integration",
+    "Kubernetes Operations",
+    "Security Hardening",
+    "Best Practice",
+    "Reselling",
+    "Proof of Value (PoV)",
+    "Proof of Concept (PoC)"
+  ],
+  "relatedServices": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Hybrid platforms",
+      "slug": "hybrid-platforms",
+      "summary": "Make data centre, cloud, edge and Kubernetes environments work as one understandable platform."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Consulting and integration",
+      "slug": "consulting-and-integration",
+      "summary": "Make the next platform decision with a clear view of the whole system and engineering support to carry it into production."
+    },
+    {
+      "title": "Kubernetes platforms",
+      "slug": "kubernetes-platforms",
+      "summary": "Give engineering teams a Kubernetes platform they can operate, secure and evolve with confidence."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    }
+  ]
+}

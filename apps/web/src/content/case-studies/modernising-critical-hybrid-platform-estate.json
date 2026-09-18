@@ -1,0 +1,25 @@
+{
+  "title": "Giving a financial services team confidence across a critical hybrid estate",
+  "slug": "modernising-critical-hybrid-platform-estate",
+  "featured": true,
+  "summary": "A financial services team gained a more consistent, observable platform across hybrid infrastructure and Kubernetes, creating a stronger foundation for continued modernisation.",
+  "clientType": "Financial Services",
+  "environment": ["Hybrid", "Kubernetes", "Private cloud", "Linux"],
+  "problem": "The team needed to modernise a critical hybrid estate without disrupting the services it supported. Fragmented infrastructure, legacy operational tooling and inconsistent ways of working made the whole platform difficult to see and slowed each delivery decision.",
+  "solution": "Frontier worked alongside the team to make the estate and its dependencies visible, then designed and integrated a standardised architecture across infrastructure, cloud and Kubernetes. Automation, consistent operational patterns and improved observability gave the team clearer control of the platform.",
+  "outcome": "The organisation reduced provisioning effort by 40%, improved environment delivery by 10% and reached 99.95% platform availability. More importantly, its teams now have a foundation they can operate and extend as modernisation continues.",
+  "metrics": [
+    {
+      "label": "Reduction in provisioning effort",
+      "value": "40%"
+    },
+    {
+      "label": "Faster environment delivery",
+      "value": "10%"
+    },
+    {
+      "label": "Platform availability",
+      "value": "99.95%"
+    }
+  ]
+}

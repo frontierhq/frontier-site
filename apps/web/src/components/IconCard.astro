@@ -16,7 +16,7 @@ const isDark = theme === 'dark'
     <a
       href={href}
       class:list={[
-        'group flex h-full flex-col rounded-3xl p-8 transition',
+        'group flex h-full flex-col p-8 transition',
         isDark
           ? 'border border-frontier-cyan/10 bg-white/5 hover:border-frontier-cyan/30 hover:bg-white/10'
           : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
@@ -55,7 +55,7 @@ const isDark = theme === 'dark'
   ) : (
     <article
       class:list={[
-        'flex h-full flex-col rounded-3xl p-8',
+        'flex h-full flex-col p-8',
         isDark
           ? 'border border-frontier-cyan/10 bg-white/5'
           : 'border border-frontier-light-grey bg-frontier-white text-frontier-dark',

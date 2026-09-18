@@ -9,16 +9,6 @@ export default [
   ...astro.configs.recommended,
   prettier,
   {
-    ignores: [
-      'dist',
-      '.astro',
-      '.sanity',
-      'node_modules',
-      'apps/studio/.sanity/**',
-      'apps/studio/dist/**',
-      'apps/web/dist/**',
-      'apps/web/.astro/**',
-      'scripts/sanity-diff.mjs',
-    ],
+    ignores: ['dist', '**/.astro/**', 'node_modules', 'apps/web/dist/**'],
   },
 ]

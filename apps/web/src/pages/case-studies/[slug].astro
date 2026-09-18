@@ -1,60 +1,35 @@
 ---
-import type { CaseStudy } from '@frontier/sanity-types'
+import { getCollection } from 'astro:content'
 
 import Layout from '../../layouts/Layout.astro'
 import PageHero from '../../components/PageHero.astro'
 import Section from '../../components/Section.astro'
 import CTASection from '../../components/CTASection.astro'
-import { sanity } from '../../lib/sanity'
-
-type SlugOnly = {
-  slug: string
-}
-
 type Metric = {
   label: string
   value: string
 }
 
-type CaseStudyPage = Pick<
-  CaseStudy,
-  'title' | 'summary' | 'clientType' | 'problem' | 'solution' | 'outcome'
-> & {
-  environment?: string[]
-  metrics?: Metric[]
+type CaseStudyPage = {
+  title: string
+  summary: string
+  clientType?: string
+  problem: string
+  solution: string
+  outcome: string
+  environment: string[]
+  metrics: Metric[]
 }
 
 export async function getStaticPaths() {
-  const studies: SlugOnly[] = await sanity.fetch(`
-    *[_type == "caseStudy" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `)
-
+  const studies = await getCollection('caseStudies')
   return studies.map((study) => ({
-    params: {
-      slug: study.slug,
-    },
+    params: { slug: study.data.slug },
+    props: { study: study.data },
   }))
 }
 
-const { slug } = Astro.params
-
-const study: CaseStudyPage | null = await sanity.fetch(
-  `
-    *[_type == "caseStudy" && slug.current == $slug][0]{
-      title,
-      summary,
-      clientType,
-      environment,
-      problem,
-      solution,
-      outcome,
-      metrics
-    }
-  `,
-  { slug }
-)
+const { study } = Astro.props as { study: CaseStudyPage }
 
 const environment = study?.environment ?? []
 const metrics = study?.metrics ?? []
@@ -86,7 +61,7 @@ const hero = {
                   Challenge
                 </p>
                 <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                  The problem
+                  What made progress difficult
                 </h2>
                 <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
                   {study.problem}
@@ -102,7 +77,7 @@ const hero = {
                   Approach
                 </p>
                 <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                  What we did
+                  How Frontier helped
                 </h2>
                 <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
                   {study.solution}
@@ -118,7 +93,7 @@ const hero = {
                   Outcome
                 </p>
                 <h2 class="mt-4 text-4xl font-bold tracking-tight text-frontier-dark">
-                  What changed
+                  What the team could do next
                 </h2>
                 <p class="mt-6 text-lg leading-8 text-frontier-mid-grey">
                   {study.outcome}
@@ -128,9 +103,7 @@ const hero = {
           }
         </article>
 
-        <aside
-          class="rounded-3xl border border-frontier-light-grey bg-frontier-white p-8"
-        >
+        <aside class="border border-frontier-light-grey bg-frontier-white p-8">
           <h3 class="text-xl font-bold text-frontier-dark">Project details</h3>
 
           {
@@ -175,9 +148,9 @@ const hero = {
     </Section>
 
     <CTASection
-      eyebrow="Start the conversation"
-      heading="Need help with a platform challenge?"
-      body="We help organisations design, integrate and build secure, reliable platform foundations."
+      eyebrow="Operate predictably. Innovate safely."
+      heading="What would confident change look like for your team?"
+      body="Tell us what you need to achieve and what is making the next decision difficult. We’ll help you find a practical route forward."
       primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
       secondaryCtaLabel="See More Case Studies"

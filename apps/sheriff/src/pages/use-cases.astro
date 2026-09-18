@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro'
+import UseCases from '../components/UseCases.astro'
+import CTA from '../components/CTA.astro'
+---
+
+<Layout title="Use Cases | Sheriff">
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <p class="text-sm font-medium text-emerald-300">Use Cases</p>
+
+    <h1
+      class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl"
+    >
+      Built for teams managing privileged access in Azure.
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
+      Whether you're operating Azure at enterprise scale, securing privileged
+      access or preparing for audit, Sheriff helps bring Azure PIM into your
+      engineering workflow.
+    </p>
+  </section>
+
+  <UseCases />
+
+  <CTA />
+</Layout>

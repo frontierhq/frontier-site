@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+:root {
+  --sheriff-black: #050b0c;
+  --sheriff-surface: #0b1214;
+  --sheriff-border: #163136;
+  --sheriff-green: #4ade80;
+  --sheriff-muted: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--sheriff-black);
+}

@@ -6,6 +6,7 @@ const {
   accent = 'green',
   theme = 'light',
   class: className = '',
+  alignTitle = false,
 } = Astro.props
 
 const accentClass =
@@ -23,8 +24,8 @@ const isDark = theme === 'dark'
   class:list={[
     'group flex h-full flex-col transition',
     isDark
-      ? 'rounded-2xl border border-frontier-cyan/10 bg-white/5 p-6 hover:border-frontier-cyan/30 hover:bg-white/10'
-      : 'rounded-3xl border border-frontier-light-grey bg-frontier-white p-8 text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
+      ? 'border border-frontier-cyan/10 bg-white/5 p-6 hover:border-frontier-cyan/30 hover:bg-white/10'
+      : 'border border-frontier-light-grey bg-frontier-white p-8 text-frontier-dark hover:-translate-y-1 hover:border-frontier-cyan/30 hover:shadow-2xl',
     className,
   ]}
 >
@@ -41,6 +42,7 @@ const isDark = theme === 'dark'
     class:list={[
       'font-bold',
       isDark ? 'text-lg text-frontier-white' : 'text-2xl tracking-tight',
+      alignTitle && 'md:min-h-24',
     ]}
   >
     {title}
@@ -62,7 +64,7 @@ const isDark = theme === 'dark'
 
     <p
       class:list={[
-        'mt-auto pt-8 text-sm font-semibold transition',
+        'mt-auto pt-8 text-sm font-bold transition',
         isDark
           ? 'text-frontier-green group-hover:text-frontier-cyan'
           : 'text-frontier-dark group-hover:text-frontier-cyan',

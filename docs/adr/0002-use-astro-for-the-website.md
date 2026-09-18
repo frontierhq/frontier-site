@@ -24,7 +24,7 @@ Use Astro for the public website.
 
 - Good performance characteristics
 
-- Works well with Sanity
+- Works well with local content collections
 
 - Simple component model
 

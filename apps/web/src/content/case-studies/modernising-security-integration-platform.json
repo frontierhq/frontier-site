@@ -1,0 +1,59 @@
+{
+  "title": "Modernising a Security Integration Platform to Accelerate Automation",
+  "slug": "modernising-security-integration-platform",
+  "featured": true,
+  "summary": "A large enterprise customer needed to modernise a legacy integration platform responsible for synchronising security and engineering workflow data across multiple systems. We redesigned the architecture using a modular approach, dramatically improving maintainability, scalability, and performance while enabling the customer to meet a critical go-live deadline.",
+  "clientType": "Technology",
+  "environment": [
+    "Python",
+    "Security Automation",
+    "Systems Integration",
+    "ITSM",
+    "Engineering Workflow Tools",
+    "Cloud Infrastructure",
+    "API Integration"
+  ],
+  "problem": "The customer relied on a custom integration platform to automate ticket creation and synchronisation between engineering workflow tools and IT service management systems. They needed to extend the platform to support a new target system while also replacing a critical internal API that was being decommissioned.\n\nThe existing third-party implementation had accumulated significant technical debt and lacked the flexibility needed to support future business requirements. At the same time, the project faced a tight delivery timeline ahead of a critical go-live date.",
+  "solution": "We redesigned the solution architecture using a modular Python-based structure with clear separation of concerns, improving maintainability, extensibility, and consistency across the platform.\n\nIntroducing system-specific parallelisation and intelligent caching layers to improve performance, while also modernising dependency management and upgrading outdated libraries.\n\nAutomated testing and improved engineering standards were implemented to increase code quality, reduce delivery risk, and provide a reliable foundation for future development.",
+  "outcome": "The customer successfully achieved their target go-live date and now has a scalable and maintainable integration platform capable of supporting future systems and evolving business requirements.\n\nPerformance improvements reduced processing times from more than four hours to just minutes, significantly improving operational efficiency. The project also enabled the decommissioning of legacy infrastructure dependencies, reducing platform complexity and ongoing maintenance overhead.",
+  "metrics": [
+    {
+      "label": "Processing Time Reduction",
+      "value": "Reduced processing times from 4+ hours to minutes"
+    },
+    {
+      "label": "Delivery Outcome",
+      "value": "Achieved critical go-live deadline"
+    },
+    {
+      "label": "Platform Maintainability",
+      "value": "Introduced scalable modular architecture"
+    },
+    {
+      "label": "Operational Efficiency",
+      "value": "Reduced platform complexity and maintenance overhead"
+    }
+  ],
+  "services": [
+    {
+      "title": "Platform engineering & CI/CD",
+      "slug": "platform-engineering-and-cicd",
+      "summary": "Make the safest route to production the easiest one for your engineering teams."
+    },
+    {
+      "title": "Cloud platforms",
+      "slug": "cloud-platforms",
+      "summary": "Build a cloud platform around your operating model, with security, cost and governance visible from the start."
+    },
+    {
+      "title": "Migrations and modernisation",
+      "slug": "migrations-and-modernisation",
+      "summary": "Modernise platforms and applications without losing control of the services people rely on."
+    },
+    {
+      "title": "Bare metal platforms",
+      "slug": "bare-metal-platforms",
+      "summary": "Give your teams reliable infrastructure they can provision, operate and change with confidence."
+    }
+  ]
+}

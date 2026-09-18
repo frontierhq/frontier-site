@@ -1,15 +1,14 @@
 ---
-import { sanity } from '../lib/sanity'
+import { getCollection } from 'astro:content'
 
-import CaseStudyCard from '../components/CaseStudyCard.astro'
 import CTASection from '../components/CTASection.astro'
+import FeaturedCaseStudies from '../components/FeaturedCaseStudies.astro'
 import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
-import PartnerStrip from '../components/PartnerStrip.astro'
-import Section from '../components/Section.astro'
-import ServiceCard from '../components/ServiceCard.astro'
-
-// import type { CaseStudy, Partner, Service } from '@frontier/sanity-types'
+import PartnerEcosystem from '../components/PartnerEcosystem.astro'
+import PlatformEstate from '../components/PlatformEstate.astro'
+import WhatWeDo from '../components/WhatWeDo.astro'
+import WhyProgressGetsHard from '../components/WhyProgressGetsHard.astro'
 
 type HomePage = {
   title?: string
@@ -42,145 +41,56 @@ type HomeCaseStudy = {
   clientType?: string
 }
 
-const page: HomePage | null = await sanity.fetch(`
-  *[_type == "page" && slug.current == "home"][0]{
-    title,
-    hero
-  }
-`)
+const page = (await getCollection('pages')).find(
+  (entry) => entry.data.slug === 'home'
+)
+const partners: HomePartner[] = (await getCollection('partners'))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name))
+  .map(({ data }) => ({ name: data.name, slug: { current: data.slug } }))
+const caseStudies: HomeCaseStudy[] = (await getCollection('caseStudies'))
+  .sort(
+    (a, b) =>
+      Number(b.data.featured ?? false) - Number(a.data.featured ?? false) ||
+      a.data.title.localeCompare(b.data.title)
+  )
+  .slice(0, 2)
+  .map(({ data }) => ({
+    title: data.title,
+    slug: { current: data.slug },
+    summary: data.summary,
+    clientType: data.clientType,
+  }))
 
-// const services: HomeService[] = await sanity.fetch(`
-//   *[
-//     _type == "service" &&
-//     defined(slug.current)
-//   ] | order(title asc){
-//     title,
-//     slug,
-//     summary
-//   }
-// `)
-
-const partners: HomePartner[] = await sanity.fetch(`
-  *[
-    _type == "partner" &&
-    defined(slug.current)
-  ] | order(name asc){
-    name,
-    slug
-  }
-`)
-
-const caseStudies: HomeCaseStudy[] = await sanity.fetch(`
-  *[
-    _type == "caseStudy" &&
-    defined(slug.current)
-  ] | order(featured desc, title asc)[0...2]{
-    title,
-    slug,
-    summary,
-    clientType
-  }
-`)
-
-const hero = page?.hero ?? {}
-
-const serviceGroups = [
-  {
-    title: 'Platform Foundations',
-    summary:
-      'Bare metal, Linux, virtualisation and infrastructure automation for reliable platform foundations.',
-    href: '/services/bare-metal-platforms',
-  },
-  {
-    title: 'Cloud & Hybrid Platforms',
-    summary:
-      'Public cloud, private cloud, hybrid integration and platform operations across real-world environments.',
-    href: '/services/hybrid-platforms',
-  },
-  {
-    title: 'Kubernetes & Cloud Native',
-    summary:
-      'Kubernetes, OpenShift, GitOps, observability and developer workflows for modern application platforms.',
-    href: '/kubernetes',
-  },
-  {
-    title: 'Migration & Modernisation',
-    summary:
-      'Risk-managed platform and application migration without losing operational control.',
-    href: '/services/migrations-and-modernisation',
-  },
-]
+const pageData: HomePage | undefined = page?.data
+const hero = pageData?.hero ?? {}
 ---
 
 <Layout
-  title={page?.seoTitle ?? page?.title ?? 'What We Do | FrontierHQ'}
-  description={page?.seoDescription ??
-    'Platform engineering services from FrontierHQ.'}
+  title={pageData?.seoTitle ??
+    pageData?.title ??
+    'Platform Engineering for Real-World Environments | FrontierHQ'}
+  description={pageData?.seoDescription ??
+    'Design, integration and hands-on platform engineering across bare metal, cloud, hybrid and Kubernetes environments.'}
   activeNav="/what-we-do"
 >
   <main>
     <Hero {...hero} />
 
-    <Section
-      eyebrow="What We Do"
-      heading="Platform engineering across the environments your business actually runs in."
-      body="We design, integrate and build the foundations that sit underneath reliable modern platforms."
-      theme="dark"
-    >
-      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {
-          serviceGroups.map((service, index) => (
-            <ServiceCard
-              title={service.title}
-              summary={service.summary}
-              href={service.href}
-              accent={
-                index % 3 === 0 ? 'green' : index % 3 === 1 ? 'cyan' : 'purple'
-              }
-            />
-          ))
-        }
-      </div>
-    </Section>
+    <WhyProgressGetsHard />
 
-    <Section
-      eyebrow="Stronger Together"
-      heading="We work with leading product companies to build what matters"
-      body="We partner with best-in-class technology companies and ecosystem partners to deliver the right solutions without tying you to any single vendor."
-    >
-      <PartnerStrip
-        partners={partners.map(({ name }) => ({ name }))}
-        variant="plain"
-      />
-    </Section>
+    <WhatWeDo />
 
-    <Section
-      theme="dark"
-      eyebrow="Proof in Practice"
-      heading="Real challenges. Real outcomes."
-      headerActionLabel="View all case studies →"
-      headerActionUrl="/case-studies"
-    >
-      <div class="grid gap-6 lg:grid-cols-2">
-        {
-          caseStudies.map((study, index) => (
-            <CaseStudyCard
-              title={study.title}
-              summary={study.summary}
-              href={`/case-studies/${study.slug.current}`}
-              clientType={study.clientType}
-              accent={index % 2 === 0 ? 'cyan-purple' : 'cyan-blue'}
-              theme="dark"
-            />
-          ))
-        }
-      </div>
-    </Section>
+    <PlatformEstate />
+
+    <PartnerEcosystem partners={partners} />
+
+    <FeaturedCaseStudies caseStudies={caseStudies} />
 
     <CTASection
-      heading="Let's build the right platform for your business."
-      body="Whether you need to build, integrate, migrate or modernise — we're here to help."
-      primaryCtaLabel="Let's Talk"
+      eyebrow="Operate predictably. Innovate safely."
+      heading="What does your platform need to make possible?"
+      body="Tell us what you need to achieve. We’ll help you see the whole system, make risk visible and find a practical path forward."
+      primaryCtaLabel="Let’s Talk"
       primaryCtaUrl="/contact"
     />
   </main>
