@@ -11,6 +11,12 @@ const {
   secondaryCtaLabel = 'See What We Do',
   secondaryCtaUrl = '/services',
 } = Astro.props
+
+const pageSlug =
+  Astro.url.pathname === '/'
+    ? 'home'
+    : Astro.url.pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '-')
+const contactEventClass = `plausible-event-name=Contact+CTA plausible-event-page=${pageSlug}`
 ---
 
 <section
@@ -52,7 +58,11 @@ const {
       <div class="mt-10 flex flex-wrap gap-4">
         <a
           href={primaryCtaUrl}
-          class="rounded-md bg-frontier-green px-6 py-3 text-sm font-bold text-frontier-dark transition hover:bg-frontier-cyan"
+          class:list={[
+            contactEventClass,
+            'plausible-event-placement=hero',
+            'rounded-md bg-frontier-green px-6 py-3 text-sm font-bold text-frontier-dark transition hover:bg-frontier-cyan',
+          ]}
         >
           {primaryCtaLabel}
         </a>

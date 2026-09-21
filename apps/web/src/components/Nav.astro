@@ -19,6 +19,11 @@ const linkBase = isLight
   : 'text-frontier-white/80 hover:text-frontier-green'
 
 const activeClass = isLight ? 'text-frontier-mid-green' : 'text-frontier-green'
+const pageSlug =
+  Astro.url.pathname === '/'
+    ? 'home'
+    : Astro.url.pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '-')
+const contactEventClass = `plausible-event-name=Contact+CTA plausible-event-page=${pageSlug}`
 ---
 
 <header class="absolute inset-x-0 top-0 z-50">
@@ -49,6 +54,8 @@ const activeClass = isLight ? 'text-frontier-mid-green' : 'text-frontier-green'
     <a
       href="/contact"
       class:list={[
+        contactEventClass,
+        'plausible-event-placement=header',
         'rounded-md px-5 py-3 text-sm font-bold transition',
         isLight
           ? 'bg-frontier-dark text-frontier-white hover:bg-frontier-mid-green'
