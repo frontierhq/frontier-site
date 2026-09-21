@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="862" height="584" viewBox="64 1259 862 584">
+  <g id="translucent-platform-layers">
+    <polygon points="65,1640 410,1480 925,1660 580,1820" fill="#8F3BFF" fill-opacity="0.24" stroke="#8F3BFF" stroke-opacity="0.7" stroke-width="1.2" />
+    <polygon points="65,1640 580,1820 580,1843 65,1663" fill="#26372F" fill-opacity="0.15" />
+    <polygon points="580,1820 925,1660 925,1683 580,1843" fill="#1B2B24" fill-opacity="0.15" />
+    <polygon points="65,1530 410,1370 925,1550 580,1710" fill="#0EC2E3" fill-opacity="0.24" stroke="#0EC2E3" stroke-opacity="0.7" stroke-width="1.2" />
+    <polygon points="65,1530 580,1710 580,1733 65,1553" fill="#26372F" fill-opacity="0.15" />
+    <polygon points="580,1710 925,1550 925,1573 580,1733" fill="#1B2B24" fill-opacity="0.15" />
+    <polygon points="65,1420 410,1260 925,1440 580,1600" fill="#00E6B0" fill-opacity="0.24" stroke="#00E6B0" stroke-opacity="0.7" stroke-width="1.2" />
+    <polygon points="65,1420 580,1600 580,1623 65,1443" fill="#26372F" fill-opacity="0.15" />
+    <polygon points="580,1600 925,1440 925,1463 580,1623" fill="#1B2B24" fill-opacity="0.15" />
+  </g>
+</svg>
