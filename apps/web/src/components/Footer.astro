@@ -1,5 +1,11 @@
 ---
 import Logo from './Logo.astro'
+
+const pageSlug =
+  Astro.url.pathname === '/'
+    ? 'home'
+    : Astro.url.pathname.replace(/^\/+|\/+$/g, '').replace(/\//g, '-')
+const contactEventClass = `plausible-event-name=Contact+CTA plausible-event-page=${pageSlug}`
 ---
 
 <footer class="border-t border-frontier-cyan/10 bg-frontier-dark">
@@ -62,7 +68,10 @@ import Logo from './Logo.astro'
           <li>
             <a
               href="/contact"
-              class="plausible-event-name=Contact+CTA transition hover:text-frontier-green"
+              class:list={[
+                contactEventClass,
+                'plausible-event-placement=footer transition hover:text-frontier-green',
+              ]}
             >
               Contact
             </a>
@@ -140,7 +149,10 @@ import Logo from './Logo.astro'
           <p>
             <a
               href="mailto:hello@frontierhq.com"
-              class="plausible-event-name=Contact+CTA transition hover:text-frontier-green"
+              class:list={[
+                contactEventClass,
+                'plausible-event-placement=footer transition hover:text-frontier-green',
+              ]}
             >
               hello@frontierhq.com
             </a>
