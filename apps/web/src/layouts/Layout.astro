@@ -17,6 +17,8 @@ const canonicalUrl = new URL(
   Astro.url.pathname,
   Astro.site ?? Astro.url.origin
 ).toString()
+const isProductionDeploy =
+  import.meta.env.PROD && import.meta.env.CONTEXT === 'production'
 ---
 
 <!doctype html>
@@ -41,6 +43,30 @@ const canonicalUrl = new URL(
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+
+    {
+      isProductionDeploy && (
+        <>
+          <!-- Privacy-friendly analytics by Plausible -->
+          <script
+            is:inline
+            async
+            src="https://plausible.io/js/pa-mCQkVx_dVk-1b34QZl55f.js"
+          ></script>
+          <script is:inline>
+            window.plausible =
+              window.plausible ||
+              function () {
+                ;(plausible.q = plausible.q || []).push(arguments)
+              }
+            plausible.init = plausible.init || function (i) {
+              plausible.o = i || {}
+            }
+            plausible.init()
+          </script>
+        </>
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
